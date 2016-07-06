@@ -73,7 +73,7 @@
 ;; extra ex commands
 (evil-ex-define-cmd "df" 'delete-frame)
 (evil-ex-define-cmd "nf" 'new-frame)
-(evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs")))
+(evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (evil-ex-define-cmd "en" '(lambda () (interactive) (find-file "~/notes.org")))
 (evil-ex-define-cmd "et" '(lambda () (interactive) (find-file "~/todos.org")))
 (evil-ex-define-cmd "ms" 'magit-status)
