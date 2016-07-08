@@ -177,6 +177,10 @@ the actual manpage using the function `man'."
 	(man (match-string 1 node)))
     ad-do-it)))
 
+;; enable show-paren-mode
+(setq show-paren-delay 0)
+(setq show-paren-mode t)
+
 ;; auto-generated stuff
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
