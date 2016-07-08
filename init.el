@@ -1,3 +1,12 @@
+;; package manager config options
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(setq package-enable-at-startup nil)
+(package-initialize)
+
 ;; windows-only settings
 (if (equal system-type 'windows-nt)
     (progn (setq exec-path (append exec-path '("C:/WinPython-64bit-2.7.6.4/python-2.7.6.amd64"))) ; from http://winpython.sourceforge.net/
@@ -11,15 +20,6 @@
 
 ;; suppress annoying ad-handle-definition warnings
 (setq ad-redefinition-action 'accept)
-
-;; package manager config options
-(require 'package)
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(setq package-enable-at-startup nil)
-(package-initialize)
 
 ;; set up sml mode
 (autoload 'sml-mode "sml-mode" "Major mode for editing SML." t)
