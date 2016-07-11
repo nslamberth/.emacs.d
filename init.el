@@ -190,7 +190,6 @@ the actual manpage using the function `man'."
  '(custom-safe-themes
    (quote
     ("5bcd0c26bad3303c0325d12dd6562e4f7892d39d390d7db194dd141ba971cad7" default)))
- '(evil-want-fine-undo nil)
  '(inhibit-startup-screen t)
  '(org-M-RET-may-split-line nil)
  '(org-startup-indented t)
