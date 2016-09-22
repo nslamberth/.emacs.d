@@ -1,6 +1,10 @@
 /auto-save-list
 /backup
 /elpa
-/eshell
+/eshell/history
+/eshell/lastdir
+/my-packages
+/request
 /server
+/snippets
 /url
