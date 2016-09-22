@@ -1,4 +1,5 @@
-/.python-environments
+*~
+.*
 /auto-save-list
 /backup
 /elpa
