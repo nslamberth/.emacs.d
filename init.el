@@ -38,6 +38,11 @@
 
 ;; todo add all of the commands from code/clitools
 
+;; add git stuff
+
+; note! need to bake in credentials to url when using MS Windows
+; check this link: https://github.com/atom/atom/issues/8984#issuecomment-144697558
+
 ;;; quality of life stuff
 
 ;; smooth scrolling
