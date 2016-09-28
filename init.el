@@ -134,28 +134,50 @@
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
 
+
+;;; ob-ipython?
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+   ;; other languages..
+   ))
+
+
+;;; temp python environment
+;; uses anaconda mode instead of elpy
+(add-hook 'python-mode-hook 'anaconda-mode)
+
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+
+;;; Company, and Company backends.
+(add-hook 'python-mode-hook
+	  '(lambda ()
+	    (company-mode)
+            (add-to-list 'company-backends 'company-anaconda)
+            (company-quickhelp-mode)))
+
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
 ;; enable elpy
-(elpy-enable)
+;; (elpy-enable)
 
 ;; set flymake to wait a bit longer before checking
-(setq flymake-no-changes-timeout 3)
+;; (setq flymake-no-changes-timeout 3)
 
 ;; enable quickhelp for elpy
-(add-hook 'elpy-mode-hook 'company-quickhelp-mode)
+;; (add-hook 'elpy-mode-hook 'company-quickhelp-mode)
 
 ;; enable autopep8
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+;; (require 'py-autopep8)
+;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; set m-l to eval region or buffer
-(add-hook 'elpy-mode-hook
-	  '(lambda ()
-	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
+;; (add-hook 'elpy-mode-hook
+	  ;; '(lambda ()
+	     ;; (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
 
 ;; suppress annoying ad-handle-definition warnings
-(setq ad-redefinition-action 'accept)
+;; (setq ad-redefinition-action 'accept)
 
 ;; activate ein
 (require 'ein)
@@ -196,7 +218,6 @@
 (define-key evil-normal-state-map (kbd "M-o") nil)
 (define-key evil-visual-state-map (kbd "M-o") nil)
 (define-key evil-motion-state-map (kbd "M-o") nil)
-(define-key evil-org-mode-map (kbd "M-o") nil)
 
 ;; make evil undo behave more like vim
 (setq evil-want-fine-undo t)
@@ -216,8 +237,17 @@
 (evil-ex-define-cmd "en" '(lambda () (interactive) (find-file "~/notes.org")))
 (evil-ex-define-cmd "et" '(lambda () (interactive) (find-file "~/todos.org")))
 (evil-ex-define-cmd "ms" 'magit-status)
+(evil-ex-define-cmd "es" 'eshell)
 
 ;;; org-mode settings
+
+;; disable M-o so other-window works
+(mapc (lambda (state)
+        (evil-define-key state evil-org-mode-map
+          (kbd "M-o") nil
+          ))
+      '(normal insert))
+
 ;; change max depth of org-refile
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
 
@@ -321,7 +351,7 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode))))
+    (ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -336,3 +366,4 @@ the actual manpage using the function `man'."
 (find-file "~/notes.org")
 (find-file "~/.emacs.d/init.el")
 (find-file "~/todos.org")
+(eshell)
