@@ -9,9 +9,6 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;; load datorama.el
-(load-file "~/.emacs.d/my-packages/datorama.el")
-
 ;; enable evil
 (require 'evil)
 (evil-mode t)
@@ -36,10 +33,7 @@
   (let ((eshell-buffer-maximum-lines 0))
     (eshell-truncate-buffer)))
 
-;; todo add all of the commands from code/clitools
-
-;; add git stuff
-
+; TODO add git shell integration
 ; note! need to bake in credentials to url when using MS Windows
 ; check this link: https://github.com/atom/atom/issues/8984#issuecomment-144697558
 
@@ -177,7 +171,7 @@
 	     ;; (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
 
 ;; suppress annoying ad-handle-definition warnings
-;; (setq ad-redefinition-action 'accept)
+(setq ad-redefinition-action 'accept)
 
 ;; activate ein
 (require 'ein)
@@ -218,6 +212,14 @@
 (define-key evil-normal-state-map (kbd "M-o") nil)
 (define-key evil-visual-state-map (kbd "M-o") nil)
 (define-key evil-motion-state-map (kbd "M-o") nil)
+
+(global-set-key (kbd "s-e") 'eval-last-sexp)
+
+(define-key evil-normal-state-map (kbd "s-i") 'org-insert-link)
+(define-key evil-insert-state-map (kbd "s-i") 'org-insert-link)
+(define-key evil-visual-state-map (kbd "s-i") 'org-insert-link)
+(define-key evil-motion-state-map (kbd "s-i") 'org-insert-link)
+
 
 ;; make evil undo behave more like vim
 (setq evil-want-fine-undo t)
@@ -306,6 +308,13 @@ the actual manpage using the function `man'."
 	     (define-key evil-normal-state-map (kbd "TAB") 'web-mode-fold-or-unfold)
 	     (define-key evil-visual-state-map (kbd "TAB") 'web-mode-fold-or-unfold))) 
 
+
+;; cider-mode settings
+(add-hook 'cider-mode-hook (lambda ()
+			     (define-key cider-mode-map (kbd "s-e") 'cider-eval-last-sexp)
+			     (add-hook 'cider-popup-buffer-mode-hook 'evil-motion-state)
+			     ))
+
 ;;; os-specific stuff
 ;; windows settings
 (if (equal system-type 'windows-nt)
@@ -328,13 +337,37 @@ the actual manpage using the function `man'."
 				  ";C:\\clojure-1.8.0\\"
 				  ";C:\\Program Files (x86)\\Java\\jre7\\bin\\"
 				  ))
-	   ))
+	   ;; load datorama.el
+	   (load-file "~/.emacs.d/my-packages/datorama.el")))
 
-;; mac settings
+;; mac-only settings
 (when (memq window-system '(mac ns))
   (progn (exec-path-from-shell-initialize)
-	 (load-theme 'tsdh-dark))
-	 )
+	 (load-theme 'tsdh-dark)
+
+         ;; enable elpy
+         (elpy-enable)
+         (elpy-use-ipython)
+
+         ;; use flycheck not flymake with elpy
+         (when (require 'flycheck nil t)
+           (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+           (add-hook 'elpy-mode-hook 'flycheck-mode))
+         
+         ;; enable autopep8 formatting on save
+         (require 'py-autopep8)
+         (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+         ;; make s-o cycle windows (and remove org conflict)
+         (global-set-key (kbd "s-o")      'other-window)
+
+         ;; make s-e evalue region or buffer
+	 (add-hook 'elpy-mode-hook
+		   '(lambda () (progn
+		     (define-key elpy-mode-map (kbd "s-s") 'elpy-shell-send-region-or-buffer)
+		     (define-key elpy-mode-map (kbd "s-e") 'elpy-shell-send-current-statement))))
+
+         ))
 
 ;;; auto-generated stuff from custom
 (custom-set-variables
