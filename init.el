@@ -124,51 +124,41 @@
 
 (global-set-key (kbd "M-e") 'eval-last-sexp)
 
-
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
 
-
-;;; ob-ipython?
+;;; enable ob-ipython
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ipython . t)
    ;; other languages..
    ))
 
+;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
-;;; temp python environment
-;; uses anaconda mode instead of elpy
-(add-hook 'python-mode-hook 'anaconda-mode)
-
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-;;; Company, and Company backends.
-(add-hook 'python-mode-hook
-	  '(lambda ()
-	    (company-mode)
-            (add-to-list 'company-backends 'company-anaconda)
-            (company-quickhelp-mode)))
+; ;don't prompt me to confirm everytime I want to evaluate a block
+(setq org-confirm-babel-evaluate nil)
 
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
 ;; enable elpy
-;; (elpy-enable)
+(elpy-enable)
 
 ;; set flymake to wait a bit longer before checking
-;; (setq flymake-no-changes-timeout 3)
+(setq flymake-no-changes-timeout 3)
 
 ;; enable quickhelp for elpy
-;; (add-hook 'elpy-mode-hook 'company-quickhelp-mode)
+(add-hook 'elpy-mode-hook 'company-quickhelp-mode)
 
 ;; enable autopep8
-;; (require 'py-autopep8)
-;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; set m-l to eval region or buffer
-;; (add-hook 'elpy-mode-hook
-	  ;; '(lambda ()
-	     ;; (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
+(add-hook 'elpy-mode-hook
+	  '(lambda ()
+	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
 
 ;; suppress annoying ad-handle-definition warnings
 (setq ad-redefinition-action 'accept)
@@ -213,12 +203,16 @@
 (define-key evil-visual-state-map (kbd "M-o") nil)
 (define-key evil-motion-state-map (kbd "M-o") nil)
 
+<<<<<<< Updated upstream
 (global-set-key (kbd "s-e") 'eval-last-sexp)
 
 (define-key evil-normal-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-insert-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-visual-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-motion-state-map (kbd "s-i") 'org-insert-link)
+=======
+
+>>>>>>> Stashed changes
 
 
 ;; make evil undo behave more like vim
@@ -257,6 +251,15 @@
 (setq org-agenda-files
       '("~/todos.org")
       )
+
+;; set M-e to evaluate
+(mapc (lambda (state)
+        (evil-define-key state evil-org-mode-map
+          (kbd "M-e") 'org-ctrl-c-ctrl-c
+          ))
+      '(normal insert))
+
+
 
 ;;; magit settings
 ;; make magit keymap more vim-like

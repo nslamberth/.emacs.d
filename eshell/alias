@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 alias ealias find-file-other-window ~/.emacs.d/eshell/alias
 alias eo find-file-other-window $1
 alias e find-file $1
@@ -5,3 +6,12 @@ alias la ls -a $*
 alias ll ls -l $*
 alias ls ls -F1 $*
 alias cdd c:/Users/nlambert1/Desktop/
+=======
+alias ealias find-file-other-window C:/Users/nlambert1/AppData/Roaming/.emacs.d/eshell/alias
+alias eo find-file-other-window $1
+alias e find-file $1
+alias la ls -a $*
+alias ll ls -l $*
+alias ls ls -F1 $*
+alias cdd c:/Users/nlambert1/Desktop/
+>>>>>>> Stashed changes
