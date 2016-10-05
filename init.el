@@ -139,36 +139,36 @@
 
 ;;; temp python environment
 ;; uses anaconda mode instead of elpy
-(add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
 
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 ;;; Company, and Company backends.
-(add-hook 'python-mode-hook
-	  '(lambda ()
-	    (company-mode)
-            (add-to-list 'company-backends 'company-anaconda)
-            (company-quickhelp-mode)))
+;; (add-hook 'python-mode-hook
+	  ;; '(lambda ()
+	    ;; (company-mode)
+            ;; (add-to-list 'company-backends 'company-anaconda)
+            ;; (company-quickhelp-mode)))
 
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
-;; enable elpy
-;; (elpy-enable)
+enable elpy
+(elpy-enable)
 
 ;; set flymake to wait a bit longer before checking
-;; (setq flymake-no-changes-timeout 3)
+(setq flymake-no-changes-timeout 3)
 
 ;; enable quickhelp for elpy
-;; (add-hook 'elpy-mode-hook 'company-quickhelp-mode)
+(add-hook 'elpy-mode-hook 'company-quickhelp-mode)
 
 ;; enable autopep8
-;; (require 'py-autopep8)
-;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; set m-l to eval region or buffer
-;; (add-hook 'elpy-mode-hook
-	  ;; '(lambda ()
-	     ;; (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
+(add-hook 'elpy-mode-hook
+	  '(lambda ()
+	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
 
 ;; suppress annoying ad-handle-definition warnings
 (setq ad-redefinition-action 'accept)
