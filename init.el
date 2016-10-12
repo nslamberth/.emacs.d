@@ -112,22 +112,16 @@
        ))
 
 (defadvice evil-next-buffer (after avoid-messages-buffer-in-next-buffer)
-  "Advice around `evil-next-buffer' to skip buffers in buffers-to-skip."
+  "Advise next-buffer to skip admin buffers and set eshell to normal-state"
   (when (member (buffer-name) buffers-to-skip)
-    (evil-next-buffer)))
-
-(defadvice evil-prev-buffer (after avoid-messages-buffer-in-prev-buffer)
-  "Advice around `evil-prev-buffer' to skip buffers in buffers-to-skip."
-  (when (member (buffer-name) buffers-to-skip)
-    (evil-prev-buffer)))
-
-(defadvice evil-next-buffer (after avoid-messages-buffer-in-prev-buffer)
-  "Advice around `evil-next-buffer' to switch to evil-normal state."
+    (evil-next-buffer))
   (when (member (buffer-name) buffers-to-use-normal-state)
     (evil-normal-state)))
 
 (defadvice evil-prev-buffer (after avoid-messages-buffer-in-prev-buffer)
-  "Advice around `evil-prev-buffer' to switch to evil-normal state."
+  "Advise prev-buffer to skip admin buffers and set eshell to normal-state"
+  (when (member (buffer-name) buffers-to-skip)
+    (evil-prev-buffer))
   (when (member (buffer-name) buffers-to-use-normal-state)
     (evil-normal-state)))
 
@@ -429,3 +423,4 @@ the actual manpage using the function `man'."
 (find-file "~/.emacs.d/init.el")
 (find-file "~/todos.org")
 (eshell)
+(evil-normal-state)
