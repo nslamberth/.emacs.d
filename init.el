@@ -203,17 +203,12 @@
 (define-key evil-visual-state-map (kbd "M-o") nil)
 (define-key evil-motion-state-map (kbd "M-o") nil)
 
-<<<<<<< Updated upstream
 (global-set-key (kbd "s-e") 'eval-last-sexp)
 
 (define-key evil-normal-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-insert-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-visual-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-motion-state-map (kbd "s-i") 'org-insert-link)
-=======
-
->>>>>>> Stashed changes
-
 
 ;; make evil undo behave more like vim
 (setq evil-want-fine-undo t)
