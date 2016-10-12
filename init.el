@@ -95,7 +95,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
-;; advise next-buffer to skip unnecessary buffers
+;; next-buffer and previous-buffer advice
 (setq buffers-to-skip
      '("*Messages*"
        "*Backtrace*"
@@ -107,15 +107,23 @@
        "*helm M-x*"
        ))
 
+(setq buffers-to-use-normal-state
+     '("*eshell*"
+       ))
+
 (defadvice evil-next-buffer (after avoid-messages-buffer-in-next-buffer)
-  "Advice around `evil-next-buffer' to skip buffers in buffers-to-skip."
+  "Advise next-buffer to skip admin buffers and set eshell to normal-state"
   (when (member (buffer-name) buffers-to-skip)
-    (evil-next-buffer)))
+    (evil-next-buffer))
+  (when (member (buffer-name) buffers-to-use-normal-state)
+    (evil-normal-state)))
 
 (defadvice evil-prev-buffer (after avoid-messages-buffer-in-prev-buffer)
-  "Advice around `evil-prev-buffer' to skip buffers in buffers-to-skip."
+  "Advise prev-buffer to skip admin buffers and set eshell to normal-state"
   (when (member (buffer-name) buffers-to-skip)
-    (evil-prev-buffer)))
+    (evil-prev-buffer))
+  (when (member (buffer-name) buffers-to-use-normal-state)
+    (evil-normal-state)))
 
 (ad-activate 'evil-next-buffer)
 (ad-activate 'evil-prev-buffer)
@@ -137,7 +145,20 @@
 ;; display/update images in the buffer after I evaluate
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
-; ;don't prompt me to confirm everytime I want to evaluate a block
+;;; temp python environment
+;; uses anaconda mode instead of elpy
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+
+;;; Company, and Company backends.
+;; (add-hook 'python-mode-hook
+	  ;; '(lambda ()
+	    ;; (company-mode)
+            ;; (add-to-list 'company-backends 'company-anaconda)
+            ;; (company-quickhelp-mode)))
+
+;;don't prompt me to confirm everytime I want to evaluate a block
 (setq org-confirm-babel-evaluate nil)
 
 ;;; python enviornment setup
@@ -170,8 +191,11 @@
 (add-hook 'ein:notebook-mode-hook
 	  (lambda ()
 	    (define-key ein:notebook-multilang-mode-map (kbd "M-e") 'ein:worksheet-execute-cell)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-e") 'ein:worksheet-execute-cell)
 	    (define-key ein:notebook-multilang-mode-map (kbd "C-e") 'ein:worksheet-execute-cell)
-	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)))
+	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-<up>") 'ein:worksheet-goto-prev-input)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-<down>") 'ein:worksheet-goto-next-input)))
 
 ;;; evil config
 ;; change some evil keybindings
@@ -398,3 +422,4 @@ the actual manpage using the function `man'."
 (find-file "~/.emacs.d/init.el")
 (find-file "~/todos.org")
 (eshell)
+(evil-normal-state)
