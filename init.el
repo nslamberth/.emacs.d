@@ -95,7 +95,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
-;; advise next-buffer to skip unnecessary buffers
+;; next-buffer and previous-buffer advice
 (setq buffers-to-skip
      '("*Messages*"
        "*Backtrace*"
@@ -107,6 +107,10 @@
        "*helm M-x*"
        ))
 
+(setq buffers-to-use-normal-state
+     '("*eshell*"
+       ))
+
 (defadvice evil-next-buffer (after avoid-messages-buffer-in-next-buffer)
   "Advice around `evil-next-buffer' to skip buffers in buffers-to-skip."
   (when (member (buffer-name) buffers-to-skip)
@@ -116,6 +120,16 @@
   "Advice around `evil-prev-buffer' to skip buffers in buffers-to-skip."
   (when (member (buffer-name) buffers-to-skip)
     (evil-prev-buffer)))
+
+(defadvice evil-next-buffer (after avoid-messages-buffer-in-prev-buffer)
+  "Advice around `evil-next-buffer' to switch to evil-normal state."
+  (when (member (buffer-name) buffers-to-use-normal-state)
+    (evil-normal-state)))
+
+(defadvice evil-prev-buffer (after avoid-messages-buffer-in-prev-buffer)
+  "Advice around `evil-prev-buffer' to switch to evil-normal state."
+  (when (member (buffer-name) buffers-to-use-normal-state)
+    (evil-normal-state)))
 
 (ad-activate 'evil-next-buffer)
 (ad-activate 'evil-prev-buffer)
