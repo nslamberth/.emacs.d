@@ -124,18 +124,18 @@
 
 (global-set-key (kbd "M-e") 'eval-last-sexp)
 
-
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
 
-
-;;; ob-ipython?
+;;; enable ob-ipython
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ipython . t)
    ;; other languages..
    ))
 
+;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
 ;;; temp python environment
 ;; uses anaconda mode instead of elpy
@@ -150,9 +150,12 @@
             ;; (add-to-list 'company-backends 'company-anaconda)
             ;; (company-quickhelp-mode)))
 
+;;don't prompt me to confirm everytime I want to evaluate a block
+(setq org-confirm-babel-evaluate nil)
+
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
-enable elpy
+;; enable elpy
 (elpy-enable)
 
 ;; set flymake to wait a bit longer before checking
@@ -180,8 +183,11 @@ enable elpy
 (add-hook 'ein:notebook-mode-hook
 	  (lambda ()
 	    (define-key ein:notebook-multilang-mode-map (kbd "M-e") 'ein:worksheet-execute-cell)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-e") 'ein:worksheet-execute-cell)
 	    (define-key ein:notebook-multilang-mode-map (kbd "C-e") 'ein:worksheet-execute-cell)
-	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)))
+	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-<up>") 'ein:worksheet-goto-prev-input)
+	    (define-key ein:notebook-multilang-mode-map (kbd "s-<down>") 'ein:worksheet-goto-next-input)))
 
 ;;; evil config
 ;; change some evil keybindings
@@ -257,6 +263,15 @@ enable elpy
 (setq org-agenda-files
       '("~/todos.org")
       )
+
+;; set M-e to evaluate
+(mapc (lambda (state)
+        (evil-define-key state evil-org-mode-map
+          (kbd "M-e") 'org-ctrl-c-ctrl-c
+          ))
+      '(normal insert))
+
+
 
 ;;; magit settings
 ;; make magit keymap more vim-like
