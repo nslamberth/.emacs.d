@@ -1,5 +1,29 @@
 ;;; NICK LAMBERTH EMACS INIT
 
+;; windows-only settings
+(if (equal system-type 'windows-nt)
+    (progn (setq exec-path
+		 (append exec-path '("C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\" 
+				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\Scripts\\"
+				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\lib\\site-packages\\"
+				     "C:\\PortableGit\\cmd\\"
+				     "C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
+				     "C:\\clojure-1.8.0\\"
+				     "C:\\Program Files (x86)\\Java\\jre7\\bin\\"
+				     )))
+
+	   (setenv "PATH" (concat (getenv "PATH")
+				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\"
+				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\Scripts\\"
+				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\lib\\site-packages\\"
+				  ";C:\\PortableGit\\cmd\\"
+				  ";C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
+				  ";C:\\clojure-1.8.0\\"
+				  ";C:\\Program Files (x86)\\Java\\jre7\\bin\\"
+				  ))
+	   ;; load datorama.el
+	   (load-file "~/.emacs.d/my-packages/datorama.el")))
+
 ;;; package setup
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -135,34 +159,26 @@
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
 
-;;; enable ob-ipython
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ipython . t)
-   ;; other languages..
-   ))
-
-;; display/update images in the buffer after I evaluate
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-
-;;; temp python environment
-;; uses anaconda mode instead of elpy
-;; (add-hook 'python-mode-hook 'anaconda-mode)
-
-;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-;;; Company, and Company backends.
-;; (add-hook 'python-mode-hook
-	  ;; '(lambda ()
-	    ;; (company-mode)
-            ;; (add-to-list 'company-backends 'company-anaconda)
-            ;; (company-quickhelp-mode)))
-
-;;don't prompt me to confirm everytime I want to evaluate a block
-(setq org-confirm-babel-evaluate nil)
-
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
+
+;; enable ipython
+(require 'python)
+(when (executable-find "ipython")
+  (setq python-shell-interpreter "ipython"))
+
+;; hack to fix annoying ipython magic issues on Windows
+(fset 'ipython-get-docstring (lambda (&optional arg)
+	"Wrap prompt input in 'help()'. Behaves the same as ? magic."
+	(interactive "p")
+	(kmacro-exec-ring-item
+	 (quote ([escape 66 105 104 101 108 112 40 escape 65 41 return escape] 0 "%d")) arg)))
+
+(when (equal python-shell-interpreter "ipython")
+  (add-hook 'inferior-python-mode-hook
+	    '(lambda () 
+	       (evil-define-key 'insert inferior-python-mode-map (kbd "?") 'ipython-get-docstring))))
+
 ;; enable elpy
 (elpy-enable)
 
@@ -270,6 +286,19 @@
 (setq org-agenda-files
       '("~/todos.org")
       )
+;; enable ob-ipython
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+   ;; other languages..
+   ))
+
+;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+;;don't prompt me to confirm everytime I want to evaluate a block
+(setq org-confirm-babel-evaluate nil)
+
 
 ;; set M-e to evaluate
 (mapc (lambda (state)
@@ -337,31 +366,6 @@ the actual manpage using the function `man'."
 			     (add-hook 'cider-popup-buffer-mode-hook 'evil-motion-state)
 			     ))
 
-;;; os-specific stuff
-;; windows settings
-(if (equal system-type 'windows-nt)
-    (progn (setq exec-path
-		 (append exec-path '("C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\" 
-				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\Scripts\\"
-				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\lib\\site-packages\\"
-				     "C:\\PortableGit\\cmd\\"
-				     "C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
-				     "C:\\clojure-1.8.0\\"
-				     "C:\\Program Files (x86)\\Java\\jre7\\bin\\"
-				     )))
-
-	   (setenv "PATH" (concat (getenv "PATH")
-				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\"
-				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\Scripts\\"
-				  ";C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\lib\\site-packages\\"
-				  ";C:\\PortableGit\\cmd\\"
-				  ";C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
-				  ";C:\\clojure-1.8.0\\"
-				  ";C:\\Program Files (x86)\\Java\\jre7\\bin\\"
-				  ))
-	   ;; load datorama.el
-	   (load-file "~/.emacs.d/my-packages/datorama.el")))
-
 ;; mac-only settings
 (when (memq window-system '(mac ns))
   (progn (exec-path-from-shell-initialize)
@@ -406,7 +410,8 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode))))
+    (ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+ '(python-shell-prompt-detect-enabled nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
