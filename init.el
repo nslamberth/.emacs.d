@@ -162,6 +162,10 @@
 ;; motion-state for package.el
 (add-hook 'package-menu-mode-hook 'evil-motion-state)
 
+;; enable elmacro 
+(require 'elmacro)
+(elmacro-mode)
+
 ;;; python enviornment setup
 ;;; from: https://realpython.com/blog/python/emacs-the-best-python-editor/
 
@@ -170,12 +174,18 @@
 (when (executable-find "ipython")
   (setq python-shell-interpreter "ipython"))
 
-;; hack to fix annoying ipython magic issues on Windows
-(fset 'ipython-get-docstring (lambda (&optional arg)
-	"Wrap prompt input in 'help()'. Behaves the same as ? magic."
-	(interactive "p")
-	(kmacro-exec-ring-item
-	 (quote ([escape 66 105 104 101 108 112 40 escape 65 41 return escape] 0 "%d")) arg)))
+;; hack command to fix annoying ipython magic issues on Windows
+(defun ipython-get-docstring ()
+  (interactive)
+  (insert ")")
+  (evil-normal-state)
+  (evil-backward-WORD-begin nil)
+  (evil-insert 1 nil nil)
+  (insert "help(")
+  (evil-normal-state)
+  (evil-find-char nil 41)
+  (evil-append 1 nil)
+  (comint-send-input))
 
 (when (equal python-shell-interpreter "ipython")
   (add-hook 'inferior-python-mode-hook
@@ -411,7 +421,7 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (markdown-mode ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
  '(python-shell-prompt-detect-enabled nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
