@@ -310,12 +310,6 @@
           ))
       '(normal insert))
 
-;; enable org-page
-(require 'org-page)
-
-(setq op/repository-directory "~/projects/excesslingo")
-;; (setq op/site-domain "http://www.excesslingo.com")
-
 ;;; magit settings
 ;; make magit keymap more vim-like
 (with-eval-after-load 'magit
