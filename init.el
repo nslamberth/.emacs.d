@@ -425,7 +425,8 @@ the actual manpage using the function `man'."
  '(package-selected-packages
    (quote
     (yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
- '(python-shell-prompt-detect-enabled nil))
+ '(python-shell-prompt-detect-enabled nil)
+ '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
