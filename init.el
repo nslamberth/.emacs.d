@@ -421,7 +421,7 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (multiple-cursors elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
  '(python-shell-prompt-detect-enabled nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
