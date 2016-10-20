@@ -9,6 +9,7 @@
 				     "C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
 				     "C:\\clojure-1.8.0\\"
 				     "C:\\Program Files (x86)\\Java\\jre7\\bin\\"
+				     "C:\\pgsql\\bin"
 				     )))
 
 	   (setenv "PATH" (concat (getenv "PATH")
@@ -19,6 +20,7 @@
 				  ";C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
 				  ";C:\\clojure-1.8.0\\"
 				  ";C:\\Program Files (x86)\\Java\\jre7\\bin\\"
+				  ";C:\\pgsql\\bin"
 				  ))
 	   ;; load datorama.el
 	   (load-file "~/.emacs.d/my-packages/datorama.el")))
