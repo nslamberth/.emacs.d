@@ -210,10 +210,14 @@
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
-;; set m-l to eval region or buffer
+;; set elpy hooks
 (add-hook 'elpy-mode-hook
 	  '(lambda ()
-	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer)))
+	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) ; make send region easier
+	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer) ; make send region easier
+	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) ; personal preference for run-python
+	     (setq eldoc-mode nil)
+	     ))
 
 ;; suppress annoying ad-handle-definition warnings
 (setq ad-redefinition-action 'accept)
