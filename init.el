@@ -34,6 +34,9 @@
 (setq package-enable-at-startup nil)
 (package-initialize)
 
+;; enable electric-pair-mode
+(electric-pair-mode t)
+
 ;; enable evil
 (require 'evil)
 (evil-mode t)
@@ -213,8 +216,9 @@
 ;; set elpy hooks
 (add-hook 'elpy-mode-hook
 	  '(lambda ()
-	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) ; make send region easier
-	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer) ; make send region easier
+	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) ; make send region easier (win)
+	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer) ; make send region easier (win)
+	     (define-key elpy-mode-map (kbd "s-e") 'elpy-shell-send-region-or-buffer) ; make send region easier (osx)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) ; personal preference for run-python
 	     (setq eldoc-mode nil)
 	     ))
