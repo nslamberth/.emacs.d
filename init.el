@@ -279,6 +279,10 @@
 ;; make evil undo behave more like vim
 (setq evil-want-fine-undo t)
 
+;; change "-" and "_" to be part of word objects
+(modify-syntax-entry ?_ "w")
+(modify-syntax-entry ?- "w")
+
 ;; disable annoying command window
 (defun evil-command-window-ex (&optional current-command)
   (interactive)
