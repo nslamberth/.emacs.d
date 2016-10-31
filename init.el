@@ -282,6 +282,9 @@
 ;; change "-" and "_" to be part of word objects
 (modify-syntax-entry ?_ "w")
 (modify-syntax-entry ?- "w")
+;; potential better solution?
+;; (setq-default evil-symbol-word-search 'symbol)
+;; from comments of http://emacsredux.com/blog/2014/08/27/a-peek-at-emacs-24-dot-4-superword-mode/
 
 ;; disable annoying command window
 (defun evil-command-window-ex (&optional current-command)
