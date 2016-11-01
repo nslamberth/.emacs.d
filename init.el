@@ -81,6 +81,9 @@
 
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+;; make comint and eshell print output as received
+(setq process-adaptive-read-buffering nil)
+
 ;; remove menu and tool bars
 (menu-bar-mode -1)
 (tool-bar-mode -1)
