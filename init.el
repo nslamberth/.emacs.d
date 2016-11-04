@@ -143,7 +143,7 @@
        ))
 
 (setq buffers-to-use-normal-state
-     '("*eshell*"
+     '("*eshell*" "*Python*"
        ))
 
 (defadvice evil-next-buffer (after avoid-messages-buffer-in-next-buffer)
