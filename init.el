@@ -306,6 +306,10 @@
 (evil-ex-define-cmd "ms" 'magit-status)
 (evil-ex-define-cmd "es" 'eshell)
 
+;; enable evil-surround
+(require 'evil-surround)
+(global-evil-surround-mode 1)
+
 ;;; org-mode settings
 
 ;; disable M-o so other-window works
@@ -451,7 +455,7 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi py-autopep8 flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
  '(python-shell-prompt-detect-enabled nil)
  '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
