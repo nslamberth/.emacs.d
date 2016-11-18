@@ -6,6 +6,7 @@
 				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\Scripts\\"
 				     "C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\lib\\site-packages\\"
 				     "C:\\PortableGit\\cmd\\"
+				     "C:\\PortableGit\\bin\\"
 				     "C:\\Users\\nlambert1\\Desktop\\cmder\\bin\\"
 				     "C:\\clojure-1.8.0\\"
 				     "C:\\Program Files (x86)\\Java\\jre7\\bin\\"
@@ -303,6 +304,7 @@
 (evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (evil-ex-define-cmd "en" '(lambda () (interactive) (find-file "~/notes.org")))
 (evil-ex-define-cmd "et" '(lambda () (interactive) (find-file "~/todos.org")))
+(evil-ex-define-cmd "esr" (lambda () (interactive)(evil-buffer "*scratch*")))
 (evil-ex-define-cmd "ms" 'magit-status)
 (evil-ex-define-cmd "es" 'eshell)
 
