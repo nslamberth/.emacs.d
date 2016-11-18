@@ -38,6 +38,9 @@
 ;; enable electric-pair-mode
 (electric-pair-mode t)
 
+;; make sure truncate lines is t
+(set-default 'truncate-lines t)
+
 ;; enable evil
 (require 'evil)
 (evil-mode t)
