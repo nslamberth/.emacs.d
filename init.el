@@ -1,5 +1,11 @@
 ;;; NICK LAMBERTH EMACS INIT
-;; windows-only settings
+
+;; remove menu and tool bars early
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; set up windows path
 (if (equal system-type 'windows-nt)
     (progn (setq exec-path
 		 (append exec-path '("C:\\WinPython-64bit-2.7.6.4\\python-2.7.6.amd64\\" 
@@ -87,11 +93,6 @@
 
 ;; make comint and eshell print output as received
 (setq process-adaptive-read-buffering nil)
-
-;; remove menu and tool bars
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 
 ;; make escape behave normally
 (global-set-key (kbd "<escape>")      'keyboard-escape-quit) 
@@ -227,6 +228,7 @@
 	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer) ; make send region easier (win)
 	     (define-key elpy-mode-map (kbd "s-e") 'elpy-shell-send-region-or-buffer) ; make send region easier (osx)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) ; personal preference for run-python
+	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) ; make elpy-doc similar to emacs help
 	     (setq eldoc-mode nil)
 	     ))
 
