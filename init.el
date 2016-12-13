@@ -280,6 +280,7 @@
 (define-key evil-motion-state-map (kbd "M-o") nil)
 
 (global-set-key (kbd "s-e") 'eval-last-sexp)
+(global-set-key (kbd "s-f") 'eval-defun)
 
 (define-key evil-normal-state-map (kbd "s-i") 'org-insert-link)
 (define-key evil-insert-state-map (kbd "s-i") 'org-insert-link)
