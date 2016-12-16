@@ -213,6 +213,11 @@
 (elpy-enable)
 (elpy-use-ipython)
 
+;; reduce rpc buffer for windows (otherwise causes freezing)
+(if (equal system-type 'windows-nt)
+    (setq elpy-rpc-large-buffer-size 2094))
+
+
 ;; use flycheck not flymake with elpy
 (when (require 'flycheck nil t)
 (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
