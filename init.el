@@ -211,9 +211,20 @@
 
 ;; enable elpy
 (elpy-enable)
+(elpy-use-ipython)
 
-;; set flymake to wait a bit longer before checking
-(setq flymake-no-changes-timeout 3)
+;; use flycheck not flymake with elpy
+(when (require 'flycheck nil t)
+(setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+(add-hook 'elpy-mode-hook 'flycheck-mode))
+
+;; make flycheck work only on save
+(setq flycheck-check-syntax-automatically '(save mode-enabled))
+
+
+;; enable autopep8 formatting on save
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; enable quickhelp for elpy
 (add-hook 'elpy-mode-hook 'company-quickhelp-mode)
@@ -464,7 +475,7 @@ the actual manpage using the function `man'."
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (flycheck-pyflakes py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
  '(python-shell-prompt-detect-enabled nil)
  '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
