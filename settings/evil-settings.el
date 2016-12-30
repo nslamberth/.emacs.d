@@ -27,7 +27,7 @@
 (evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs.d/init.el")))
 (evil-ex-define-cmd "en" '(lambda () (interactive) (find-file "~/notes.org")))
 (evil-ex-define-cmd "et" '(lambda () (interactive) (find-file "~/todos.org")))
-(evil-ex-define-cmd "esr" (lambda () (interactive)(evil-buffer "*scratch*")))
+(evil-ex-define-cmd "esr" '(lambda () (interactive)(evil-buffer "*scratch*")))
 (evil-ex-define-cmd "ms" 'magit-status)
 (evil-ex-define-cmd "es" 'eshell)
 
