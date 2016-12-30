@@ -16,4 +16,6 @@
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
 
-
+;; make window commands act normally on mac
+(global-set-key (kbd "M-w") 'delete-frame)
+(global-set-key (kbd "M-n") 'new-frame)
