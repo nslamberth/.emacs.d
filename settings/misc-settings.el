@@ -22,6 +22,6 @@
 
 ;; cider-mode settings
 (add-hook 'cider-mode-hook (lambda ()
-			     (define-key cider-mode-map (kbd "s-e") 'cider-eval-last-sexp)
+			     (define-key cider-mode-map (kbd "M-e") 'cider-eval-last-sexp)
 			     (add-hook 'cider-popup-buffer-mode-hook 'evil-motion-state)
 			     ))

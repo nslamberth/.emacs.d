@@ -64,7 +64,7 @@
 (define-key evil-visual-state-map (kbd "M-o") nil)
 (define-key evil-motion-state-map (kbd "M-o") nil)
 
-(define-key evil-normal-state-map (kbd "s-l") 'org-insert-link)
-(define-key evil-insert-state-map (kbd "s-l") 'org-insert-link)
-(define-key evil-visual-state-map (kbd "s-l") 'org-insert-link)
-(define-key evil-motion-state-map (kbd "s-l") 'org-insert-link)
+(define-key evil-normal-state-map (kbd "M-l") 'org-insert-link)
+(define-key evil-insert-state-map (kbd "M-l") 'org-insert-link)
+(define-key evil-visual-state-map (kbd "M-l") 'org-insert-link)
+(define-key evil-motion-state-map (kbd "M-l") 'org-insert-link)
