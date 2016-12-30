@@ -7,9 +7,10 @@
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
+(package-initialize)
+
 (setq package-enable-at-startup nil)
 
-(package-initialize)
 
 ;; enable evil
 (require 'evil)
