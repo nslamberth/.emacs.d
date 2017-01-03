@@ -19,4 +19,7 @@
 ;; make window commands act normally on mac
 (global-set-key (kbd "M-w") 'delete-frame)
 (global-set-key (kbd "M-n") 'new-frame)
-(define-key shell-mode-map (kbd "M-n") nil) ; remove conflict for shell-mode
+
+(add-hook 'shell-mode-hook
+	  '(lambda ()  ; remove conflict for shell-mode
+	     (define-key shell-mode-map (kbd "M-n") nil)))

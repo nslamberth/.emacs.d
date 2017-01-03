@@ -19,6 +19,9 @@
 (if (memq window-system '(mac ns))
     (load "home-settings"))
 
+;; evil-settings for evil config and keybindings
+(load "evil-settings")
+
 ;; eshell-settings for eshell config, aliases and functions
 (load "eshell-settings")
 
@@ -27,9 +30,6 @@
 
 ;; python-settings for python environment setup
 (load "python-settings")
-
-;; evil-settings for evil config and keybindings
-(load "evil-settings")
 
 ;; org-settings for org config and keybindings
 (load "org-settings")
