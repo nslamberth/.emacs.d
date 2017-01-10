@@ -99,3 +99,18 @@
 
 ; enable narrowing
 (put 'narrow-to-region 'disabled nil)
+
+; some commands for saving/loading window state
+(defvar window-memory nil)
+
+(defun save-window ()
+  "Save current window state to window memory."
+  (interactive)
+  (setq window-memory (current-window-configuration)))
+
+(defun restore-window ()
+  "Restore window to state saved in window memory."
+  (interactive)
+  (if window-memory
+      (set-window-configuration window-memory)
+    (message "No window memory set.")))

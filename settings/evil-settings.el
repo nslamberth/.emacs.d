@@ -30,6 +30,10 @@
 (evil-ex-define-cmd "esr" '(lambda () (interactive)(evil-buffer "*scratch*")))
 (evil-ex-define-cmd "ms" 'magit-status)
 (evil-ex-define-cmd "es" 'eshell)
+(evil-ex-define-cmd "sw" 'save-window)
+(evil-ex-define-cmd "rw" 'restore-window)
+
+
 
 ;; enable evil-surround
 (require 'evil-surround)
