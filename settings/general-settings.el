@@ -1,10 +1,5 @@
 ;;; general settings
 
-;; clean up window bars
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
 ;; enable electric-pair-mode
 (electric-pair-mode t)
 

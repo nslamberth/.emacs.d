@@ -1,5 +1,10 @@
 ;;; NICK LAMBERTH EMACS INIT
 
+;; clean up window bars early
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;; set up initial path
 (add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
