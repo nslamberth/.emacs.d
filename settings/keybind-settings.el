@@ -23,3 +23,6 @@
 (add-hook 'shell-mode-hook
 	  '(lambda ()  ; remove conflict for shell-mode
 	     (define-key shell-mode-map (kbd "M-n") nil)))
+
+; set M-` to cyle frames (like OSX change application window)
+(global-set-key (kbd "M-`") (lambda () (interactive) (other-frame 1)))
