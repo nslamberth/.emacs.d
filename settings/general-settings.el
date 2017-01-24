@@ -54,7 +54,9 @@
   highlight-parentheses-mode
   (lambda ()
     (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
+
+(if (boundp 'highlight-parentheses-mode)
+    (global-highlight-parentheses-mode t))
 
 ;; next-buffer and previous-buffer advice
 (setq buffers-to-skip
