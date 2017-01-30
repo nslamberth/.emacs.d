@@ -3,8 +3,8 @@
 ;; enable electric-pair-mode
 (electric-pair-mode t)
 
-;; make sure truncate lines is t
-(set-default 'truncate-lines t)
+;; enable global-visual-line-mode
+(global-visual-line-mode t)
 
 ;; smooth scrolling
 ;; from https://www.emacswiki.org/emacs/SmoothScrolling
