@@ -11,8 +11,9 @@
 
 (setq package-enable-at-startup nil)
 
+(package-refresh-contents)
+(package-install-selected-packages)
 
-;; enable evil
 (require 'evil)
 (evil-mode t)
 

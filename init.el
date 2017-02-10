@@ -10,6 +10,10 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; load work-specific path
+(if (equal system-type 'windows-nt)
+    (load "work-settings"))
+
 ;; package-settings for setting up and activating packages
 (setq package--init-file-ensured t) ; disables package init.el silliness
 (load "package-settings")
@@ -17,10 +21,7 @@
 ;; general settings for basic quality-of-life improvements
 (load "general-settings")
 
-;; location-specifc settings for work and home differences
-(if (equal system-type 'windows-nt)
-    (load "work-settings"))
-
+;; home-specific settings
 (if (memq window-system '(mac ns))
     (load "home-settings"))
 
