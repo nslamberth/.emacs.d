@@ -12,7 +12,7 @@
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (flycheck-pyflakes py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (exec-path-from-shell evil-leader evil evil-org evil-surround vlf markdown-mode flycheck-pyflakes py-autopep8 highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode elm-mode)))
  '(python-shell-prompt-detect-enabled nil)
  '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
