@@ -3,8 +3,8 @@
 ;; enable electric-pair-mode
 (electric-pair-mode t)
 
-;; make sure truncate lines is t
-(set-default 'truncate-lines t)
+;; enable global-visual-line-mode
+(global-visual-line-mode t)
 
 ;; smooth scrolling
 ;; from https://www.emacswiki.org/emacs/SmoothScrolling
@@ -54,7 +54,9 @@
   highlight-parentheses-mode
   (lambda ()
     (highlight-parentheses-mode t)))
-(global-highlight-parentheses-mode t)
+
+(if (boundp 'highlight-parentheses-mode)
+    (global-highlight-parentheses-mode t))
 
 ;; next-buffer and previous-buffer advice
 (setq buffers-to-skip
