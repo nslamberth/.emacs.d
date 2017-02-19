@@ -29,8 +29,8 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; enable yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
 
 ;; enable elmacro 
 (require 'elmacro)
