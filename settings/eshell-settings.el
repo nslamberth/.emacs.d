@@ -1,5 +1,9 @@
 ;; eshell-settings
 
+; enable smartparens
+(add-hook  'eshell-mode-hook
+	   'smartparens-mode)
+
 ; custom functions
 
 (defun eshell/cls ()
