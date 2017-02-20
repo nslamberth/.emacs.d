@@ -1,0 +1,68 @@
+;; spotify.el
+;; spotify interface for emacs
+;; based on https://www.youtube.com/watch?v=XjKtkEMUYGc
+
+(require 'url)
+(require 'json)
+
+(defun spotify-play-track (uri)
+  "play spotify track for given track uri"
+  (shell-command (format "spotify %s %s"
+			 "play"
+			 uri)))
+
+(defun spotify-search (search-query)
+  "search tracks for query and return results as alist"
+  (with-current-buffer
+      (url-retrieve-synchronously
+       (format "https://api.spotify.com/v1/search?type=track&q=%s" search-query))
+    (goto-char (+ 1 url-http-end-of-headers))
+    (json-read-object)))
+
+(defun format-track-for-display (track)
+  "format track alist for display in helm"
+  (format "%s -- %s"
+  (cdr (assoc 'name track))
+  (cdr (assoc 'name (elt (cdr (assoc 'artists track)) 0)))))
+
+(defun helm-spotify-search ()
+  "run spotify search and return in format usable by helm"
+  (mapcar (lambda (track)
+	    (cons (format-track-for-display track)
+		  track))
+	  (cdr (assoc 'items (assoc 'tracks (spotify-search helm-pattern))))))
+
+(defun helm-spotify-play-track (track)
+  "helm action for playing track from helm menu"
+  (spotify-play-track (cdr (assoc 'uri track))))
+
+(defun spotify-play-pause ()
+  "toggle spotify between play/pause states"
+  (interactive)
+  (shell-command (format "spotify %s"
+			 "play/pause")))
+
+(defvar sample-uri "spotify:track:13X42np3KJr0o2LkK1MG76"
+  "sample spotify track uri for testing")
+
+(defvar sample-results (spotify-search "justin timberlake")
+  "sample spotify results for testing")
+
+(defvar sample-track (elt (cdr (assoc 'items (assoc 'tracks sample-results))) 2)
+  "sample track object for testing")
+
+(defvar helm-source-spotify
+  '((name . "Spotify")
+    (candidates . helm-spotify-search)
+    (volatile)
+    (action . (("Play track" . helm-spotify-play-track)))))
+
+(global-set-key (kbd "M-s")
+		(lambda () (interactive)
+		  (setq debug-on-error t)
+		  (setq helm-input-idle-delay 0.5)
+		  (helm :sources '(helm-source-spotify))
+		  (setq debug-on-error nil)
+		  (setq helm-input-idle-delay 0.1)))
+
+(require 'helm)

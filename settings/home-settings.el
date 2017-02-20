@@ -5,4 +5,6 @@
 
 (setq mac-command-modifier 'meta)
 
+(load "../elisp/spotify.el")
+
 
