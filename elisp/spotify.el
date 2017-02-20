@@ -59,10 +59,6 @@
 
 (global-set-key (kbd "M-s")
 		(lambda () (interactive)
-		  (setq debug-on-error t)
-		  (setq helm-input-idle-delay 0.5)
-		  (helm :sources '(helm-source-spotify))
-		  (setq debug-on-error nil)
-		  (setq helm-input-idle-delay 0.1)))
-
-(require 'helm)
+		  (let ((debug-on-error t)
+			(helm-input-idle-delay 0.5))
+		    (helm :sources '(helm-source-spotify)))))
