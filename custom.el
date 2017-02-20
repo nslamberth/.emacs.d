@@ -13,7 +13,7 @@
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (w3m google-this exec-path-from-shell evil-leader evil evil-org evil-surround vlf markdown-mode lycheck-pyflakes py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
+    (smartparens w3m google-this exec-path-from-shell evil-leader evil evil-org evil-surround vlf markdown-mode lycheck-pyflakes py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp ein cider jedi flycheck elpy web-mode monokai-theme magit helm hackernews evil-visual-mark-mode evil-org evil-leader elm-mode)))
  '(python-shell-prompt-detect-enabled nil)
  '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
