@@ -2,6 +2,7 @@
 
 ;; enable smartparens-mode
 (smartparens-global-mode t)
+(require 'smartparens-config)
 
 (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
 (define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
