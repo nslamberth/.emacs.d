@@ -107,13 +107,13 @@
 (defvar window-memory nil)
 
 (defun save-window ()
-  "Save current window state to window memory."
+  "Save current window configration to window memory."
   (interactive)
   (setq window-memory (current-window-configuration)))
 
 (defun restore-window ()
-  "Restore window to state saved in window memory."
+  "Restore window configuration to state saved in window memory."
   (interactive)
   (if window-memory
       (set-window-configuration window-memory)
-    (message "No window memory set.")))
+    (message "No window configuration saved.")))
