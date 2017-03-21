@@ -50,6 +50,7 @@
 
 (define-key org-mode-map (kbd "S-<return>") 'org-capture-finalize)
 
-
+; org-archive setup
+(setq org-archive-location "~/org/archive.org::")
 
 
