@@ -46,6 +46,6 @@
 ;; finally, open init, notes and todo
 (find-file "~/org/notes.org")
 (find-file "~/.emacs.d/init.el")
-(find-file "~/org/todos.org")
 (eshell)
+(find-file "~/org/todos.org")
 (evil-normal-state)
