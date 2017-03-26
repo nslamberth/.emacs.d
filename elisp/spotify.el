@@ -5,7 +5,7 @@
 (require 'url)
 (require 'json)
 
-(defun spotify-play-track (uri)
+(defun spotify-play-item (uri)
   "play spotify track for given track uri"
   (shell-command (format "spotify %s %s"
 			 "play"
@@ -34,13 +34,24 @@
 
 (defun helm-spotify-play-track (track)
   "helm action for playing track from helm menu"
-  (spotify-play-track (cdr (assoc 'uri track))))
+  (spotify-play-item (cdr (assoc 'uri track))))
 
 (defun spotify-play-pause ()
   "toggle spotify between play/pause states"
   (interactive)
   (shell-command (format "spotify %s"
 			 "play/pause")))
+
+(defun spotify-next-track ()
+  "go to next track in current play queue"
+  (interactive)
+  (shell-command (format "spotify next")))
+
+(defun spotify-toggle-shuffle ()
+  "go to next track in current play queue"
+  (interactive)
+  (shell-command (format "spotify shuffle")))
+
 
 (defvar sample-uri "spotify:track:13X42np3KJr0o2LkK1MG76"
   "sample spotify track uri for testing")
@@ -57,8 +68,22 @@
     (volatile)
     (action . (("Play track" . helm-spotify-play-track)))))
 
+(defvar helm-source-my-playlists
+  '((name . "My Spotify Playlists")
+    (candidates . (("coding" . "spotify:user:nslamberth:playlist:2yPwg6iFNEzgfHETAiYLYa")
+		   ("funky disco" . "spotify:user:nslamberth:playlist:6R68B0Taqx4Ryg2Kmr2yY4")
+		   ("lately" . "spotify:user:nslamberth:playlist:4iQUh4BPEhSYBg07rxwwou")
+		   ("10s" . "spotify:user:nslamberth:playlist:5EMye9be5g28BBAGLA7OiT")
+		   ("discover weekly" . "spotify:user:spotify:playlist:37i9dQZEVXcOBKbLDgbykh")))
+    (action . spotify-play-item)))
+
 (global-set-key (kbd "M-s")
 		(lambda () (interactive)
 		  (let ((debug-on-error t)
 			(helm-input-idle-delay 0.5))
 		    (helm :sources '(helm-source-spotify)))))
+
+(global-set-key (kbd "M-p")
+		(lambda () (interactive)
+		  (helm :sources '(helm-source-my-playlists))))
+
