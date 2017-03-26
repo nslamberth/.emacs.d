@@ -38,4 +38,19 @@
           ))
       '(normal insert))
 
+;; org-capture setup
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/org/todos.org")
+             "* TODO %?\n  %i")))
+
+(defun org-capture-todo ()
+  "insert todo into todos.org"
+  (interactive)
+  (org-capture nil "t"))
+
+(define-key org-mode-map (kbd "S-<return>") 'org-capture-finalize)
+
+; org-archive setup
+(setq org-archive-location "~/org/archive/archive.org::")
+
 

@@ -44,8 +44,8 @@
 (load "misc-settings")
 
 ;; finally, open init, notes and todo
-(find-file "~/notes.org")
+(find-file "~/org/notes.org")
 (find-file "~/.emacs.d/init.el")
-(find-file "~/todos.org")
 (eshell)
+(find-file "~/org/todos.org")
 (evil-normal-state)
