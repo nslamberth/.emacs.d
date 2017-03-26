@@ -1,10 +1,10 @@
 ;; python-settings
 ;; heavily inspired by: https://realpython.com/blog/python/emacs-the-best-python-editor/
 
-;; enable ipython
-(require 'python)
-(when (executable-find "ipython")
-  (setq python-shell-interpreter "ipython"))
+;; enable elpy
+(elpy-enable)
+(elpy-use-ipython)
+(setq python-shell-interpreter-args "--simple-prompt")
 
 ;; hack command to fix annoying ipython magic issues on Windows
 (defun ipython-get-docstring ()
@@ -24,14 +24,9 @@
 	    '(lambda () 
 	       (evil-define-key 'insert inferior-python-mode-map (kbd "?") 'ipython-get-docstring))))
 
-;; enable elpy
-(elpy-enable)
-(elpy-use-ipython)
-
 ;; reduce rpc buffer for windows (otherwise causes freezing)
 (if (equal system-type 'windows-nt)
     (setq elpy-rpc-large-buffer-size 2094))
-
 
 ;; use flycheck not flymake with elpy
 (when (require 'flycheck nil t)
@@ -57,8 +52,8 @@
 	  '(lambda ()
 	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) 
 	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer)
-	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) ; personal preference for run-python
-	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) ; make elpy-doc similar to emacs help
+	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) 
+	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) 
 	     (setq eldoc-mode nil)
 	     ))
 

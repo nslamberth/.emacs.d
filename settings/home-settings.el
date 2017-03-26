@@ -7,4 +7,5 @@
 
 (load "../elisp/spotify.el")
 
+(setq elpy-rpc-python-command "python3")
 
