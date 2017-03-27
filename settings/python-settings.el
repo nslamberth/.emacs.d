@@ -74,12 +74,12 @@
 
 ;; python 3.6 ipython native completion fix
 
-(defun python-shell-completion-native-try ()
-  "Return non-nil if can trigger native completion."
-  (with-eval-after-load 'python
-    '(let ((python-shell-completion-native-enable t)
-           (python-shell-completion-native-output-timeout
-            python-shell-completion-native-try-output-timeout))
-       (python-shell-completion-native-get-completions
-        (get-buffer-process (current-buffer))
-        nil "_"))))
+(with-eval-after-load 'python
+  (defun python-shell-completion-native-try ()
+    "Return non-nil if can trigger native completion."
+    (let ((python-shell-completion-native-enable t)
+          (python-shell-completion-native-output-timeout
+           python-shell-completion-native-try-output-timeout))
+      (python-shell-completion-native-get-completions
+       (get-buffer-process (current-buffer))
+       nil "_"))))
