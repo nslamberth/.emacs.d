@@ -71,3 +71,17 @@
 	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)
 	    (define-key ein:notebook-multilang-mode-map (kbd "M-<up>") 'ein:worksheet-goto-prev-input)
 	    (define-key ein:notebook-multilang-mode-map (kbd "M-<down>") 'ein:worksheet-goto-next-input)))
+
+;; python 3.6 ipython native completion fix
+;; additional note: it worked!
+;; if this doesn't work on Windows, make sure to pip install pyreadline
+
+(with-eval-after-load 'python
+  (defun python-shell-completion-native-try ()
+    "Return non-nil if can trigger native completion."
+    (let ((python-shell-completion-native-enable t)
+          (python-shell-completion-native-output-timeout
+           python-shell-completion-native-try-output-timeout))
+      (python-shell-completion-native-get-completions
+       (get-buffer-process (current-buffer))
+       nil "_"))))
