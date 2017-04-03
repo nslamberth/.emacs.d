@@ -71,8 +71,7 @@
 (defvar helm-source-my-playlists
   '((name . "My Spotify Playlists")
     (candidates . (("coding" . "spotify:user:nslamberth:playlist:2yPwg6iFNEzgfHETAiYLYa")
-		   ("funky disco" . "spotify:user:nslamberth:playlist:6R68B0Taqx4Ryg2Kmr2yY4")
-		   ("lately" . "spotify:user:nslamberth:playlist:4iQUh4BPEhSYBg07rxwwou")
+		   ("home" . "spotify:user:nslamberth:playlist:7zpnU66sccpuRWqwkGg7iU")
 		   ("10s" . "spotify:user:nslamberth:playlist:5EMye9be5g28BBAGLA7OiT")
 		   ("discover weekly" . "spotify:user:spotify:playlist:37i9dQZEVXcOBKbLDgbykh")))
     (action . spotify-play-item)))
