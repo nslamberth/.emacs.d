@@ -47,11 +47,27 @@
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
+;; python version of eval-print-last-sexp
+;; from http://stackoverflow.com/questions/43033022/is-there-a-function-like-eval-print-last-sexp-for-comint-mode/43057718#43057718
+(defun python-eval-print-last-sexp ()
+  "Print result of evaluating current line into current buffer."
+  (interactive)
+  (move-end-of-line nil)
+  (let ((res (python-shell-send-string-no-output
+              ;; modify to get a different sexp
+              (buffer-substring (line-beginning-position)
+                                (line-end-position))))
+        (standard-output (current-buffer)))
+    (when res
+      (terpri)
+      (princ res))))
+
 ;; set elpy hooks
 (add-hook 'elpy-mode-hook
 	  '(lambda ()
 	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) 
 	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer)
+	     (define-key elpy-mode-map (kbd "C-j") 'python-eval-print-last-sexp)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) 
 	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) 
 	     (setq eldoc-mode nil)
