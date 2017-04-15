@@ -16,6 +16,9 @@
 		       ";C:\\PortableGit\\bin\\"
 		       ))
 
+;; global variables
+(setq desktop "~/../../Desktop")
+
 ;; fix some annoying python encoding problems
 (setenv "LANG" "en_US.UTF-8")
 (setenv "LC_ALL" "en_US.UTF-8")
@@ -30,3 +33,4 @@
   (let ((path (concat (expand-file-name "~") "/projects/google_trends/")))
     (async-shell-command (format
 		    "python %smain.py %s" path keywords))))
+

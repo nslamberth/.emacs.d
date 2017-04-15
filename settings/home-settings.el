@@ -9,6 +9,9 @@
 
 (setq elpy-rpc-python-command "python3")
 
+;; global variables
+(setq desktop "~/Desktop")
+
 ;; misc commands
 
 (defun ffmpeg-convert-to-mp3 (file)
