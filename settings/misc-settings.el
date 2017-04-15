@@ -25,3 +25,15 @@
 			     (define-key cider-mode-map (kbd "M-e") 'cider-eval-last-sexp)
 			     (add-hook 'cider-popup-buffer-mode-hook 'evil-motion-state)
 			     ))
+
+;; enable "cls" clear screen for all comint modes
+
+(defadvice comint-send-input (around comint-clear-if-cls)
+  "If the input being sent is just 'cls', then run comint-clear-buffer."
+  (if (equal "cls" (thing-at-point 'word))
+      (progn
+	(evil-delete-backward-word)
+	(comint-clear-buffer))
+    ad-do-it))
+
+(ad-activate 'comint-send-input)
