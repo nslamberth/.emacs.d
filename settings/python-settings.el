@@ -48,7 +48,7 @@
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; python version of eval-print-last-sexp
-;; from http://stackoverflow.com/questions/43033022/is-there-a-function-like-eval-print-last-sexp-for-comint-mode/43057718#43057718
+;; from http://stackoverflow.com/questions/43033022/is-there-a-function-like-eval-print-last-sexp-for-comint-mode
 (defun python-eval-print-last-sexp ()
   "Print result of evaluating current line into current buffer."
   (interactive)
