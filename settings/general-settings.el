@@ -12,6 +12,11 @@
 ;; enable global-visual-line-mode
 (global-visual-line-mode t)
 
+;; enable highlight-sexp
+(require 'highlight-sexp)
+(add-hook 'lisp-mode-hook 'highlight-sexp-mode)
+(add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
+
 ;; smooth scrolling
 ;; from https://www.emacswiki.org/emacs/SmoothScrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
