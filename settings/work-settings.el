@@ -19,6 +19,9 @@
 ;; global variables
 (setq desktop "~/../../Desktop")
 
+;; work specific highlight-sexp color
+(setq hl-sexp-background-color "floral white")
+
 ;; fix some annoying python encoding problems
 (setenv "LANG" "en_US.UTF-8")
 (setenv "LC_ALL" "en_US.UTF-8")
