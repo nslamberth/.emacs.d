@@ -9,6 +9,9 @@
 (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
 (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp)
 
+;; disable DISTRIB key command
+(global-set-key (kbd "C-h C-o") 'describe-symbol)
+
 ;; enable global-visual-line-mode
 (global-visual-line-mode t)
 
