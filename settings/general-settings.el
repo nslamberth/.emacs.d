@@ -82,6 +82,8 @@
        "*Scratch*"
        "*Warnings*"
        "*helm M-x*"
+       "*Flycheck error messages*"
+       "*company-documentation*"
        ))
 
 (setq buffers-to-use-normal-state
