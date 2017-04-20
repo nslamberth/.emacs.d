@@ -1,5 +1,10 @@
 ;; misc-settings
 
+;; load reddit.el
+(if (equal system-type 'windows-nt)
+    (load-file "~/projects/reddit_client/reddit.el"))
+
+
 ;; activate web-mode
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-current-column-highlight t)
