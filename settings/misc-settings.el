@@ -32,7 +32,6 @@
 			     ))
 
 ;; enable "cls" clear screen for all comint modes
-
 (defadvice comint-send-input (around comint-clear-if-cls)
   "If the input being sent is just 'cls', then run comint-clear-buffer."
   (if (equal "cls" (thing-at-point 'word))
@@ -42,3 +41,10 @@
     ad-do-it))
 
 (ad-activate 'comint-send-input)
+
+; map q to kill-this-buffer in *eww* mode
+(evil-define-key 'normal eww-mode-map
+  "q" 'kill-this-buffer
+  "u" 'kill-this-buffer
+  "l" 'eww-back-url
+  )
