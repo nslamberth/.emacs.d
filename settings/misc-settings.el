@@ -42,9 +42,16 @@
 
 (ad-activate 'comint-send-input)
 
-; map q to kill-this-buffer in *eww* mode
+; *eww* mode settings
 (evil-define-key 'normal eww-mode-map
-  "q" 'kill-this-buffer
-  "u" 'kill-this-buffer
-  "l" 'eww-back-url
+  "q" 'evil-delete-buffer
+  "u" 'eww-back-url
+  "d" 'eww-follow-link
   )
+
+(defadvice eww-back-url (around quit-if-no-history)
+  "If there are no pages to go back to, kill buffer."
+  (if (>= eww-history-position (length eww-history))
+      (call-interactively 'evil-delete-buffer)
+    ad-do-it
+    ))
