@@ -55,3 +55,5 @@
       (call-interactively 'evil-delete-buffer)
     ad-do-it
     ))
+
+(ad-activate 'eww-back-url)
