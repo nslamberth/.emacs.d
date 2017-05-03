@@ -52,7 +52,11 @@
 (defadvice eww-back-url (around quit-if-no-history)
   "If there are no pages to go back to, kill buffer."
   (if (>= eww-history-position (length eww-history))
-      (call-interactively 'evil-delete-buffer)
+      (if (get-buffer "reddit")
+	  (progn
+	    (switch-to-buffer "reddit")
+	    (kill-buffer "*eww*"))
+	(call-interactively 'evil-delete-buffer))
     ad-do-it
     ))
 
