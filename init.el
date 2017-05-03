@@ -45,9 +45,5 @@
 ;; miscellaneous settings for experimentation and mode-tweaks
 (load "misc-settings")
 
-;; finally, open init, notes and todo
-(find-file "~/org/notes.org")
-(find-file "~/.emacs.d/init.el")
-(eshell)
-(find-file "~/org/todos.org")
-(evil-normal-state)
+;; finally, make sure we're at home
+(cd "~")
