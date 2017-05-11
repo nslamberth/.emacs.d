@@ -7,6 +7,7 @@
 			  "C:\\PortableGit\\cmd\\"
 			  "C:\\PortableGit\\bin\\"
 			  "C:\\PortableGit\\usr\\bin"
+			  "C:\\PgSQL\\bin"
 			  )
 	      exec-path ))
 
@@ -17,6 +18,7 @@
 		       ";C:\\PortableGit\\cmd\\"
 		       ";C:\\PortableGit\\bin\\"
 		       ";C:\\PortableGit\\usr\\bin"
+		       ";C:\\PgSQL\\bin"
 		       ";"
 		       (getenv "PATH")
 		       ))
