@@ -1,8 +1,7 @@
 ;; misc-settings
 
 ;; load reddit.el
-(if (equal system-type 'windows-nt)
-    (load-file "~/projects/reddit_client/reddit.el"))
+(load-file "~/projects/reddit_client/reddit.el")
 
 
 ;; activate web-mode
