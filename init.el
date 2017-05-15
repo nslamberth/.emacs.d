@@ -45,5 +45,7 @@
 ;; miscellaneous settings for experimentation and mode-tweaks
 (load "misc-settings")
 
-;; finally, make sure we're at home
-(cd "~")
+;; finally, open up eshell in .emacs.d
+(cd "~/.emacs.d")
+(eshell)
+(kill-buffer "*scratch*")
