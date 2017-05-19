@@ -136,3 +136,13 @@
 		      (evil-buffer-new nil
 		       (concat
 			(getenv "TMP") "\\new"))))
+
+; helper funciton to open explorer/finder at point
+(defun open-current-directory ()
+  (interactive)
+    (if (equal system-type 'windows-nt)
+	(shell-command "explorer ."))
+    (shell-command "open .")
+  )
+ 
+(evil-ex-define-cmd "ocd" 'open-current-directory)
