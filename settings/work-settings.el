@@ -42,5 +42,5 @@
   (interactive)
   (let ((path (concat (expand-file-name "~") "/projects/google_trends/")))
     (async-shell-command (format
-		    "python %smain.py %s" path keywords))))
+		    "python %sgoogle_trends.py %s" path keywords))))
 
