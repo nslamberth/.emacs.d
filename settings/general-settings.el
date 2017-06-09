@@ -141,8 +141,8 @@
 (defun open-current-directory ()
   (interactive)
     (if (equal system-type 'windows-nt)
-	(shell-command "explorer ."))
-    (shell-command "open .")
+	(shell-command "explorer .")
+      (shell-command "open ."))
   )
  
 (evil-ex-define-cmd "ocd" 'open-current-directory)
