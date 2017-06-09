@@ -6,6 +6,7 @@
 (setq mac-command-modifier 'meta)
 
 (load "../elisp/spotify.el")
+(load "/Users/nick/projects/gmail_project/gmail.el")
 
 (setq elpy-rpc-python-command "python3")
 
