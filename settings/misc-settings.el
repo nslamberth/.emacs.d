@@ -1,7 +1,7 @@
 ;; misc-settings
 
 ;; load reddit.el
-(load-file "~/projects/reddit_client/reddit.el")
+(load-file "~/.emacs.d/elisp/reddit.el")
 
 
 ;; activate web-mode
