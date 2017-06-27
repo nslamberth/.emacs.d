@@ -137,12 +137,18 @@
 		       (concat
 			(getenv "TMP") "\\new"))))
 
-; helper funciton to open explorer/finder at point
+; convnience functions 
 (defun open-current-directory ()
+  "Open explorer/finder at point."
   (interactive)
     (if (equal system-type 'windows-nt)
 	(shell-command "explorer .")
       (shell-command "open ."))
   )
- 
-(evil-ex-define-cmd "ocd" 'open-current-directory)
+(defalias 'ocd 'open-current-directory)
+
+(defun change-dir-to-desktop ()
+  "Change working directory to desktop."
+  (cd desktop)
+  )
+(defalias 'cdd 'change-dir-to-desktop) 
