@@ -26,10 +26,10 @@
 
 
 (defun reddit-get-submissions (subreddit &optional order)
-  "Go to comments for submission id at point."
+  "Go to comments for submission id at point. Order is new by default and hot with prefix arg."
   (interactive "ssubreddit:")
   (if current-prefix-arg
-      (setq order (read-from-minibuffer "order: ")))
+      (setq order "hot"))
   (with-current-buffer (get-buffer-create "reddit")
     (delete-region (point-min) (point-max))
     (let ((proc
