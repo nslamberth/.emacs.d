@@ -76,7 +76,16 @@ if __name__ == '__main__':
             print_comment(c)
             c.replies.replace_more()
             for r in c.replies:
-                print_comment(r)
+                if r.body == '[removed]':
+                    continue
+                if r.body == '[deleted]':
+                    continue
+                if r.author is None:
+                    continue
+                if r.author.name == "AutoModerator":
+                    continue
+                else:
+                    print_comment(r)
         else:
             s = reddit.submission(id=r_id)
             print_submission(s, self_text=True)
