@@ -128,15 +128,6 @@
       (set-window-configuration window-memory)
     (message "No window configuration saved.")))
 
-; associate evil-new buffer with temporary file
-; so save-buffer-kill-emacs checks for modificaiton
-(evil-ex-define-cmd "enew"
-		    (lambda ()
-		      (interactive)
-		      (evil-buffer-new nil
-		       (concat
-			(getenv "TMP") "\\new"))))
-
 ; convnience functions 
 (defun open-current-directory ()
   "Open explorer/finder at point."
