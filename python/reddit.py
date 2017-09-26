@@ -74,7 +74,10 @@ if __name__ == '__main__':
             c = reddit.comment(r_id)
             c.refresh()
             print_comment(c)
-            c.replies.replace_more()
+            try:
+                c.replies.replace_more()
+            except:
+                pass
             for r in c.replies:
                 if r.body == '[removed]':
                     continue
