@@ -33,6 +33,15 @@
 (evil-ex-define-cmd "sw" 'save-window)
 (evil-ex-define-cmd "rw" 'restore-window)
 
+; associate evil-new buffer with temporary file
+; so save-buffer-kill-emacs checks for modificaiton
+(evil-ex-define-cmd "enew"
+		    (lambda ()
+		      (interactive)
+		      (evil-buffer-new nil
+		       (concat
+			(expand-file-name "~") "/scratch"))))
+
 ;; enable evil-surround
 (require 'evil-surround)
 (global-evil-surround-mode 1)
