@@ -3,7 +3,6 @@
 ;; load reddit.el
 (load-file "~/.emacs.d/elisp/reddit.el")
 
-
 ;; activate web-mode
 (setq web-mode-enable-current-element-highlight t)
 (setq web-mode-enable-current-column-highlight t)
@@ -40,6 +39,16 @@
     ad-do-it))
 
 (ad-activate 'comint-send-input)
+
+;; define weather-forecast function
+(defun weather-forecast ()
+  (interactive)
+  (setq weather-dir (expand-file-name "~/.emacs.d/python"))
+
+  (setq python
+	(if (equal system-type 'darwin) "python3" "python"))
+
+  (shell-command-to-string (concat python " " weather-dir "/weather.py")))
 
 ; *eww* mode settings
 (evil-define-key 'normal eww-mode-map
