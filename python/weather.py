@@ -5,9 +5,11 @@ import os
 import pandas as pd
 import seaborn as sns  # noqa
 from matplotlib import pyplot as plt
+from matplotlib import dates as mdates
 
 base_domain = "https://www.metaweather.com/api"
 nyc_woeid = 2459115
+cache = os.path.expanduser("~/.emacs.d/python/weather_cache/")
 
 
 def search_for_location(query):
@@ -22,7 +24,7 @@ def get_first_woeid(query):
 
 def get_todays_forecast(woeid):
     today = arrow.now().strftime("%m-%d-%Y")
-    fname = f"{woeid}_{today}"
+    fname = f"{cache}/{woeid}_{today}"
     if os.path.isfile(fname):
         print("loading from local cache...")
         with open(fname, "rb") as f:
@@ -37,15 +39,7 @@ def get_todays_forecast(woeid):
     return data
 
 
-if __name__ == '__main__':
-    data = get_todays_forecast(nyc_woeid)
-
-    df = pd.DataFrame(data['consolidated_weather'])
-    df['applicable_date'] = pd.to_datetime(df['applicable_date'])
-    df['max_temp'] = ((df['max_temp'] * (9 / 5)) + 32)
-    df['min_temp'] = ((df['min_temp'] * (9 / 5)) + 32)
-    df = df.set_index('applicable_date')
-
+def plot_forecast(df):
     plt.close('all')
     fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
@@ -69,5 +63,28 @@ if __name__ == '__main__':
     for x, y in zip(df.index, df['humidity']):
         ax2.annotate(f"{int(y)}%", xy=(x, y))
 
+    fdates = pd.Series(df.index).dt.strftime("%a, %b %d")
+    states = list(df['weather_state_name'])
+
+    xlabels = ["\n".join((fd, s)) for fd, s in list(zip(fdates, states))]
+
+    days = mdates.DayLocator()
+
+    ax2.minorticks_off()
+    ax2.xaxis.set_major_locator(days)
+    ax2.set_xticklabels(xlabels)
+
     plt.xlabel("Date")
     plt.show()
+
+
+if __name__ == '__main__':
+    data = get_todays_forecast(nyc_woeid)
+
+    df = pd.DataFrame(data['consolidated_weather'])
+    df['applicable_date'] = pd.to_datetime(df['applicable_date'])
+    df['max_temp'] = ((df['max_temp'] * (9 / 5)) + 32)
+    df['min_temp'] = ((df['min_temp'] * (9 / 5)) + 32)
+    df = df.set_index('applicable_date')
+
+    plot_forecast(df)
