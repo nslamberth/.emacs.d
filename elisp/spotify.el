@@ -52,16 +52,6 @@
   (interactive)
   (shell-command (format "spotify shuffle")))
 
-
-(defvar sample-uri "spotify:track:13X42np3KJr0o2LkK1MG76"
-  "sample spotify track uri for testing")
-
-(defvar sample-results (spotify-search "justin timberlake")
-  "sample spotify results for testing")
-
-(defvar sample-track (elt (cdr (assoc 'items (assoc 'tracks sample-results))) 2)
-  "sample track object for testing")
-
 (defvar helm-source-spotify
   '((name . "Spotify")
     (candidates . helm-spotify-search)
@@ -85,4 +75,3 @@
 (global-set-key (kbd "M-p")
 		(lambda () (interactive)
 		  (helm :sources '(helm-source-my-playlists))))
-
