@@ -29,8 +29,9 @@
 ;; work specific highlight-sexp color
 ;; (setq hl-sexp-background-color "floral white"); disable temporarily
 
-;; windows-specific font
+;; windows-specific font and colorscheme
 (set-face-attribute 'default nil :family "Consolas" :height 110)
+(load-theme 'tsdh-dark)
 
 ;; fix some annoying python encoding problems
 (setenv "LANG" "en_US.UTF-8")
