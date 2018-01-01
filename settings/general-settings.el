@@ -143,3 +143,11 @@
   (cd desktop)
   )
 (defalias 'cdd 'change-dir-to-desktop) 
+
+(defun upgrade-praw()
+  "Upgrade praw to latest version"
+  (interactive)
+    (if (equal system-type 'windows-nt)
+	(async-shell-command "pip install --upgrade praw")
+      (async-shell-command "sudo -H pip3 install --upgrade praw"))
+  )
