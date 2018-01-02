@@ -41,6 +41,13 @@
 
 ;; custom functions
 
+(defun twitter-get-timeline ()
+  "Pull twitter timeline (without RT's) and display in new buffer."
+  (interactive)
+  (async-shell-command
+   (concat "python "
+           (expand-file-name "~/projects/twitter_client/main.py")) "twitter"))
+
 (defun gt-keywords-report (keywords)
   "Pull a google trend report and save result to current directory."
   (interactive)
@@ -54,29 +61,3 @@
   (let ((path (concat (expand-file-name "~") "/projects/google_trends/")))
     (insert (shell-command-to-string (format
 				      "python %sgoogle_trends.py trends" path)))))
-
-(defun twitter-trends ()
-  "Get list of currently trending terms from Twitter."
-  (interactive)
-  (let ((path (concat (expand-file-name "~") "/projects/twitter_client/")))
-    (insert  (shell-command-to-string (format "python %stwitter_cli.py trends" path)))))
-
-(defun twitter-search (query)
-  (interactive (list
-                (read-string
-		 (format "query (%s): " (replace-regexp-in-string "\n" "" (thing-at-point 'line)))
-                             nil nil (replace-regexp-in-string "\n" "" (thing-at-point 'line)))))
-  (browse-url-default-browser
-   (concat  "https://www.twitter.com/search?q="
-	    (replace-regexp-in-string "\\#" "%23" query))))
-
-(defun trends ()
-  (interactive)
-  (insert "Google Trends")
-  (newline)
-  (gt-trends)
-  (newline)
-  (insert "Twitter Trends")
-  (newline)
-  (twitter-trends)
-  )
