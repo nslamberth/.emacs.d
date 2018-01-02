@@ -6,6 +6,7 @@
         "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
         "http://feeds.arstechnica.com/arstechnica/index.xml"
         "http://feeds.washingtonpost.com/rss/politics"
+        "https://fivethirtyeight.com/all/feed"
         ))
 
 ; helper functions
