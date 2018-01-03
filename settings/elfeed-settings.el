@@ -1,5 +1,11 @@
 ;; elfeed settings
 
+; recommended curl settings
+; from https://github.com/fasheng/elfeed-protocol
+(setq elfeed-use-curl t)
+(elfeed-set-timeout 36000)
+(setq elfeed-curl-extra-arguments '("--insecure"))
+
 ; feed configuration
 (setq  elfeed-feeds
        '("http://feeds.washingtonpost.com/rss/national"
@@ -7,6 +13,8 @@
         "http://feeds.arstechnica.com/arstechnica/index.xml"
         "http://feeds.washingtonpost.com/rss/politics"
         "https://fivethirtyeight.com/all/feed"
+        "https://www.politico.com/rss/congress.xml"
+        "https://www.politico.com/rss/politics08.xml"
         ))
 
 ; helper functions
