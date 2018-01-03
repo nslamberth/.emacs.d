@@ -24,6 +24,7 @@
 (evil-define-key 'normal elfeed-search-mode-map (kbd "s") 'elfeed-search-live-filter)
 (evil-define-key 'normal elfeed-search-mode-map (kbd "q") 'evil-delete-buffer)
 (evil-define-key 'normal elfeed-show-mode-map (kbd "n") 'elfeed-show-next)
+(evil-define-key 'normal elfeed-show-mode-map (kbd "p") 'elfeed-show-prev)
 (evil-define-key 'normal elfeed-show-mode-map (kbd "e") 'eww-elfeed-entry)
 (evil-define-key 'normal elfeed-show-mode-map (kbd "q") 'evil-delete-buffer)
 (evil-define-key 'normal elfeed-show-mode-map (kbd "u") '(lambda () (interactive) (switch-to-buffer "*elfeed-search*")))
