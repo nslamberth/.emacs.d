@@ -12,7 +12,6 @@
         "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
         "http://feeds.arstechnica.com/arstechnica/index.xml"
         "http://feeds.washingtonpost.com/rss/politics"
-        "https://fivethirtyeight.com/all/feed"
         "https://www.politico.com/rss/congress.xml"
         "https://www.politico.com/rss/politics08.xml"
         ))
@@ -39,3 +38,14 @@
 
 ; disable images in elfeed-entry pages
 (setq shr-inhibit-images t)
+
+; tag url's with video as video
+(add-hook 'elfeed-new-entry-hook
+          (elfeed-make-tagger :feed-url (regexp-quote "\/video\/")
+                      :add ’video))
+
+; filter out video posts
+(setq-default elfeed-search-filter "@1-week-ago +unread -video")
+
+
+
