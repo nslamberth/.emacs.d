@@ -42,6 +42,9 @@
 ;; org-settings for org config and keybindings
 (load "org-settings")
 
+;; elfeed settings for configuring RSS feeds
+(load "elfeed-settings")
+
 ;; miscellaneous settings for experimentation and mode-tweaks
 (load "misc-settings")
 
