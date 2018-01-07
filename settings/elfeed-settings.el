@@ -42,7 +42,7 @@
 ; tag url's with video as video
 (add-hook 'elfeed-new-entry-hook
           (elfeed-make-tagger :feed-url (regexp-quote "\/video\/")
-                      :add ’video))
+                      :add 'video))
 
 ; filter out video posts
 (setq-default elfeed-search-filter "@1-week-ago +unread -video")
