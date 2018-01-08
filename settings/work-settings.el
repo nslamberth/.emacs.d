@@ -48,12 +48,13 @@
    (concat "python "
            (expand-file-name "~/projects/twitter_client/main.py")) "twitter"))
 
-(defun gt-keywords-report (keywords)
+(defun gt-keywords-report (&rest keywords)
   "Pull a google trend report and save result to current directory."
   (interactive)
-  (let ((path (concat (expand-file-name "~") "/projects/google_trends/")))
-    (async-shell-command (format
-		    "python %sgoogle_trends.py keywords %s" path keywords))))
+  (let ((path (concat (expand-file-name "~") "/projects/google_trends/"))
+        (keyword-string (combine-and-quote-strings keywords)))
+    (async-shell-command
+     (format "python %sgoogle_trends.py keywords --us-only %s" path keyword-string))))
 
 (defun gt-trends ()
   "Get list of currently trending search terms from Google Trends."
