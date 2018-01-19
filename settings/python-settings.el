@@ -68,15 +68,10 @@
 ;; set elpy hooks
 (add-hook 'elpy-mode-hook
 	  '(lambda ()
-	     (define-key elpy-mode-map (kbd "M-l") 'elpy-shell-send-region-or-buffer) 
-	     (define-key elpy-mode-map (kbd "M-e") 'elpy-shell-send-region-or-buffer)
+	     (define-key elpy-mode-map (kbd "C-<return>") 'elpy-shell-send-region-or-buffer) 
 	     (define-key elpy-mode-map (kbd "C-j") 'python-eval-print-last-sexp)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) 
 	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) 
-	     (define-key elpy-mode-map (kbd "g h") 'elpy-nav-backward-indent)
-	     (define-key elpy-mode-map (kbd "g j") 'elpy-nav-forward-block)
-	     (define-key elpy-mode-map (kbd "g k") 'elpy-nav-backward-block)
-	     (define-key elpy-mode-map (kbd "g l") 'elpy-nav-forward-indent)
 	     (setq eldoc-mode nil)
 	     ))
 
