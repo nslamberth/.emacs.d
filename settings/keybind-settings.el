@@ -2,7 +2,9 @@
 
 ;; make M-o and S-o cycle windows
 (global-set-key (kbd "M-o")      'other-window)
+(global-set-key (kbd "C-\\")      'other-window)
 (global-set-key (kbd "M-i")      '(lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "C-|")      'other-window)
 
 ;; make 'a' go to end of line and 'e' evaluate in info-mode
 (define-key Info-mode-map (kbd "a") 'move-end-of-line) 
@@ -11,7 +13,9 @@
 ;; evaluation keybindings
 
 (global-set-key (kbd "M-e") 'eval-last-sexp)
+(global-set-key (kbd "C-<return>") 'eval-last-sexp)
 (global-set-key (kbd "M-f") 'eval-defun)
+(global-set-key (kbd "C-S-<return>") 'eval-defun)
 
 ;; buffer-list key commands
 (define-key Buffer-menu-mode-map (kbd "r") 'revert-buffer)
