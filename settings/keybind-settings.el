@@ -4,7 +4,7 @@
 (global-set-key (kbd "M-o")      'other-window)
 (global-set-key (kbd "C-\\")      'other-window)
 (global-set-key (kbd "M-i")      '(lambda () (interactive) (other-window -1)))
-(global-set-key (kbd "C-|")      'other-window)
+(global-set-key (kbd "C-|")      '(lambda () (interactive) (other-window -1)))
 
 ;; make 'a' go to end of line and 'e' evaluate in info-mode
 (define-key Info-mode-map (kbd "a") 'move-end-of-line) 
