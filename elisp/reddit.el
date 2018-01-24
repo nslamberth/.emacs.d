@@ -127,6 +127,11 @@
   (reddit-get-submissions "politics+worldnews" "hot")
   )
 
+(defun reddit-politics-rising ()
+  (interactive)
+  (reddit-get-submissions "politics" "rising")
+  )
+
 (defun reddit-sports ()
   (interactive)
   (reddit-get-submissions "nfl+nba+mlb" "hot")
