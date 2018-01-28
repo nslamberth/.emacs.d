@@ -67,6 +67,8 @@ if __name__ == '__main__':
         submissions = subreddit.hot()
     if args.order == "top":
         submissions = subreddit.top()
+    if args.order == "rising":
+        submissions = subreddit.rising()
 
     if args.resource_id:
         r_id = args.resource_id
