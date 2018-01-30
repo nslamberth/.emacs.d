@@ -45,7 +45,7 @@
       (set-process-filter proc 'no-scroll-filter))
     (goto-char 0)
     (funcall 'reddit-mode))
-  (display-buffer "reddit"))
+  (switch-to-buffer "reddit"))
 
 (defun reddit-get-comments ()
   "Get comments for submission id at point."
@@ -64,7 +64,7 @@
       (delete-region (point-min) (point-max))
       (beginning-of-buffer)
       (funcall 'reddit-mode))
-    (display-buffer "reddit")
+    (switch-to-buffer "reddit")
     (message (format "pulling comments for %s..." submission-id))))
 
 (defun reddit-go-back ()
