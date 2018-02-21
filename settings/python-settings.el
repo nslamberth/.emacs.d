@@ -69,6 +69,8 @@
 (add-hook 'elpy-mode-hook
 	  '(lambda ()
 	     (define-key elpy-mode-map (kbd "C-<return>") 'elpy-shell-send-region-or-buffer) 
+	     (define-key elpy-mode-map (kbd "<f8>") 'elpy-shell-send-current-statement) 
+	     (define-key elpy-mode-map (kbd "<f5>") 'elpy-shell-send-region-or-buffer) 
 	     (define-key elpy-mode-map (kbd "C-j") 'python-eval-print-last-sexp)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) 
 	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) 
