@@ -13,8 +13,8 @@
 (global-set-key  (kbd "<C-delete>") 'evil-delete-buffer)
 (global-set-key (kbd "C-<prior>")      'evil-prev-buffer)
 (global-set-key (kbd "C-<next>")      'evil-next-buffer)
-(global-set-key (kbd "C-<lwindow>")      'open-current-directory)
-(global-set-key (kbd "C-<rwindow>")      'open-current-directory)
+(global-set-key (kbd "C-S-e")      'open-current-directory)
+(global-set-key (kbd "C-S-<end>")      'end-of-buffer-other-window)
 (global-set-key (kbd "<f12>")      'evil-write)
 
 (global-set-key
