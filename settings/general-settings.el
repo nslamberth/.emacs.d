@@ -15,6 +15,13 @@
 ;; enable global-visual-line-mode
 (global-visual-line-mode t)
 
+;; enable projectile
+(require 'projectile)
+(require 'helm-projectile)
+(projectile-global-mode)
+(helm-projectile-on)
+(setq projectile-indexing-method 'alien)
+
 ;; enable highlight-sexp
 (require 'highlight-sexp)
 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
