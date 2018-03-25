@@ -52,14 +52,6 @@
   kept-old-versions 5    ; and how many of the old
   )
 
-;; make quit-window kill the buffer
-;; from http://superuser.com/questions/397806/emacs-modify-quit-window-to-delete-buffer-not-just-bury-it
-(defun quit-window () 
- "modified quit window"
- (interactive)
- (kill-buffer-and-window)
- )
-
 ;; disable revert-buffer in buffer-menu
 (define-key Buffer-menu-mode-map (kbd "g") nil)
 
