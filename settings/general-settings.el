@@ -22,6 +22,10 @@
 (helm-projectile-on)
 (setq projectile-indexing-method 'alien)
 
+;; enable which-key
+(require 'which-key)
+(which-key-mode)
+
 ;; enable highlight-sexp
 (require 'highlight-sexp)
 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
@@ -106,8 +110,9 @@
 (ad-activate 'evil-next-buffer)
 (ad-activate 'evil-prev-buffer)
 
-; enable dired-fine-alternate-file
+; dired settings
 (put 'dired-find-alternate-file 'disabled nil)
+(add-hook 'dired-mode-hook '(lambda () (dired-hide-details-mode 1)))
 
 ; enable narrowing
 (put 'narrow-to-region 'disabled nil)
