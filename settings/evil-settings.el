@@ -5,7 +5,6 @@
 
 ;; motion-state for package.el
 (add-hook 'package-menu-mode-hook 'evil-motion-state)
-(add-hook 'dired-mode-hook 'evil-motion-state)
 
 ;; change "-" and "_" to be part of word objects
 (modify-syntax-entry ?_ "w")

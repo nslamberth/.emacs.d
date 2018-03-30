@@ -62,3 +62,6 @@
   (let ((path (concat (expand-file-name "~") "/projects/google_trends/")))
     (insert (shell-command-to-string (format
 				      "python %sgoogle_trends.py trends" path)))))
+
+;; dired shortcuts
+(defun dired-clients () (interactive) (dired "~/../../Desktop/clients/"))
