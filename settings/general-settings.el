@@ -112,7 +112,7 @@
 
 ; dired settings
 (put 'dired-find-alternate-file 'disabled nil)
-(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode t)))
+(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode t) (evil-motion-state)))
 
 ; enable narrowing
 (put 'narrow-to-region 'disabled nil)
