@@ -15,6 +15,9 @@
 ;; enable global-visual-line-mode
 (global-visual-line-mode t)
 
+;; enable winnder-mode
+(winner-mode t)
+
 ;; enable projectile
 (require 'projectile)
 (require 'helm-projectile)
@@ -112,9 +115,25 @@
 
 ; dired settings
 (put 'dired-find-alternate-file 'disabled nil)
-(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode t) (evil-motion-state)))
-(add-hook 'dired-mode-hook   (lambda nil (auto-revert-mode 1)))
-(add-hook 'wdired-mode-hook (lambda nil (auto-revert-mode 1)))
+(evil-define-key 'motion dired-mode-map
+  (kbd "C-<up>") 'dired-jump
+  (kbd "C-<down>") 'dired-find-alternate-file
+  (kbd "<return>") 'helm-M-x
+  )
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (dired-hide-details-mode t)
+            (evil-motion-state)
+            (auto-revert-mode 1)
+            (define-key evil-motion-state-map (kbd "!") nil)
+            ))
+(add-hook 'wdired-mode-hook
+          (lambda ()
+            (dired-hide-details-mode t)
+            (evil-motion-state)
+            (auto-revert-mode 1)
+            (define-key evil-motion-state-map (kbd "!") nil)
+            ))
 
 ; enable narrowing
 (put 'narrow-to-region 'disabled nil)

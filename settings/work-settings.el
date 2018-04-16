@@ -26,9 +26,6 @@
 ;; global variables
 (setq desktop "~/../../Desktop")
 
-;; work specific highlight-sexp color
-;; (setq hl-sexp-background-color "floral white"); disable temporarily
-
 ;; windows-specific font and colorscheme
 (set-face-attribute 'default nil :family "Consolas" :height 110)
 (load-theme 'tsdh-dark)
@@ -65,3 +62,7 @@
 
 ;; dired shortcuts
 (defun dired-clients () (interactive) (dired "~/../../Desktop/clients/"))
+(defun dired-downloads () (interactive) (progn (dired "~/../../Downloads") (dired-sort-toggle-or-edit "-alt") (evil-goto-first-line)))
+(defun dired-desktop () (interactive) (progn (dired "~/../../Desktop") (dired-sort-toggle-or-edit "-alt") (evil-goto-first-line)))
+(defun dired-settings () (interactive) (progn (dired "~/.emacs.d/settings")))
+
