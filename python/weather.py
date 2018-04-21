@@ -9,8 +9,11 @@ from matplotlib import dates as mdates
 
 base_domain = "https://www.metaweather.com/api"
 nyc_woeid = 2459115
-cache = os.path.expanduser("~/.emacs.d/python/weather_cache/")
+homedir = os.path.expanduser("~")
+cache = os.path.join(homedir, ".emacs.d", "python", "weather_cache")
 
+if not os.path.isdir(cache):
+    os.makedirs(cache)
 
 def search_for_location(query):
     url = f"{base_domain}/location/search/?query={query}"
@@ -21,10 +24,9 @@ def get_first_woeid(query):
     results = search_for_location(query)
     return results.json()[0]['woeid']
 
-
 def get_todays_forecast(woeid):
     today = arrow.now().strftime("%m-%d-%Y")
-    fname = f"{cache}/{woeid}_{today}"
+    fname = os.path.join(cache,f"{woeid}_{today}")
     if os.path.isfile(fname):
         print("loading from local cache...")
         with open(fname, "rb") as f:
