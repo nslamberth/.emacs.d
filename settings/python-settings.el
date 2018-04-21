@@ -3,8 +3,8 @@
 
 ;; enable elpy
 (elpy-enable)
-(elpy-use-ipython)
-(setq python-shell-interpreter-args "--simple-prompt")
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
 
 ;; hack command to fix annoying ipython magic issues on Windows
 (defun ipython-get-docstring ()

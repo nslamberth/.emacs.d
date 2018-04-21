@@ -3,7 +3,7 @@
 ; recommended curl settings
 ; from https://github.com/fasheng/elfeed-protocol
 (setq elfeed-use-curl t)
-(elfeed-set-timeout 36000)
+(setf url-queue-timeout 30)
 (setq elfeed-curl-extra-arguments '("--insecure"))
 
 ; feed configuration
@@ -38,14 +38,3 @@
 
 ; disable images in elfeed-entry pages
 (setq shr-inhibit-images t)
-
-; tag url's with video as video
-(add-hook 'elfeed-new-entry-hook
-          (elfeed-make-tagger :feed-url (regexp-quote "\/video\/")
-                      :add 'video))
-
-; filter out video posts
-(setq-default elfeed-search-filter "@1-week-ago +unread -video")
-
-
-
