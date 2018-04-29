@@ -62,7 +62,8 @@
 
 ;; dired shortcuts
 (defun dired-clients () (interactive) (dired "~/../../Desktop/clients/"))
-(defun dired-downloads () (interactive) (progn (dired "~/../../Downloads") (dired-sort-toggle-or-edit "-alt") (evil-goto-first-line)))
-(defun dired-desktop () (interactive) (progn (dired "~/../../Desktop") (dired-sort-toggle-or-edit "-alt") (evil-goto-first-line)))
+(defun dired-downloads () (interactive) (dired "~/../../Downloads"))
+(defun dired-desktop () (interactive) (dired "~/../../Desktop"))
 (defun dired-settings () (interactive) (progn (dired "~/.emacs.d/settings")))
+(defun dired-projects () (interactive) (progn (dired "~/projects")))
 
