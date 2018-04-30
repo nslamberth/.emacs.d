@@ -115,6 +115,7 @@
 
 ; dired settings
 (put 'dired-find-alternate-file 'disabled nil)
+(setq dired-dwim-target t) ; enable split-window copying
 (evil-define-key 'motion dired-mode-map
   (kbd "C-<up>") 'dired-jump
   (kbd "C-<down>") 'dired-find-alternate-file
