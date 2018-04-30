@@ -74,6 +74,7 @@
 	     (define-key elpy-mode-map (kbd "C-j") 'python-eval-print-last-sexp)
 	     (define-key elpy-mode-map (kbd "C-c C-p") 'run-python) 
 	     (define-key elpy-mode-map (kbd "C-h o") 'elpy-doc) 
+	     (define-key elpy-mode-map (kbd "M-f") 'elpy-shell-send-defun) 
 	     (setq eldoc-mode nil)
 	     ))
 
