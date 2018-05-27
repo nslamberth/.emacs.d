@@ -1,13 +1,5 @@
 ;;; general settings
-
-;; enable smartparens-mode
-(smartparens-global-mode t)
-(require 'smartparens-config)
-
-(define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
-(define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
-(define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
-(define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp)
+;;; quality-of-life changes using stock emacs packages
 
 ;; disable DISTRIB key command
 (global-set-key (kbd "C-h C-o") 'describe-symbol)
@@ -15,33 +7,14 @@
 ;; enable global-visual-line-mode
 (global-visual-line-mode t)
 
-;; enable winnder-mode
+;; enable winner-mode
 (winner-mode t)
-
-;; enable projectile
-(require 'projectile)
-(require 'helm-projectile)
-(projectile-global-mode)
-(helm-projectile-on)
-(setq projectile-indexing-method 'alien)
-
-;; enable which-key
-(require 'which-key)
-(which-key-mode)
-
-;; enable highlight-sexp
-(require 'highlight-sexp)
-(add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-(add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)
 
 ;; smooth scrolling
 ;; from https://www.emacswiki.org/emacs/SmoothScrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-
 (setq scroll-step 1) ;; keyboard scroll one line at a time
 
 ;; make comint and eshell print output as received
