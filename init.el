@@ -12,8 +12,9 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; package-settings for setting up and activating packages
+(setq package--init-file-ensured t) ; disables package init.el silliness
 (load "package-settings")
-(load "general-settings")
 
 ;; load windows-specific settings
 (if (equal system-type 'windows-nt)
@@ -24,11 +25,7 @@
     (load "mac-settings"))
 
 ;; general settings for basic quality-of-life improvements
-;; (load "general-settings")
-
-;; package-settings for setting up and activating packages
-(setq package--init-file-ensured t) ; disables package init.el silliness
-;; (load "package-settings")
+(load "general-settings")
 
 ;; evil-settings for evil config and keybindings
 (load "evil-settings")
