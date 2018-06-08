@@ -8,6 +8,7 @@
 			  "C:\\PortableGit\\bin\\"
 			  "C:\\PgSQL\\bin"
 			  "C:\\gow-0.8.0\\bin"
+                          "C:\\ffmpeg\\bin"
 			  )
 	      exec-path ))
 
@@ -19,6 +20,7 @@
 		       ";C:\\PortableGit\\bin\\"
 		       ";C:\\PgSQL\\bin"
 		       ";C:\\gow-0.8.0\\bin"
+                       ";C:\\ffmpeg\\bin"
 		       ";"
 		       (getenv "PATH")
 		       ))
@@ -67,3 +69,17 @@
 (defun dired-settings () (interactive) (progn (dired "~/.emacs.d/settings")))
 (defun dired-projects () (interactive) (progn (dired "~/projects")))
 
+
+(defun ffmpeg-convert-to-mp3 (file)
+  "Convert an audio file to 320k mp3."
+  (interactive (list (read-file-name "File to convert:")))
+  (async-shell-command
+  (string-join
+   (list
+    "ffmpeg" "-i"
+    (concat "\"" (expand-file-name file) "\"")
+    "-b:a 320k"
+    (concat "\""
+	    (replace-regexp-in-string
+	     "\\.\\w*$" ".mp3" (expand-file-name file "~/Desktop"))
+	    "\"")) " ")))
