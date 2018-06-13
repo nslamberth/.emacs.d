@@ -27,6 +27,10 @@
  '(lambda ()
     (interactive) (evil-window-split) (other-window 1)))
 
+; some more ergonomic end-of-line keys
+(evil-global-set-key 'normal (kbd "S-<end>") 'evil-append-line)
+(evil-global-set-key 'normal (kbd "S-<home>") 'evil-insert-line)
+
 
 ;; make 'a' go to end of line and 'e' evaluate in info-mode
 (define-key Info-mode-map (kbd "a") 'move-end-of-line) 
