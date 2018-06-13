@@ -26,12 +26,15 @@
 (use-package
  evil-org
  :ensure t
- :config (evil-org-mode t))
+ :config (evil-org-mode t)
+ :defer
+ )
 
 (use-package
  hackernews
  :ensure t
- :config (require 'hackernews))
+ :config (require 'hackernews)
+ :defer)
 
 (use-package
  helm
@@ -42,7 +45,8 @@
 (use-package
  elmacro
  :ensure t
- :config (require 'helm-config))
+ :config (require 'helm-config)
+ :defer)
 
 (use-package
  yasnippet
@@ -64,21 +68,25 @@
   :ensure t
   :config (progn (require 'projectile)
                  (projectile-global-mode)
-                 (setq projectile-indexing-method 'alien)))
+                 (setq projectile-indexing-method 'alien))
+  :defer t)
 
 (use-package
   helm-projectile
   :ensure t
-  :config (require 'helm-projectile) (helm-projectile-on))
+  :config (require 'helm-projectile) (helm-projectile-on)
+  :defer t)
 
 (use-package
   which-key
   :ensure t
-  :config (require 'which-key) (which-key-mode))
+  :config (require 'which-key) (which-key-mode)
+  :defer t)
 
 (use-package
   highlight-sexp
   :ensure t
   :config (progn (require 'highlight-sexp)
                  (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-                 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode)))
+                 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode))
+  :defer t)
