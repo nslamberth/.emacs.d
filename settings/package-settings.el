@@ -45,7 +45,7 @@
 (use-package
  elmacro
  :ensure t
- :config (require 'helm-config)
+ :config (require 'elmacro-mode)
  :defer)
 
 (use-package
@@ -75,7 +75,7 @@
   helm-projectile
   :ensure t
   :config (require 'helm-projectile) (helm-projectile-on)
-  :defer t)
+  )
 
 (use-package
   which-key
@@ -89,4 +89,10 @@
   :config (progn (require 'highlight-sexp)
                  (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
                  (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode))
+  :defer t)
+
+(use-package
+  pony-mode
+  :ensure t
+  :config (require 'pony-mode)
   :defer t)
