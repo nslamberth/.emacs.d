@@ -43,6 +43,10 @@
 ;; enable quickhelp for elpy
 (add-hook 'elpy-mode-hook 'company-quickhelp-mode)
 
+;; company quality of life stuff
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+
 ;; enable autopep8
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
@@ -106,3 +110,16 @@
       (python-shell-completion-native-get-completions
        (get-buffer-process (current-buffer))
        nil "_"))))
+
+;; helper function for working with django
+
+(defun reset-pony-shell () (interactive)
+    (save-excursion
+    (with-current-buffer (get-buffer (or (get-buffer "*ponysh*") (get-buffer "*Python*")))
+        (progn 
+            (rename-buffer "*ponysh*")
+            (comint-kill-subjob)
+            (sit-for 10)
+            (pony-shell)
+            (rename-buffer "*Python*")
+            ))))
