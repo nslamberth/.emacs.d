@@ -134,6 +134,6 @@
 
 (defun reddit-sports ()
   (interactive)
-  (reddit-get-submissions "nfl+nba+mlb" "hot")
+  (reddit-get-submissions "nfl+nba+baseball" "hot")
   )
 
