@@ -3,9 +3,11 @@ import pickle
 import arrow
 import os
 import pandas as pd
-import seaborn as sns  # noqa
+import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib import dates as mdates
+
+sns.set()
 
 base_domain = "https://www.metaweather.com/api"
 nyc_woeid = 2459115
@@ -51,10 +53,10 @@ def plot_forecast(df):
     )
 
     for x, y in zip(df.index, df['min_temp']):
-        ax1.annotate(f"{int(y)}Â°F", xy=(x, y))
+        ax1.annotate(f"{int(y)}°F", xy=(x, y))
 
     for x, y in zip(df.index, df['max_temp']):
-        ax1.annotate(f"{int(y)}Â°F", xy=(x, y))
+        ax1.annotate(f"{int(y)}°F", xy=(x, y))
 
     ax1.set_title('NYC - Five Day Forecast')
 
