@@ -1,4 +1,8 @@
 ;;; NICK LAMBERTH EMACS INIT
+
+;;; hello zenith analytics team! :)
+
+
 (package-initialize)
 
 ;; clean up window bars early
