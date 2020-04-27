@@ -1,29 +1,58 @@
-;; work settings
+;; windows settings
 
-(setq exec-path
-      (append '("C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\" 
-			  "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\Scripts\\"
-			  "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\"
-			  "C:\\PortableGit\\cmd\\"
-			  "C:\\PortableGit\\bin\\"
-			  "C:\\PgSQL\\bin"
-			  "C:\\gow-0.8.0\\bin"
-                          "C:\\ffmpeg\\bin"
-			  )
-	      exec-path ))
+(if (equal system-name "WKWUS4117628")
+    ; work environment
+    (progn 
+      (setq exec-path
+            (append '("C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\" 
+                      "C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\Scripts"
+                      "C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\pkgs"
+                      "C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\Library\\bin"
+                      "C:\\PortableGit\\cmd\\"
+                      "C:\\PortableGit\\bin\\"
+                      "C:\\tools\\Graphviz\\bin\\"
+                      )
+                    exec-path ))
 
-(setenv "PATH" (concat 
-		       "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\"
-		       ";C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\Scripts\\"
-		       ";C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\"
-		       ";C:\\PortableGit\\cmd\\"
-		       ";C:\\PortableGit\\bin\\"
-		       ";C:\\PgSQL\\bin"
-		       ";C:\\gow-0.8.0\\bin"
-                       ";C:\\ffmpeg\\bin"
-		       ";"
-		       (getenv "PATH")
-		       ))
+      (setenv "PATH" (concat 
+                      "C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\" 
+                      ";C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\Scripts"
+                      ";C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\pkgs"
+                      ";C:\\Users\\niclambe1\\AppData\\Local\\Continuum\\anaconda3\\Library\\bin"
+                      ";C:\\PortableGit\\cmd\\"
+                      ";C:\\PortableGit\\bin\\"
+                      ";C:\\tools\\Graphviz\\bin\\"
+                      ";"
+                      (getenv "PATH")
+                      )))
+    ; home environment
+  (progn 
+    (setq exec-path
+          (append '("C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\" 
+                    "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\Scripts\\"
+                    "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\"
+                    "C:\\PortableGit\\cmd\\"
+                    "C:\\PortableGit\\bin\\"
+                    "C:\\PgSQL\\bin"
+                    "C:\\gow-0.8.0\\bin"
+                    "C:\\ffmpeg\\bin"
+                    )
+                  exec-path ))
+
+    (setenv "PATH" (concat 
+                    "C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\"
+                    ";C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\Scripts\\"
+                    ";C:\\WinPython-64bit-3.6.1.0Qt5\\python-3.6.1.amd64\\lib\\site-packages\\"
+                    ";C:\\PortableGit\\cmd\\"
+                    ";C:\\PortableGit\\bin\\"
+                    ";C:\\PgSQL\\bin"
+                    ";C:\\gow-0.8.0\\bin"
+                    ";C:\\ffmpeg\\bin"
+                    ";"
+                    (getenv "PATH")
+                    )))
+           )
+
 
 ;; global variables
 (setq desktop "~/../../Desktop")
