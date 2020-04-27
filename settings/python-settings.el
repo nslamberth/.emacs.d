@@ -85,18 +85,6 @@
 ;; suppress annoying ad-handle-definition warnings
 (setq ad-redefinition-action 'accept)
 
-;; activate ein
-(require 'ein)
-
-;; ein key-commands
-(add-hook 'ein:notebook-mode-hook
-	  (lambda ()
-	    (define-key ein:notebook-multilang-mode-map (kbd "M-e") 'ein:worksheet-execute-cell)
-	    (define-key ein:notebook-multilang-mode-map (kbd "C-e") 'ein:worksheet-execute-cell)
-	    (define-key ein:notebook-multilang-mode-map (kbd "C-<return>") 'ein:worksheet-execute-cell)
-	    (define-key ein:notebook-multilang-mode-map (kbd "M-<up>") 'ein:worksheet-goto-prev-input)
-	    (define-key ein:notebook-multilang-mode-map (kbd "M-<down>") 'ein:worksheet-goto-next-input)))
-
 ;; python 3.6 ipython native completion fix
 ;; additional note: it worked!
 ;; if this doesn't work on Windows, make sure to pip install pyreadline
@@ -110,16 +98,3 @@
       (python-shell-completion-native-get-completions
        (get-buffer-process (current-buffer))
        nil "_"))))
-
-;; helper function for working with django
-
-(defun reset-pony-shell () (interactive)
-    (save-excursion
-    (with-current-buffer (get-buffer (or (get-buffer "*ponysh*") (get-buffer "*Python*")))
-        (progn 
-            (rename-buffer "*ponysh*")
-            (comint-kill-subjob)
-            (sit-for 10)
-            (pony-shell)
-            (rename-buffer "*Python*")
-            ))))
