@@ -7,9 +7,9 @@ import os
 # TODO add ability to page through submissions
 #      check the ListingGenerator class for info
 
-homedir = os.path.expanduser("~")
+creds_path = os.path.join("C:\\", "creds", "reddit")
 
-with open(homedir + "/creds/reddit", "r") as f:
+with open(creds_path) as f:
     creds = json.load(f)
 
 reddit = praw.Reddit(
