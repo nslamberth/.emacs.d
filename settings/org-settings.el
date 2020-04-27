@@ -3,13 +3,6 @@
 ;; disallow org-mode invisble edits
 (setq-default org-catch-invisible-edits 'error)
 
-;; disable M-o so other-window works
-(mapc (lambda (state)
-        (evil-define-key state evil-org-mode-map
-          (kbd "M-o") nil
-          ))
-      '(normal insert))
-
 ;; change max depth of org-refile
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
 
@@ -31,12 +24,29 @@
 (setq org-confirm-babel-evaluate nil)
 
 
-;; set M-e to evaluate
+;; set keybindings
+
 (mapc (lambda (state)
         (evil-define-key state evil-org-mode-map
           (kbd "M-e") 'org-ctrl-c-ctrl-c
           ))
       '(normal insert))
+
+;; disable M-o so other-window works
+(mapc (lambda (state)
+        (evil-define-key state evil-org-mode-map
+          (kbd "M-o") nil
+          ))
+      '(normal insert))
+
+
+;; evil-org keybindings
+(mapc (lambda (state)
+        (evil-define-key state evil-org-mode-map
+          (kbd "g h") 'org-previous-visible-heading
+          ))
+      '(normal visual))
+
 
 ;; org-capture setup
 (setq org-capture-templates
@@ -53,4 +63,8 @@
 ; org-archive setup
 (setq org-archive-location "~/org/archive/archive.org::")
 
+; evil keybindings
+(evil-define-key '(normal visual) org-mode-map
+  (kbd "g h") 'org-previous-visible-heading
+  )
 
