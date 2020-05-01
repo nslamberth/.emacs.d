@@ -96,3 +96,28 @@
   :ensure t
   :config (require 'pony-mode)
   :defer t)
+
+(use-package
+  evil-surround
+  :ensure t
+  :defer t)
+
+(use-package
+  elpy
+  :ensure t
+  :defer t)
+
+(use-package
+  py-autopep8
+  :ensure t
+  :defer t)
+
+(use-package
+  ob-ipython
+  :ensure t
+  :defer t)
+
+(use-package
+  web-mode
+  :ensure t
+  :defer t)
