@@ -6,6 +6,7 @@
  '(inhibit-startup-screen t)
  '(network-security-level (quote low))
  '(org-M-RET-may-split-line nil)
+ '(org-agenda-files (quote ("c:/Users/Nick/Dropbox/org/cloud.org")))
  '(org-startup-indented t)
  '(org-startup-truncated t)
  '(package-selected-packages
