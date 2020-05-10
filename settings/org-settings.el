@@ -40,13 +40,10 @@
       '(normal insert))
 
 
-;; evil-org keybindings
-(mapc (lambda (state)
-        (evil-define-key state evil-org-mode-map
-          (kbd "g h") 'org-previous-visible-heading
-          ))
-      '(normal visual))
-
+; evil keybindings
+(evil-define-key '(normal visual) org-mode-map
+  (kbd "g h") 'org-up-element
+  )
 
 ;; org-capture setup
 (setq org-capture-templates
@@ -62,9 +59,4 @@
 
 ; org-archive setup
 (setq org-archive-location "~/org/archive/archive.org::")
-
-; evil keybindings
-(evil-define-key '(normal visual) org-mode-map
-  (kbd "g h") 'org-previous-visible-heading
-  )
 
