@@ -1,62 +1,33 @@
 ;; org-mode settings
 
-;; disallow org-mode invisble edits
-(setq-default org-catch-invisible-edits 'error)
+(setq org-archive-location "~/org/archive/archive.org::")
+(setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
+(setq org-refile-targets '((org-agenda-files . (:maxlevel . 6)))) ;; change max depth of org-refile
 
-;; change max depth of org-refile
-(setq org-refile-targets '((org-agenda-files . (:maxlevel . 6))))
+;; setup agenda-files
+(if (equal system-type 'windows-nt)
+    (setq dropbox-dir (expand-file-name "~/../../Dropbox/")))
 
-;; add todos to org-agenda-files
-(setq org-agenda-files
-      '("~/todos.org")
-      )
-;; enable ob-ipython
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ipython . t)
-   ;; other languages..
-   ))
+(if (memq window-system '(mac ns))
+    (setq dropbox-dir (expand-file-name "~/Dropbox/")))
 
-;; display/update images in the buffer after I evaluate
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-
-;;don't prompt me to confirm everytime I want to evaluate a block
-(setq org-confirm-babel-evaluate nil)
-
+(setq
+ org-agenda-files
+ (list
+  (file-name-as-directory (concat dropbox-dir "org" ))
+  (expand-file-name "~/org")
+  )
+ )
 
 ;; set keybindings
-
-(mapc (lambda (state)
-        (evil-define-key state evil-org-mode-map
-          (kbd "M-e") 'org-ctrl-c-ctrl-c
-          ))
-      '(normal insert))
-
-;; disable M-o so other-window works
-(mapc (lambda (state)
-        (evil-define-key state evil-org-mode-map
-          (kbd "M-o") nil
-          ))
-      '(normal insert))
-
-
-; evil keybindings
 (evil-define-key '(normal visual) org-mode-map
   (kbd "g h") 'org-up-element
   )
 
-;; org-capture setup
-(setq org-capture-templates
-      '(("t" "Todo" entry (file "~/org/todos.org")
-             "* TODO %?\n  %i")))
-
-(defun org-capture-todo ()
-  "insert todo into todos.org"
-  (interactive)
-  (org-capture nil "t"))
-
-(define-key org-mode-map (kbd "S-<return>") 'org-capture-finalize)
-
-; org-archive setup
-(setq org-archive-location "~/org/archive/archive.org::")
-
+;; I think this is unnecessary, commenting out for now
+;; Will delete next commit if nothing breaks...
+;; (mapc (lambda (state)
+        ;; (evil-define-key state evil-org-mode-map
+          ;; (kbd "M-o") nil
+          ;; ))
+      ;; '(normal insert))
