@@ -22,6 +22,7 @@
 ;; set keybindings
 (evil-define-key '(normal visual) org-mode-map
   (kbd "g h") 'org-up-element
+  (kbd "C-c a") 'org-agenda
   )
 
 ;; I think this is unnecessary, commenting out for now
