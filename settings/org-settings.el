@@ -24,12 +24,13 @@
 ;; org-agenda tweaks
 (setq org-agenda-use-time-grid nil) ; disable time grid in org-agenda
 
+
 (setq org-agenda-custom-commands
       '(("n" "Agenda and all TODOs"
-         (
-          (agenda "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled))))
-          (alltodo ""))
+         ((agenda "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))))
+         (alltodo ""))
         ))) ; only show scheduled items in org-agenda combined view
+
 
 ;; set keybindings
 (evil-define-key '(normal visual) org-mode-map
