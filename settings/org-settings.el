@@ -3,6 +3,7 @@
 (setq org-archive-location "~/org/archive/archive.org::")
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6)))) ;; change max depth of org-refile
+(setq org-agenda-use-time-grid nil) ; disable time grid in org-agenda
 
 ;; setup agenda-files
 (if (equal system-type 'windows-nt)
