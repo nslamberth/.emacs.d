@@ -38,6 +38,7 @@
 (evil-ex-define-cmd "sw" 'save-window)
 (evil-ex-define-cmd "rw" 'restore-window)
 (evil-ex-define-cmd "oa" 'org-agenda)
+(evil-ex-define-cmd "oan" '(lambda () (interactive) (org-agenda nil "n")))
 
 ; associate evil-new buffer with temporary file
 ; so save-buffer-kill-emacs checks for modificaiton
