@@ -18,7 +18,6 @@
   )
  )
 
-
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 6)))) ;; change max depth of org-refile
 
 ;; org-agenda tweaks
@@ -45,3 +44,18 @@
           ;; (kbd "M-o") nil
           ;; ))
       ;; '(normal insert))
+
+;; ensure that MS Office documents don't open in emacs
+(defun my-org-open-at-point () (interactive) 
+       (let* ((path (org-element-property :path (org-element-context)))
+              (contains-office-doc
+               (or (string-match-p (regexp-quote ".pptx") path)
+                   (string-match-p (regexp-quote ".ppt") path)
+                   (string-match-p (regexp-quote ".xls") path)
+                   (string-match-p (regexp-quote ".xlsx") path))))
+         (if contains-office-doc
+             (org-open-file path 'system)
+           (org-open-at-point)))
+       )
+
+(define-key org-mode-map (kbd "C-c C-o") 'my-org-open-at-point)
