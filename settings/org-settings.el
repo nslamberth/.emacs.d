@@ -1,5 +1,7 @@
 ;; org-mode settings
 
+(require 'org)
+
 (setq org-archive-location "~/org/archive/archive.org::")
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
 
