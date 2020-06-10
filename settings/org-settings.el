@@ -1,5 +1,7 @@
 ;; org-mode settings
 
+(require 'org)
+
 (setq org-archive-location "~/org/archive/archive.org::")
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
 
@@ -27,9 +29,12 @@
 
 (setq org-agenda-custom-commands
       '(("n" "Agenda and all TODOs"
-         ((agenda "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'notscheduled 'todo 'done))))
+         ((agenda "" (
+                      (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                      (org-agenda-entry-types '(:scheduled :deadline)
+                      ))
          (alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'todo 'done))) ))
-        ))) ; in combined agenda: only show scheduled items in week view and non-scheduled in todo list
+        )))) ; in combined agenda: only show scheduled items in week view and non-scheduled in todo list
 
 ;; set keybindings
 (evil-define-key '(normal visual) org-mode-map
