@@ -48,6 +48,8 @@
               (contains-office-doc
                (or (string-match-p (regexp-quote ".pptx") path)
                    (string-match-p (regexp-quote ".ppt") path)
+                   (string-match-p (regexp-quote ".doc") path)
+                   (string-match-p (regexp-quote ".docx") path)
                    (string-match-p (regexp-quote ".xls") path)
                    (string-match-p (regexp-quote ".xlsx") path))))
          (if contains-office-doc
