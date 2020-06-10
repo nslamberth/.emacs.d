@@ -42,14 +42,6 @@
   (kbd "C-c a") 'org-agenda
   )
 
-;; I think this is unnecessary, commenting out for now
-;; Will delete next commit if nothing breaks...
-;; (mapc (lambda (state)
-        ;; (evil-define-key state evil-org-mode-map
-          ;; (kbd "M-o") nil
-          ;; ))
-      ;; '(normal insert))
-
 ;; ensure that MS Office documents don't open in emacs
 (defun my-org-open-at-point () (interactive) 
        (let* ((path (org-element-property :path (org-element-context)))
