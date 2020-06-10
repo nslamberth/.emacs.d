@@ -32,8 +32,8 @@
          ((agenda "" (
                       (org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                       (org-agenda-entry-types '(:scheduled :deadline)
-                      ))
-         (alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'todo 'done))) ))
+                      )))
+         (alltodo "" ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'todo 'done))) )
         )))) ; in combined agenda: only show scheduled items in week view and non-scheduled in todo list
 
 ;; set keybindings
