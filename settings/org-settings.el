@@ -7,7 +7,8 @@
 
 ;; setup agenda-files
 (if (equal system-type 'windows-nt)
-    (setq dropbox-dir (expand-file-name "~/../../Dropbox/")))
+    (setq dropbox-dir (expand-file-name "~/../../Dropbox/")
+          boxsync-dir (expand-file-name "~/../../Box Sync/")))
 
 (if (memq window-system '(mac ns))
     (setq dropbox-dir (expand-file-name "~/Dropbox/")))
@@ -16,6 +17,7 @@
  org-agenda-files
  (list
   (file-name-as-directory (concat dropbox-dir "org" ))
+  (file-name-as-directory (concat boxsync-dir "org" ))
   (expand-file-name "~/org")
   )
  )

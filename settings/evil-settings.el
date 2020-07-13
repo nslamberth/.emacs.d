@@ -20,13 +20,16 @@
 (evil-ex-define-cmd "df" 'delete-frame)
 (evil-ex-define-cmd "nf" 'new-frame)
 (evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-(evil-ex-define-cmd "en" '(lambda () (interactive) (find-file "~/org/notes.org")))
+(evil-ex-define-cmd "en" '(lambda () (interactive)
+                            (find-file
+                             (expand-file-name "notes.org"
+                                               (expand-file-name "org" boxsync-dir)))))
 (evil-ex-define-cmd "et" '(lambda () (interactive)
                             (find-file
                              (expand-file-name "tasks.org"
                                                (expand-file-name "org" dropbox-dir)))))
-(evil-ex-define-cmd "esr" '(lambda () (interactive)(evil-buffer "*scratch*")))
-(evil-ex-define-cmd "em" '(lambda () (interactive)(evil-buffer "*Messages*")))
+(evil-ex-define-cmd "esr" '(lambda () (interactive) (evil-buffer "*scratch*")))
+(evil-ex-define-cmd "em" '(lambda () (interactive) (evil-buffer "*Messages*")))
 (evil-ex-define-cmd "es" 'eshell)
 (evil-ex-define-cmd "sw" 'save-window)
 (evil-ex-define-cmd "rw" 'restore-window)
