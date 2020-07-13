@@ -27,6 +27,7 @@
 ;; org-agenda tweaks
 (setq org-agenda-use-time-grid nil) ; disable time grid in org-agenda
 (setq org-agenda-window-setup "current-window") ; open agenda in same window
+(setq org-agenda-sticky t) ; make agenda "q" command bury instead of delete agenda
 
 
 
