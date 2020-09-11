@@ -11,6 +11,7 @@
                       "C:\\PortableGit\\cmd\\"
                       "C:\\PortableGit\\bin\\"
                       "C:\\tools\\Graphviz\\bin\\"
+                      "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn"
                       )
                     exec-path ))
 
@@ -22,6 +23,7 @@
                       ";C:\\PortableGit\\cmd\\"
                       ";C:\\PortableGit\\bin\\"
                       ";C:\\tools\\Graphviz\\bin\\"
+                      ";C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn"
                       ";"
                       (getenv "PATH")
                       )))
