@@ -52,7 +52,3 @@
 
 ; set M-` to cyle frames (like OSX change application window)
 (global-set-key (kbd "M-`") (lambda () (interactive) (other-frame 1)))
-
-; setup avy keybindings
-(global-set-key (kbd "C-/") 'avy-goto-char)
-(define-key undo-tree-map (kbd "C-/") nil)

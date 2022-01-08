@@ -1,8 +1,5 @@
 ;;; NICK LAMBERTH EMACS INIT
 
-;;; hello zenith analytics team! :)
-
-
 (package-initialize)
 
 ;; clean up window bars early
@@ -27,6 +24,10 @@
 ;; load mac-specific settings
 (if (memq window-system '(mac ns))
     (load "mac-settings"))
+
+;; load linux-specific settings
+(if (equal system-type 'gnu/linux)
+    (load "linux-settings"))
 
 ;; general settings for basic quality-of-life improvements
 (load "general-settings")

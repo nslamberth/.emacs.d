@@ -6,7 +6,7 @@
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/")) ; removing due to slow server response time
 (package-initialize)
 
 
@@ -22,6 +22,12 @@
  evil
  :ensure t
  :config (evil-mode t))
+
+(use-package
+ undo-tree
+ :ensure t
+ :defer
+ )
 
 (use-package
  evil-org
@@ -81,14 +87,6 @@
   which-key
   :ensure t
   :config (require 'which-key) (which-key-mode)
-  :defer t)
-
-(use-package
-  highlight-sexp
-  :ensure t
-  :config (progn (require 'highlight-sexp)
-                 (add-hook 'lisp-mode-hook 'highlight-sexp-mode)
-                 (add-hook 'emacs-lisp-mode-hook 'highlight-sexp-mode))
   :defer t)
 
 (use-package

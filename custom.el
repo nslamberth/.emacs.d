@@ -14,7 +14,7 @@
  '(org-startup-truncated t)
  '(package-selected-packages
    (quote
-    (graphviz-dot-mode flycheck-plantuml plantuml-mode web-mode which-key avy try ag helm-projectile projectile elfeed request csharp-mode hy-mode highlight-sexp csv-mode org smartparens w3m google-this exec-path-from-shell evil-leader evil evil-org evil-surround vlf markdown-mode lycheck-pyflakes py-autopep8 evil-surround highlight-parentheses multiple-cursors yasnippet elmacro ob-ipython company-anaconda anaconda-mode company-quickhelp jedi flycheck elpy helm hackernews evil-visual-mark-mode evil-org evil-leader)))
+    (undo-tree highlight-sexp undo-tree-map which-key web-mode use-package smartparens py-autopep8 pony-mode ob-ipython helm-projectile hackernews evil-surround evil-org elpy elmacro)))
  '(python-shell-prompt-detect-enabled nil)
  '(warning-suppress-log-types (quote ((python)))))
 (custom-set-faces
