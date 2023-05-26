@@ -26,6 +26,7 @@
 (use-package
  undo-tree
  :ensure t
+ :config (global-undo-tree-mode)
  :defer
  )
 
@@ -45,7 +46,7 @@
 (use-package
  helm
  :ensure t
- :config (require 'helm-config)
+ ;; :config (require 'helm-config)
  :bind (("M-x" . helm-M-x)))
 
 (use-package
