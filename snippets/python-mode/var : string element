@@ -1,0 +1,4 @@
+# key: =
+# name: variable = string
+# --
+$1 = '$2'$0

@@ -1,84 +1,41 @@
-;; evil-settings
+;; settings for using evil
+;; todo: set up use-package to only load these when evil is activated
 
-;; make evil undo behave more like vim
-(setq evil-want-fine-undo t)
-
-;; motion-state for package.el
-(add-hook 'package-menu-mode-hook 'evil-motion-state)
-
-;; disable annoying command window
-(defun evil-command-window-ex (&optional current-command)
-  (interactive)
-  (message "command window has been disabled"))
-
-;; stop emacs from copying region to clipboard
-(fset 'evil-visual-update-x-selection 'ignore)
-
-
-
-;; add extra ex commands
-(evil-ex-define-cmd "df" 'delete-frame)
-(evil-ex-define-cmd "nf" 'new-frame)
-(evil-ex-define-cmd "ei" '(lambda () (interactive) (find-file "~/.emacs.d/init.el")))
-(evil-ex-define-cmd "en" '(lambda () (interactive)
-                            (find-file
-                             (expand-file-name "notes.org"
-                                               (expand-file-name "org" boxsync-dir)))))
-(evil-ex-define-cmd "et" '(lambda () (interactive)
-                            (find-file
-                             (expand-file-name "tasks.org"
-                                               (expand-file-name "org" dropbox-dir)))))
-(evil-ex-define-cmd "esr" '(lambda () (interactive) (evil-buffer "*scratch*")))
-(evil-ex-define-cmd "em" '(lambda () (interactive) (evil-buffer "*Messages*")))
-(evil-ex-define-cmd "es" 'eshell)
-(evil-ex-define-cmd "sw" 'save-window)
-(evil-ex-define-cmd "rw" 'restore-window)
-(evil-ex-define-cmd "oa" 'org-agenda)
-(evil-ex-define-cmd "oan" '(lambda () (interactive) (org-agenda nil "n")))
-
-; associate evil-new buffer with temporary file
-; so save-buffer-kill-emacs checks for modificaiton
-(evil-ex-define-cmd "enew"
-		    (lambda ()
-		      (interactive)
-		      (evil-buffer-new nil
-		       (concat
-			(expand-file-name "~") "/scratch"))))
-
-;; enable evil-surround
-(require 'evil-surround)
-(global-evil-surround-mode 1)
-
-;; evil-specific keybindings
-(define-key evil-normal-state-map (kbd "SPC") 'evil-ex)
-(define-key evil-visual-state-map (kbd "SPC") 'evil-ex)
-(define-key evil-motion-state-map (kbd "SPC") 'evil-ex)
-
-(define-key evil-normal-state-map (kbd "<return>") 'helm-M-x)
-(define-key evil-visual-state-map (kbd "<return>") 'helm-M-x)
-
-(define-key evil-normal-state-map (kbd "C-n") 'evil-next-buffer) 
-(define-key evil-visual-state-map (kbd "C-n") 'evil-next-buffer) 
-(define-key evil-motion-state-map (kbd "C-n") 'evil-next-buffer) 
-
-(define-key evil-normal-state-map (kbd "C-p") 'evil-prev-buffer) 
-(define-key evil-visual-state-map (kbd "C-p") 'evil-prev-buffer) 
-(define-key evil-motion-state-map (kbd "C-p") 'evil-prev-buffer) 
-
-(define-key evil-normal-state-map (kbd "C-e") 'eval-last-sexp) 
-(define-key evil-visual-state-map (kbd "C-e") 'eval-last-sexp)
-(define-key evil-motion-state-map (kbd "C-e") 'eval-last-sexp)
-(define-key evil-insert-state-map (kbd "C-e") 'eval-last-sexp)
-
+(evil-define-key '(visual insert) global-map (kbd "C-g") 'evil-normal-state)
+(evil-define-key '(visual insert) global-map (kbd "TAB") 'evil-normal-state)
+(evil-define-key '(visual normal motion) global-map (kbd "F") 'avy-goto-char-timer)
+(evil-define-key '(visual normal insert motion) global-map (kbd "C-n") 'hippie-expand)
+(evil-define-key '(visual normal insert motion) global-map (kbd "M-/") 'hippie-expand)
+(define-key evil-motion-state-map (kbd "M-.") nil)
 (define-key evil-normal-state-map (kbd "M-.") nil)
 (define-key evil-visual-state-map (kbd "M-.") nil)
-(define-key evil-motion-state-map (kbd "M-.") nil)
+(define-key evil-motion-state-map (kbd "TAB") nil)
+(define-key evil-normal-state-map (kbd "TAB") nil)
+(evil-define-key '(visual normal motion) global-map (kbd "[") 'scroll-down-command)
+(evil-define-key '(visual normal motion) global-map (kbd "]") 'scroll-up-command)
+(evil-define-key '(visual normal motion) global-map (kbd "{") 'scroll-other-window-down)
+(evil-define-key '(visual normal motion) global-map (kbd "}") 'scroll-other-window)
+(evil-define-key '(visual normal motion) global-map (kbd ")") 'evil-forward-paragraph)
+(evil-define-key '(visual normal motion) global-map (kbd "(") 'evil-backward-paragraph)
 
-(define-key evil-normal-state-map (kbd "M-o") nil)
-(define-key evil-visual-state-map (kbd "M-o") nil)
-(define-key evil-motion-state-map (kbd "M-o") nil)
+;; map space bar to C-x in evil normal state and RET to M-x
+;; from https://emacs.stackexchange.com/questions/48540/emacs-evil-mode-c-c-c-x-to-cc-cx-key-translation
+(defun my/c-x ()
+  (interactive)
+  (setq uFnread-command-events (listify-key-sequence (kbd "C-x"))))
 
-(define-key evil-normal-state-map (kbd "M-l") 'org-insert-link)
-(define-key evil-insert-state-map (kbd "M-l") 'org-insert-link)
-(define-key evil-visual-state-map (kbd "M-l") 'org-insert-link)
-(define-key evil-motion-state-map (kbd "M-l") 'org-insert-link)
+(defun my/m-x ()
+  (interactive)
+  (setq unread-command-events (listify-key-sequence (kbd "M-x"))))
+
+(evil-define-key '(normal visual motion) global-map (kbd "SPC") 'my/c-x)
+(evil-define-key '(normal visual motion) global-map (kbd "RET") 'my/m-x)
+(evil-define-key 'normal global-map (kbd "S-<end>") 'evil-append-line)
+(evil-define-key 'normal global-map (kbd "S-<home>") 'evil-insert-line)
+
+(evil-define-key '(normal visual) org-mode-map
+  (kbd "g h") 'org-up-element
+  (kbd "C-c a") 'org-agenda
+  (kbd "<prior>") 'org-move-subtree-up
+  (kbd "<next>") 'org-move-subtree-down
+  )
