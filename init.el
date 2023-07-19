@@ -129,6 +129,7 @@
 
 (use-package olivetti
  :ensure t
+ :defer t
  :config
  (olivetti-set-width 90)
 )
