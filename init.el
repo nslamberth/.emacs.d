@@ -175,10 +175,16 @@
 
 (use-package expand-region
   :ensure t
-  :bind ("M-;" . 'er/expand-region)
+  :bind ("M-2" . 'er/expand-region)
   )
 
 (use-package magit :ensure t)
+
+(use-package dumb-jump
+  :ensure t
+  :init
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  )
 
 ;;; Keybindings
 (global-set-key (kbd "C-\\") 'other-window)
