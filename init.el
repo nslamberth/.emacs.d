@@ -21,7 +21,7 @@
 (repeat-mode 1)
 (setq shift-select-mode nil) ; allows for finer movemnt control
 
-;; helpful system variables
+;; qualify of life variables
 (setq process-adaptive-read-buffering nil) ; make comint and eshell print output as received
 (setq help-window-select t); select help window after running describe commands
 (define-key Buffer-menu-mode-map (kbd "g") nil) ;; disable revert-buffer in buffer-menu
@@ -154,9 +154,7 @@
  (ivy-mode 1)
  (counsel-mode 1)
  (global-set-key "\C-s" 'swiper)
- (global-set-key (kbd "C-x f") 'find-file)
- (global-set-key (kbd "C-x b") 'switch-to-buffer)
- )
+)
 
 (use-package ivy-rich
  :ensure t
@@ -196,7 +194,6 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "C-z") 'repeat)
 (global-set-key (kbd "M-D") 'backward-kill-word)
 (global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
 (global-set-key (kbd "C-<right>") 'forward-sexp)
@@ -205,7 +202,6 @@
 (global-set-key (kbd "M-<left>") 'backward-list)
 (global-set-key (kbd "C-S-<up>") 'up-list)
 (global-set-key (kbd "C-S-<down>") 'down-list)
-
 
 ;; eww-mode keybindings
 (add-hook 'eww-mode-hook '(lambda ()

@@ -17,3 +17,5 @@ eshell/*
 games/*
 smex-items
 eww-bookmarks
+.emacs.desktop
+.emacs.desktop.lock
