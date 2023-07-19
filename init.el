@@ -20,7 +20,7 @@
 (global-superword-mode t) ;; make words include dashes and underscores
 (repeat-mode 1)
      
-;; helpful system variables
+;; qualify of life variables
 (setq process-adaptive-read-buffering nil) ; make comint and eshell print output as received
 (setq help-window-select t); select help window after running describe commands
 (define-key Buffer-menu-mode-map (kbd "g") nil) ;; disable revert-buffer in buffer-menu
@@ -153,9 +153,7 @@
  (ivy-mode 1)
  (counsel-mode 1)
  (global-set-key "\C-s" 'swiper)
- (global-set-key (kbd "C-x f") 'find-file)
- (global-set-key (kbd "C-x b") 'switch-to-buffer)
- )
+)
 
 (use-package ivy-rich
  :ensure t
@@ -195,8 +193,7 @@
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "C-z") 'repeat)
-(global-set-key (kbd "M-RET") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
+(global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
 
 ;; eww-mode keybindings
 (add-hook 'eww-mode-hook '(lambda ()
