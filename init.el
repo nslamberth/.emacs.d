@@ -19,7 +19,8 @@
 (desktop-save-mode 1) ; recover buffers on crash/restart
 (global-superword-mode t) ;; make words include dashes and underscores
 (repeat-mode 1)
-     
+(setq shift-select-mode nil) ; allows for finer movemnt control
+
 ;; qualify of life variables
 (setq process-adaptive-read-buffering nil) ; make comint and eshell print output as received
 (setq help-window-select t); select help window after running describe commands
@@ -198,9 +199,16 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "M-D") 'backward-kill-word)
+(global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
+(global-set-key (kbd "C-<right>") 'forward-sexp)
+(global-set-key (kbd "C-<left>") 'backward-sexp)
+(global-set-key (kbd "M-<right>") 'forward-list)
+(global-set-key (kbd "M-<left>") 'backward-list)
+(global-set-key (kbd "C-S-<up>") 'up-list)
+(global-set-key (kbd "C-S-<down>") 'down-list)
 
 ;; eww-mode keybindings
 (add-hook 'eww-mode-hook '(lambda ()
