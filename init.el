@@ -17,7 +17,6 @@
 (electric-pair-mode t) ; balance parens
 (setq show-paren-delay 0) (show-paren-mode 1) ;; enable show-paren-mode
 (desktop-save-mode 1) ; recover buffers on crash/restart
-(global-superword-mode t) ;; make words include dashes and underscores
 (repeat-mode 1)
 (setq shift-select-mode nil) ; allows for finer movemnt control
 
