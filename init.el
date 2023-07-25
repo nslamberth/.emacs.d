@@ -100,6 +100,9 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package try
+  :ensure t)
+
 (use-package undo-tree
  :ensure t
  :init
@@ -186,6 +189,14 @@
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   )
+
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  ("C-S-c C-S-c" . 'mc/edit-lines)
+  ("M-m" . 'mc/mark-next-like-this)
+  ("C-<" . 'mc/mark-previous-like-this)
+  ("C-c C-<" . 'mc/mark-all-like-this))
 
 ;;; Keybindings
 (global-set-key (kbd "C-\\") 'other-window)
