@@ -209,8 +209,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
-(global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
-(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "C-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
 (global-set-key (kbd "M-D") 'backward-kill-word)
 (global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
 (global-set-key (kbd "C-<right>") 'forward-sexp)
@@ -221,9 +220,20 @@
 (global-set-key (kbd "C-S-<down>") 'down-list)
 
 ;; eww-mode keybindings
-(add-hook 'eww-mode-hook '(lambda ()
+(add-hook
+ 'eww-mode-hook
+ '(lambda ()
     (define-key eww-mode-map (kbd "[") 'scroll-down-command)
     (define-key eww-mode-map (kbd "]") 'scroll-up-command)
     (define-key eww-mode-map (kbd "{") 'scroll-other-window-down)
-    (define-key eww-mode-map (kbd "}") 'scroll-other-window)
-    ))
+    (define-key eww-mode-map (kbd "}") 'scroll-other-window)))
+
+;; org-mode keybindings
+(add-hook
+ 'org-mode-hook
+ '(lambda ()
+    (define-key org-mode-map (kbd "S-<down>") 'org-metadown)
+    (define-key org-mode-map (kbd "S-<up>") 'org-metaup)))
+
+
+                 
