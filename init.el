@@ -198,6 +198,10 @@
   ("C-<" . 'mc/mark-previous-like-this)
   ("C-c C-<" . 'mc/mark-all-like-this))
 
+;;; load custom commands
+(load (expand-file-name "custom_commands.el" user-emacs-directory))
+
+
 ;;; Keybindings
 (global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-|") #'(lambda () (interactive) (other-window -1)))
@@ -209,8 +213,9 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
-(global-set-key (kbd "C-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
-(global-set-key (kbd "M-D") 'backward-kill-word)
+(global-set-key (kbd "M-o") 'my/new-line)
+(global-set-key (kbd "M-l") 'my/mark-line)
+(global-set-key (kbd "<deletechar>") 'backward-kill-word)
 (global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
 (global-set-key (kbd "C-<right>") 'forward-sexp)
 (global-set-key (kbd "C-<left>") 'backward-sexp)
@@ -218,6 +223,9 @@
 (global-set-key (kbd "M-<left>") 'backward-list)
 (global-set-key (kbd "C-S-<up>") 'up-list)
 (global-set-key (kbd "C-S-<down>") 'down-list)
+(global-set-key (kbd "M-D") 'kill-sexp)
+
+
 
 ;; eww-mode keybindings
 (add-hook
@@ -233,7 +241,6 @@
  'org-mode-hook
  '(lambda ()
     (define-key org-mode-map (kbd "S-<down>") 'org-metadown)
-    (define-key org-mode-map (kbd "S-<up>") 'org-metaup)))
+    (define-key org-mode-map (kbd "S-<up>") 'org-metaup)
+    (define-key org-mode-map (kbd "M-o") 'org-insert-heading)))
 
-
-                 
