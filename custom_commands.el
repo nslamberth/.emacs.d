@@ -19,3 +19,16 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
     (forward-line 0)
     (set-mark-command nil))
   (forward-line arg))
+
+(defun my/down-list (&optional arg interactive)
+  "modified down-list that treats strings as a list"
+  (interactive "^p\nd")
+  (cond
+   ((equal (list-at-point) (sexp-at-point)) (down-list arg nil))
+   ((save-excursion
+      (progn	 
+	(forward-sexp)
+	(forward-char 2)
+	(in-string-p))) 
+    (progn (forward-sexp) (forward-char 2)))
+   (t (down-list arg nil))))

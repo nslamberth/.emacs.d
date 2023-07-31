@@ -203,11 +203,9 @@
 
 
 ;;; Keybindings
+(global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-\\") 'other-window)
-(global-set-key (kbd "C-|") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x f") 'find-file)
-(global-set-key (kbd "C-x w") 'save-buffer)
-(global-set-key (kbd "C-x B") 'list-buffers)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "M-e") 'eval-last-sexp)
 (global-set-key (kbd "M-/") 'hippie-expand)
@@ -216,16 +214,18 @@
 (global-set-key (kbd "M-o") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
 (global-set-key (kbd "<deletechar>") 'backward-kill-word)
-(global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
-(global-set-key (kbd "C-<right>") 'forward-sexp)
-(global-set-key (kbd "C-<left>") 'backward-sexp)
+(global-set-key (kbd "S-<delete>") 'backward-kill-sexp)
 (global-set-key (kbd "M-<right>") 'forward-list)
 (global-set-key (kbd "M-<left>") 'backward-list)
+(global-set-key (kbd "C-<right>") 'forward-sexp)
+(global-set-key (kbd "C-<left>") 'backward-sexp)
 (global-set-key (kbd "C-S-<up>") 'up-list)
-(global-set-key (kbd "C-S-<down>") 'down-list)
+(global-set-key (kbd "C-S-<down>") 'my/down-list)
 (global-set-key (kbd "M-D") 'kill-sexp)
-
-
+(global-set-key (kbd "M-F") 'forward-sexp)
+(global-set-key (kbd "M-B") 'backward-sexp)
+(global-set-key (kbd "M-V") 'mark-sexp)
+(global-set-key (kbd "M-T") 'transpose-sexps)
 
 ;; eww-mode keybindings
 (add-hook
