@@ -28,6 +28,7 @@
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
 (setq inhibit-startup-screen t)
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
+(setq view-read-only t)
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
