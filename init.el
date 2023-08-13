@@ -28,7 +28,8 @@
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
 (setq inhibit-startup-screen t)
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
-(setq view-read-only t)
+(setq view-read-only t) ; enable view mode for read only files
+(setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
@@ -118,10 +119,11 @@
 
 (setq evil-disable-insert-state-bindings t)
 (use-package evil
- :ensure t
- :config
- (evil-set-undo-system 'undo-tree)
- (global-evil-surround-mode 1)
+  :ensure t
+  :defer t
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-evil-surround-mode 1)
 )
 
 (use-package which-key
@@ -199,9 +201,12 @@
   ("C-<" . 'mc/mark-previous-like-this)
   ("C-c C-<" . 'mc/mark-all-like-this))
 
+(use-package anaconda-mode
+  :ensure t
+  :defer t)
+
 ;;; load custom commands
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
-
 
 ;;; Keybindings
 (global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
@@ -245,3 +250,9 @@
     (define-key org-mode-map (kbd "S-<up>") 'org-metaup)
     (define-key org-mode-map (kbd "M-o") 'org-insert-heading)))
 
+;; python-mode keybindings
+(add-hook 'python-mode-hook
+	  '(lambda ()
+	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
+	     (anaconda-mode 1)
+	     ))
