@@ -22,3 +22,4 @@ eww-bookmarks
 custom.el
 transient/*
 .mc-lists.el
+org-persist/*
