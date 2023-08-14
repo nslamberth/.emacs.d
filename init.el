@@ -189,6 +189,8 @@
   )
 
 ;;; Keybindings
+(global-set-key (kbd "<select>") 'end-of-line)
+(global-set-key (kbd "C-e") 'end-of-line)
 (global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-|") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x f") 'find-file)
@@ -199,6 +201,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
+(global-set-key (kbd "M-Z") 'zap-to-char)
 (global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "M-D") 'backward-kill-word)
