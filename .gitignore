@@ -21,3 +21,5 @@ eww-bookmarks
 .emacs.desktop.lock
 custom.el
 transient/*
+.mc-lists.el
+org-persist/*

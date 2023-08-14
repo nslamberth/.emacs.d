@@ -17,7 +17,6 @@
 (electric-pair-mode t) ; balance parens
 (setq show-paren-delay 0) (show-paren-mode 1) ;; enable show-paren-mode
 (desktop-save-mode 1) ; recover buffers on crash/restart
-(global-superword-mode t) ;; make words include dashes and underscores
 (repeat-mode 1)
 (setq shift-select-mode nil) ; allows for finer movemnt control
 
@@ -29,6 +28,8 @@
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
 (setq inhibit-startup-screen t)
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
+(setq view-read-only t) ; enable view mode for read only files
+(setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
@@ -101,6 +102,9 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package try
+  :ensure t)
+
 (use-package undo-tree
  :ensure t
  :init
@@ -115,10 +119,11 @@
 
 (setq evil-disable-insert-state-bindings t)
 (use-package evil
- :ensure t
- :config
- (evil-set-undo-system 'undo-tree)
- (global-evil-surround-mode 1)
+  :ensure t
+  :defer t
+  :config
+  (evil-set-undo-system 'undo-tree)
+  (global-evil-surround-mode 1)
 )
 
 (use-package which-key
@@ -188,35 +193,69 @@
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   )
 
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  ("C-S-c C-S-c" . 'mc/edit-lines)
+  ("M-m" . 'mc/mark-next-like-this)
+  ("C-<" . 'mc/mark-previous-like-this)
+  ("C-c C-<" . 'mc/mark-all-like-this))
+
+(use-package anaconda-mode
+  :ensure t
+  :defer t)
+
+;;; load custom commands
+(load (expand-file-name "custom_commands.el" user-emacs-directory))
+
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
+(global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-\\") 'other-window)
-(global-set-key (kbd "C-|") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-x f") 'find-file)
-(global-set-key (kbd "C-x w") 'save-buffer)
-(global-set-key (kbd "C-x B") 'list-buffers)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (global-set-key (kbd "M-e") 'eval-last-sexp)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
-(global-set-key (kbd "M-o") #'(lambda () (interactive) (end-of-line) (default-indent-new-line)))
-(global-set-key (kbd "C-a") 'back-to-indentation)
-(global-set-key (kbd "M-D") 'backward-kill-word)
-(global-set-key (kbd "M-T") #'( () (interactive) (transpose-words -1)))
-(global-set-key (kbd "C-<right>") 'forward-sexp)
-(global-set-key (kbd "C-<left>") 'backward-sexp)
+(global-set-key (kbd "M-o") 'my/new-line)
+(global-set-key (kbd "M-l") 'my/mark-line)
+(global-set-key (kbd "<deletechar>") 'backward-kill-word)
+(global-set-key (kbd "S-<delete>") 'backward-kill-sexp)
 (global-set-key (kbd "M-<right>") 'forward-list)
 (global-set-key (kbd "M-<left>") 'backward-list)
+(global-set-key (kbd "C-<right>") 'forward-sexp)
+(global-set-key (kbd "C-<left>") 'backward-sexp)
 (global-set-key (kbd "C-S-<up>") 'up-list)
-(global-set-key (kbd "C-S-<down>") 'down-list)
+(global-set-key (kbd "C-S-<down>") 'my/down-list)
+(global-set-key (kbd "M-D") 'kill-sexp)
+(global-set-key (kbd "M-F") 'forward-sexp)
+(global-set-key (kbd "M-B") 'backward-sexp)
+(global-set-key (kbd "M-V") 'mark-sexp)
+(global-set-key (kbd "M-T") 'transpose-sexps)
 
 ;; eww-mode keybindings
-(add-hook 'eww-mode-hook '(lambda ()
+(add-hook
+ 'eww-mode-hook
+ '(lambda ()
     (define-key eww-mode-map (kbd "[") 'scroll-down-command)
     (define-key eww-mode-map (kbd "]") 'scroll-up-command)
     (define-key eww-mode-map (kbd "{") 'scroll-other-window-down)
-    (define-key eww-mode-map (kbd "}") 'scroll-other-window)
-    ))
+    (define-key eww-mode-map (kbd "}") 'scroll-other-window)))
+
+;; org-mode keybindings
+(add-hook
+ 'org-mode-hook
+ '(lambda ()
+    (define-key org-mode-map (kbd "S-<down>") 'org-metadown)
+    (define-key org-mode-map (kbd "S-<up>") 'org-metaup)
+    (define-key org-mode-map (kbd "M-o") 'org-insert-heading)))
+
+;; python-mode keybindings
+(add-hook 'python-mode-hook
+	  '(lambda ()
+	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
+	     (anaconda-mode 1)
+	     ))
