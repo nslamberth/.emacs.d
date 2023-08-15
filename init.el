@@ -239,7 +239,7 @@
 ;; eww-mode keybindings
 (add-hook
  'eww-mode-hook
- '(lambda ()
+ #'(lambda ()
     (define-key eww-mode-map (kbd "[") 'scroll-down-command)
     (define-key eww-mode-map (kbd "]") 'scroll-up-command)
     (define-key eww-mode-map (kbd "{") 'scroll-other-window-down)
@@ -248,14 +248,14 @@
 ;; org-mode keybindings
 (add-hook
  'org-mode-hook
- '(lambda ()
+ #'(lambda ()
     (define-key org-mode-map (kbd "S-<down>") 'org-metadown)
     (define-key org-mode-map (kbd "S-<up>") 'org-metaup)
     (define-key org-mode-map (kbd "M-o") 'org-insert-heading)))
 
 ;; python-mode keybindings
 (add-hook 'python-mode-hook
-	  '(lambda ()
+	  #'(lambda ()
 	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
 	     (anaconda-mode 1)
 	     ))
