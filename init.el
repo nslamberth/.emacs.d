@@ -239,3 +239,14 @@
 	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
 	     (anaconda-mode 1)))
 
+
+;; enable browse-url on wsl
+;; from https://hungyi.net/posts/browse-emacs-urls-wsl/
+(when (and (eq system-type 'gnu/linux)
+           (string-match
+            "Linux.*Microsoft.*Linux"
+            (shell-command-to-string "uname -a")))
+  (setq
+   browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
+   browse-url-generic-args     '("/c" "start")
+   browse-url-browser-function #'browse-url-generic))
