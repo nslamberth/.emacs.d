@@ -82,10 +82,6 @@
 (if (equal system-type 'gnu/linux)
     (load "linux-settings"))
 
-;; open up some general files to have around
-(find-file "~/.emacs.d/init.el")
-(find-file "~")
-
 ;;; package setup
 (setq package--init-file-ensured t) ; disables package init.el silliness
 
@@ -112,20 +108,6 @@
  (setq undo-tree-auto-save-history nil)
  )
 
-(use-package evil-surround
-  :ensure t
-  :init
-  )
-
-(setq evil-disable-insert-state-bindings t)
-(use-package evil
-  :ensure t
-  :defer t
-  :config
-  (evil-set-undo-system 'undo-tree)
-  (global-evil-surround-mode 1)
-)
-
 (use-package which-key
  :ensure t
  :init
@@ -150,23 +132,28 @@
  :ensure t
 )
 
-(use-package smex
+(use-package vertico
   :ensure t
-  )
-
-(use-package counsel
- :ensure t
- :init
- (ivy-mode 1)
- (counsel-mode 1)
- (global-set-key "\C-s" 'swiper)
+  :init
+  (vertico-mode)
+  (keymap-set vertico-map "RET" #'vertico-directory-enter)
+  (keymap-set vertico-map "DEL" #'vertico-directory-delete-char)
+  (keymap-set vertico-map "M-DEL" #'vertico-directory-delete-word)
+  (add-hook 'rfn-eshadow-update-overlay-hook #'vertico-directory-tidy)
 )
 
-(use-package ivy-rich
- :ensure t
- :init
- (ivy-rich-mode t)
- )
+(use-package savehist
+  :ensure t
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :ensure t
+  :init
+  (setq completion-styles '(orderless basic)))
+
+(use-package consult
+  :ensure t)
 
 (use-package yasnippet
  :ensure t
@@ -180,12 +167,8 @@
  :init
  )
 
-(use-package expand-region
-  :ensure t
-  :bind ("M-2" . 'er/expand-region)
-  )
-
-(use-package magit :ensure t)
+(use-package magit
+  :ensure t)
 
 (use-package dumb-jump
   :ensure t
@@ -214,8 +197,6 @@
 (global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-x f") 'find-file)
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-(global-set-key (kbd "M-e") 'eval-last-sexp)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
@@ -249,13 +230,12 @@
 (add-hook
  'org-mode-hook
  #'(lambda ()
-    (define-key org-mode-map (kbd "S-<down>") 'org-metadown)
-    (define-key org-mode-map (kbd "S-<up>") 'org-metaup)
-    (define-key org-mode-map (kbd "M-o") 'org-insert-heading)))
+    (define-key org-mode-map (kbd "<next>") 'org-metadown)
+    (define-key org-mode-map (kbd "<prior>") 'org-metaup)))
 
 ;; python-mode keybindings
 (add-hook 'python-mode-hook
 	  #'(lambda ()
 	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
-	     (anaconda-mode 1)
-	     ))
+	     (anaconda-mode 1)))
+
