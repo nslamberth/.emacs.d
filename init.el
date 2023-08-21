@@ -204,6 +204,8 @@
 (global-set-key (kbd "M-o") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
 (global-set-key (kbd "M-D") 'kill-whole-line)
+(global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "C-x j") 'dired-jump)
 
 ;; eww-mode keybindings
 (add-hook
@@ -219,7 +221,9 @@
  'org-mode-hook
  #'(lambda ()
     (define-key org-mode-map (kbd "<next>") 'org-metadown)
-    (define-key org-mode-map (kbd "<prior>") 'org-metaup)))
+    (define-key org-mode-map (kbd "<prior>") 'org-metaup)
+    (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
+    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
 
 ;; python-mode keybindings
 (add-hook 'python-mode-hook
