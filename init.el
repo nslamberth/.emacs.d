@@ -233,7 +233,9 @@
  'org-mode-hook
  #'(lambda ()
     (define-key org-mode-map (kbd "<next>") 'org-metadown)
-    (define-key org-mode-map (kbd "<prior>") 'org-metaup)))
+    (define-key org-mode-map (kbd "<prior>") 'org-metaup)
+    (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
+    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
 
 ;; python-mode keybindings
 (add-hook 'python-mode-hook
