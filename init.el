@@ -216,6 +216,8 @@
 (global-set-key (kbd "M-B") 'backward-sexp)
 (global-set-key (kbd "M-V") 'mark-sexp)
 (global-set-key (kbd "M-T") 'transpose-sexps)
+(global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "C-x j") 'dired-jump)
 
 ;; eww-mode keybindings
 (add-hook
