@@ -197,6 +197,7 @@
 (global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-x f") 'find-file)
+(global-set-key (kbd "C-k") 'my/kill-region-or-line)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
@@ -206,6 +207,7 @@
 (global-set-key (kbd "M-D") 'kill-whole-line)
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "C-x j") 'dired-jump)
+(global-set-key (kbd "C-<delete>") 'kill-buffer-and-window)
 
 ;; eww-mode keybindings
 (add-hook

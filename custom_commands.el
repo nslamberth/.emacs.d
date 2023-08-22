@@ -32,3 +32,10 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
 	(in-string-p))) 
     (progn (forward-sexp) (forward-char 2)))
    (t (down-list arg nil))))
+
+(defun my/kill-region-or-line (&optional arg)
+  "if region is active, kill region otherwise kill line"
+  (interactive "P")
+  (if (region-active-p)
+      (call-interactively 'kill-region)
+    (kill-line arg)))
