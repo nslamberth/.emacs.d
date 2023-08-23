@@ -208,6 +208,8 @@
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "C-x j") 'dired-jump)
 (global-set-key (kbd "C-<delete>") 'kill-buffer-and-window)
+(global-set-key (kbd "M-<end>") 'delete-window)
+(global-set-key (kbd "M-<home>") 'delete-other-windows)
 
 ;; eww-mode keybindings
 (add-hook
@@ -218,7 +220,7 @@
     (define-key eww-mode-map (kbd "{") 'scroll-other-window-down)
     (define-key eww-mode-map (kbd "}") 'scroll-other-window)))
 
-;; org-mode keybindings
+;; org-mode settings
 (add-hook
  'org-mode-hook
  #'(lambda ()
