@@ -12,13 +12,13 @@
 (load custom-file)
 
 ;; quality of life minor modes
-(global-visual-line-mode t) ; get rid of weird truncation of line
+(global-visual-line-mode t) ; make lines behave more like other programs
 (winner-mode t) ; used for winner-undo
 (electric-pair-mode t) ; balance parens
-(setq show-paren-delay 0) (show-paren-mode 1) ;; enable show-paren-mode
+(setq show-paren-delay 0) (show-paren-mode 1) ; enable show-paren-mode
 (desktop-save-mode 1) ; recover buffers on crash/restart
-(repeat-mode 1)
-(setq shift-select-mode nil) ; allows for finer movemnt control
+(repeat-mode 1) ; easier repeating of basic commands
+(setq shift-select-mode nil) ; allows for finer movement control
 
 ;; qualify of life variables
 (setq process-adaptive-read-buffering nil) ; make comint and eshell print output as received
