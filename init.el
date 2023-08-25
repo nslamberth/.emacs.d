@@ -30,7 +30,8 @@
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
 (setq view-read-only t) ; enable view mode for read only files
 (setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function 'ignore) ; disable bells
+(setq set-mark-command-repeat-pop t) ; easier mark popping
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
