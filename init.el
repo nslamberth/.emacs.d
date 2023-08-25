@@ -190,6 +190,10 @@
   :ensure t
   :defer t)
 
+(use-package expand-region
+  :ensure t
+  :bind ("M-=" . er/expand-region))
+
 ;;; load custom commands
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
 
