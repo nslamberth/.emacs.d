@@ -32,6 +32,7 @@
 (setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
 (setq ring-bell-function 'ignore) ; disable bells
 (setq set-mark-command-repeat-pop t) ; easier mark popping
+(setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
