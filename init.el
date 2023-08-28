@@ -181,10 +181,7 @@
 (use-package multiple-cursors
   :ensure t
   :bind
-  ("C-S-c C-S-c" . 'mc/edit-lines)
-  ("M-m" . 'mc/mark-next-like-this)
-  ("C-<" . 'mc/mark-previous-like-this)
-  ("C-c C-<" . 'mc/mark-all-like-this))
+  ("M-m" . 'mc/mark-next-like-this))
 
 (use-package anaconda-mode
   :ensure t
@@ -193,6 +190,19 @@
 (use-package expand-region
   :ensure t
   :bind ("M-=" . er/expand-region))
+
+(use-package puni
+  ;; for now use only for slurp and barf
+  :ensure t
+  :bind
+  ("C-S-<right>" . puni-slurp-forward)
+  ("C-S-<left>" . puni-barf-forward))
+
+(use-package jump-char
+  :ensure t
+  :bind
+  ("M-F" . jump-char-forward))
+
 
 ;;; load custom commands
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
