@@ -40,6 +40,27 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
       (call-interactively 'kill-region)
     (kill-line arg)))
 
+(defun my/copy-region-or-line (&optional arg)
+  "if region is active, copy region otherwise copy line"
+  (interactive "P")
+  (if (region-active-p)
+      (call-interactively 'kill-ring-save)
+    (save-excursion
+      (call-interactively 'beginning-of-line)
+      (call-interactively 'set-mark-command)
+      (call-interactively 'end-of-line)
+      (call-interactively 'forward-char)
+      (call-interactively 'kill-ring-save))))
+
+
+(defun my/kill-region-or-whole-line (&optional arg)
+  "if region is active, copy region otherwise kill whole line"
+  (interactive "P")
+  (if (region-active-p)
+      (call-interactively 'kill-region)
+    (call-interactively 'kill-whole-line)))
+
+
 (defvar my/last-repeatable-command nil
   "Copy of last-repeatable-command that ignores my/repeat-commands-to-ignore")
 
