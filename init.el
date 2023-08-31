@@ -156,7 +156,9 @@
   (setq completion-styles '(orderless basic)))
 
 (use-package consult
-  :ensure t)
+  :ensure t
+  :bind
+  ("M-S" . consult-line))
 
 (use-package yasnippet
  :ensure t
