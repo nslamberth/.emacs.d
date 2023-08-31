@@ -66,7 +66,8 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
 
 (defvar my/repeat-commands-to-ignore
   '(my/repeat next-line end-of-line left-char right-char
-	      previous-line beginning-of-line beginning-of-visual-line)
+	      previous-line beginning-of-line beginning-of-visual-line
+	      scroll-down-command scroll-up-command)
   "List of commands for my/last-repeatable-command to ignore."
   )
 

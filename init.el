@@ -28,6 +28,7 @@
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
 (setq inhibit-startup-screen t)
 (setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
+(setq org-agenda-sticky t) ; bury org  aenda instead of killing it
 (setq view-read-only t) ; enable view mode for read only files
 (setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
 (setq ring-bell-function 'ignore) ; disable bells
@@ -163,14 +164,12 @@
 (use-package yasnippet
  :ensure t
  :init
- (yas-global-mode 1)
- (push 'yas-hippie-try-expand hippie-expand-try-functions-list)
- )
+ (yas-global-mode 1))
 
 (use-package yasnippet-snippets
  :ensure t
- :init
- )
+ :init)
+
 
 (use-package magit
   :ensure t)
@@ -178,8 +177,8 @@
 (use-package dumb-jump
   :ensure t
   :init
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
-  )
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
 
 (use-package multiple-cursors
   :ensure t
