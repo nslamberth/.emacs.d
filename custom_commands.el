@@ -39,3 +39,24 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
   (if (region-active-p)
       (call-interactively 'kill-region)
     (kill-line arg)))
+
+(defvar my/last-repeatable-command nil
+  "Copy of last-repeatable-command that ignores my/repeat-commands-to-ignore")
+
+(defvar my/repeat-commands-to-ignore
+  '(my/repeat next-line end-of-line left-char right-char
+	      previous-line beginning-of-line beginning-of-visual-line)
+  "List of commands for my/last-repeatable-command to ignore."
+  )
+
+(defun my/repeat (repeat-arg)
+  "Modified version of repeat that ignore commands in my/repeat-commands-to-ignore."
+  (interactive "P")
+  (when (null repeat-arg)
+    (setq repeat-arg last-prefix-arg))
+  (let '(last-repeatable-command my/last-repeatable-command)
+    (call-interactively 'repeat t (vector repeat-arg))))
+
+(defun my/save-last-repeatable-command ()
+  (if (not (member last-repeatable-command my/repeat-commands-to-ignore))
+      (setq my/last-repeatable-command last-repeatable-command)))

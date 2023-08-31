@@ -227,6 +227,7 @@
 (global-set-key (kbd "C-<delete>") 'kill-buffer-and-window)
 (global-set-key (kbd "M-<end>") 'delete-window)
 (global-set-key (kbd "M-<home>") 'delete-other-windows)
+(global-set-key [remap repeat] 'my/repeat)
 
 ;; eww-mode keybindings
 (add-hook
@@ -264,3 +265,6 @@
    browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
    browse-url-generic-args     '("/c" "start")
    browse-url-browser-function #'browse-url-generic))
+
+;; repeat-mode settings
+(add-hook 'pre-command-hook 'my/save-last-repeatable-command)
