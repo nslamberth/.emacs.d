@@ -205,6 +205,12 @@
   :bind
   ("M-F" . jump-char-forward))
 
+(use-package sqlformat
+  :ensure t
+  :init
+  (setq sqlformat-command 'pgformatter)
+  (setq sqlformat-args '("-s2" "-g"))
+  (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
 
 ;;; load custom commands
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
