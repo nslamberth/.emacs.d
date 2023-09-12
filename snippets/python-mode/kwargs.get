@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: kwargs.get
+# key: kwg
+# --
+${1:keyword_name} = kwargs.get('$1')$0
