@@ -264,7 +264,7 @@
 	     (anaconda-mode 1)
 	     (define-key python-mode-map (kbd "C-c r") 'python-shell-send-region)
 	     (define-key anaconda-mode-map (kbd "M-=") nil)
-	     (define-key python-mode-map (kbd "C-c <RET>") 'recompile)))
+	     (define-key python-mode-map (kbd "C-c RET") 'recompile)))
 
 
 ;; enable browse-url on wsl
