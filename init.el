@@ -34,6 +34,7 @@
 (setq ring-bell-function 'ignore) ; disable bells
 (setq set-mark-command-repeat-pop t) ; easier mark popping
 (setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
+(setq delete-selection-mode t) ; replace region when typing or yanking
 
 ;; use ibuffer as default buffer list
 (global-set-key [remap list-buffers] 'ibuffer)
