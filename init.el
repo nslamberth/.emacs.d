@@ -235,13 +235,14 @@
 (global-set-key (kbd "M-Z") 'zap-to-char)
 (global-set-key (kbd "M-o") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
-(global-set-key (kbd "M-D") 'kill-whole-line)
+(global-set-key (kbd "M-D") 'my/duplicate-line)
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "C-x j") 'dired-jump)
 (global-set-key (kbd "C-<delete>") 'kill-buffer-and-window)
 (global-set-key (kbd "M-<end>") 'delete-window)
 (global-set-key (kbd "M-<home>") 'delete-other-windows)
 (global-set-key [remap repeat] 'my/repeat)
+(global-set-key [remap list-buffers] 'ibuffer)
 
 ;; eww-mode keybindings
 (add-hook
