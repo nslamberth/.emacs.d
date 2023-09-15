@@ -36,8 +36,18 @@
 (setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
 (setq delete-selection-mode t) ; replace region when typing or yanking
 
-;; use ibuffer as default buffer list
-(global-set-key [remap list-buffers] 'ibuffer)
+;; hide backup files in their own directory
+;; from bedrock emacs
+;; https://git.sr.ht/~ashton314/emacs-bedrock/tree/main/item/init.el
+(defun bedrock--backup-file-name (fpath)
+  "Return a new file path of a given file path.
+If the new path's directories does not exist, create them."
+  (let* ((backupRootDir "~/.emacs.d/emacs-backup/")
+         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
+         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
+    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+    backupFilePath))
+(setq make-backup-file-name-function 'bedrock--backup-file-name)
 
 ;; smooth scrolling
 ;; from https://www.emacswiki.org/emacs/SmoothScrolling
