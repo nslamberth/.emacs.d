@@ -213,6 +213,9 @@
   (setq sqlformat-args '("-s2" "-g"))
   (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
 
+(use-package markdown-mode
+  :ensure t)
+
 ;;; load custom commands
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
 
