@@ -1,3 +1,8 @@
+(defun my/previous-window ()
+  "Cycle one window backwards"
+  (interactive)
+  (call-interactively 'other-window t (vector 1)))
+
 (defun my/new-line ()
   "insert new line below current line and move point to beginnign of new line"
   (interactive)

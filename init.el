@@ -226,14 +226,14 @@ If the new path's directories does not exist, create them."
 (use-package markdown-mode
   :ensure t)
 
-;;; load custom commands
+;;; load local .el files
 (load (expand-file-name "custom_commands.el" user-emacs-directory))
 
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
 (global-set-key (kbd "C-a") 'beginning-of-line)
-(global-set-key (kbd "C-x O") #'(lambda () (interactive) (other-window -1)))
+(global-set-key (kbd "C-x O") 'my/previous-window)
 (global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-x f") 'find-file)
 (global-set-key (kbd "C-k") 'my/kill-region-or-line)
@@ -295,3 +295,25 @@ If the new path's directories does not exist, create them."
 
 ;; repeat-mode settings
 (add-hook 'pre-command-hook 'my/save-last-repeatable-command)
+
+; based on template from
+; https://tildegit.org/acdw/define-repeat-map.el 
+(defvar my-other-window-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "o" #'other-window)
+    (define-key map "O" #'previous-window)
+    (define-key map "0" #'kill-window)
+    (define-key map "1" #'delete-other-windows)
+    (define-key map "2" #'split-window-below)
+    (define-key map "3" #'split-window-right)
+    map)
+  "A map to repeat all window commands")
+
+(dolist (command '(
+		   other-window
+		   previous-window
+		   kill-window
+		   delete-other-windows
+		   split-window-below
+		   split-window-right))
+  (put command 'repeat-map 'my-other-window-repeat-map))
