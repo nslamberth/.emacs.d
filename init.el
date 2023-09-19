@@ -12,7 +12,6 @@
 (load custom-file)
 
 ;; quality of life minor modes
-(global-visual-line-mode t) ; make lines behave more like other programs
 (winner-mode t) ; used for winner-undo
 (electric-pair-mode t) ; balance parens
 (setq show-paren-delay 0) (show-paren-mode 1) ; enable show-paren-mode
@@ -35,6 +34,11 @@
 (setq set-mark-command-repeat-pop t) ; easier mark popping
 (setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
 (setq delete-selection-mode t) ; replace region when typing or yanking
+(setq truncate-lines nil)                 ; 
+(setq word-wrap t)                        ; These lines mimic visual
+(setq line-move-visual nil)               ; line mode without changing
+(setq truncate-partial-width-windows nil) ; next/previous line behavior
+
 
 ;; hide backup files in their own directory
 ;; from bedrock emacs
