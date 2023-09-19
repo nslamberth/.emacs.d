@@ -300,6 +300,7 @@ If the new path's directories does not exist, create them."
 ;; repeat-mode settings
 (add-hook 'pre-command-hook 'my/save-last-repeatable-command)
 
+; repeat maps
 ; based on template from
 ; https://tildegit.org/acdw/define-repeat-map.el 
 (defvar my-other-window-repeat-map
@@ -310,6 +311,7 @@ If the new path's directories does not exist, create them."
     (define-key map "1" #'delete-other-windows)
     (define-key map "2" #'split-window-below)
     (define-key map "3" #'split-window-right)
+    (define-key map "b" #'switch-to-buffer)
     map)
   "A map to repeat all window commands")
 
@@ -321,3 +323,14 @@ If the new path's directories does not exist, create them."
 		   split-window-below
 		   split-window-right))
   (put command 'repeat-map 'my-other-window-repeat-map))
+
+
+(defvar line-navigation-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "n" #'next-line)
+    (define-key map "p" #'previous-line)
+    map)
+  "A map to repeat all line navigation commands")
+
+(dolist (command '(next-line previous-line))
+  (put command 'repeat-map 'line-navigation-map))
