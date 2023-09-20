@@ -318,10 +318,11 @@ If the new path's directories does not exist, create them."
 (dolist (command '(
 		   other-window
 		   previous-window
-		   kill-window
+		   delete-window
 		   delete-other-windows
 		   split-window-below
-		   split-window-right))
+		   split-window-right
+		   switch-to-buffer))
   (put command 'repeat-map 'my-other-window-repeat-map))
 
 
