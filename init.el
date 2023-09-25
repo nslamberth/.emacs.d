@@ -34,10 +34,10 @@
 (setq set-mark-command-repeat-pop t) ; easier mark popping
 (setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
 (setq delete-selection-mode t) ; replace region when typing or yanking
-(setq truncate-lines nil)                 ; 
-(setq word-wrap t)                        ; These lines mimic visual
-(setq line-move-visual nil)               ; line mode without changing
-(setq truncate-partial-width-windows nil) ; next/previous line behavior
+(setq truncate-lines nil)                 ; mimic visual
+(setq word-wrap t)                        ; line mode without
+(setq line-move-visual nil)               ; changing next/previous 
+(setq truncate-partial-width-windows nil) ; line behavior
 
 
 ;; hide backup files in their own directory
