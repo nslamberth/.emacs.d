@@ -77,6 +77,11 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
   (call-interactively 'yank t (vector arg))
   (call-interactively 'previous-line))
 
+(defun my/copy-region-to-windows-clipboard (beg end)
+  "copy region to windows clipboard in WSL"
+  (interactive "r")
+  (shell-command-on-region beg end "clip.exe" nil nil nil t)
+  )
 
 (defvar my/last-repeatable-command nil
   "Copy of last-repeatable-command that ignores my/repeat-commands-to-ignore")

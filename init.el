@@ -286,16 +286,20 @@ If the new path's directories does not exist, create them."
 	     (define-key python-mode-map (kbd "C-c RET") 'recompile)))
 
 
-;; enable browse-url on wsl
-;; from https://hungyi.net/posts/browse-emacs-urls-wsl/
+
+;; wsl settings
 (when (and (eq system-type 'gnu/linux)
            (string-match
             "Linux.*Microsoft.*Linux"
             (shell-command-to-string "uname -a")))
+  ;; enable browse-url on wsl
+  ;; from https://hungyi.net/posts/browse-emacs-urls-wsl/
   (setq
    browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
    browse-url-generic-args     '("/c" "start")
-   browse-url-browser-function #'browse-url-generic))
+   browse-url-browser-function #'browse-url-generic)
+  (global-set-key (kbd "C-c w w") 'my/copy-region-to-windows-clipboard)
+  )
 
 ;; repeat-mode settings
 (add-hook 'pre-command-hook 'my/save-last-repeatable-command)
