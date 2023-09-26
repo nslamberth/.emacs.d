@@ -65,18 +65,6 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
       (call-interactively 'kill-region)
     (call-interactively 'kill-whole-line)))
 
-(defun my/duplicate-line (&optional arg)
-  "kill and past line n times"
-  (interactive "P")
-  (when (null arg)
-    (setq arg last-prefix-arg))
-  (message "arg is %s" arg)
-  (call-interactively 'kill-whole-line)
-  (call-interactively 'yank)
-  (call-interactively 'beginning-of-line)
-  (call-interactively 'yank t (vector arg))
-  (call-interactively 'previous-line))
-
 (defun my/copy-region-to-windows-clipboard (beg end)
   "copy region to windows clipboard in WSL"
   (interactive "r")
