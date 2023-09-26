@@ -253,7 +253,7 @@
   (let ((map (make-sparse-keymap)))
     (define-key map "o" #'other-window)
     (define-key map "O" #'previous-window)
-    (define-key map "0" #'kill-window)
+    (define-key map "0" #'delete-window)
     (define-key map "1" #'delete-other-windows)
     (define-key map "2" #'split-window-below)
     (define-key map "3" #'split-window-right)
