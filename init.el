@@ -257,6 +257,7 @@ If the new path's directories does not exist, create them."
 (global-set-key (kbd "M-<home>") 'delete-other-windows)
 (global-set-key [remap repeat] 'my/repeat)
 (global-set-key [remap list-buffers] 'ibuffer)
+(global-set-key (kbd "C-<right>") 'forward-same-syntax)
 
 ;; eww-mode keybindings
 (add-hook
@@ -271,8 +272,6 @@ If the new path's directories does not exist, create them."
 (add-hook
  'org-mode-hook
  #'(lambda ()
-    (define-key org-mode-map (kbd "<next>") 'org-metadown)
-    (define-key org-mode-map (kbd "<prior>") 'org-metaup)
     (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
     (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
 
@@ -307,7 +306,7 @@ If the new path's directories does not exist, create them."
   (let ((map (make-sparse-keymap)))
     (define-key map "o" #'other-window)
     (define-key map "O" #'previous-window)
-    (define-key map "0" #'kill-window)
+    (define-key map "0" #'delete-window)
     (define-key map "1" #'delete-other-windows)
     (define-key map "2" #'split-window-below)
     (define-key map "3" #'split-window-right)
