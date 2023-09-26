@@ -2,63 +2,18 @@
 
 ;;; General Setup
 
-;; remove unneeded tool bars
-(menu-bar-mode -1) 
-(if (boundp 'tool-bar-mode) (tool-bar-mode -1)) 
-(if (boundp 'scroll-bar-mode) (scroll-bar-mode -1)) 
-
-;; clean up custom file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory)) ; hide custom.el garbage
+;; set up custom file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-;; quality of life minor modes
-(winner-mode t) ; used for winner-undo
-(electric-pair-mode t) ; balance parens
-(setq show-paren-delay 0) (show-paren-mode 1) ; enable show-paren-mode
-(desktop-save-mode 1) ; recover buffers on crash/restart
-(repeat-mode 1) ; easier repeating of basic commands
-(setq shift-select-mode nil) ; allows for finer movement control
+;;; load local .el files
+(load (expand-file-name "custom_commands.el" user-emacs-directory))
 
-;; qualify of life variables
+;; non-customizable variables
 (setq process-adaptive-read-buffering nil) ; make comint and eshell print output as received
-(setq help-window-select t); select help window after running describe commands
-(define-key Buffer-menu-mode-map (kbd "g") nil) ;; disable revert-buffer in buffer-menu
 (fset 'yes-or-no-p 'y-or-n-p) ;; Always use y/n instead of yes/no
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
-(setq inhibit-startup-screen t)
-(setq-default org-catch-invisible-edits 'error) ;; disallow org-mode invisble edits
-(setq org-agenda-sticky t) ; bury org agenda instead of killing it
-(setq view-read-only t) ; enable view mode for read only files
-(setq auto-revert-verbose nil) ; stop the "reverting buffer modeline messages"
-(setq ring-bell-function 'ignore) ; disable bells
-(setq set-mark-command-repeat-pop t) ; easier mark popping
-(setq isearch-wrap-pause 'no-ding) ; make isearch wrap automatically
-(setq delete-selection-mode t) ; replace region when typing or yanking
-(setq truncate-lines nil)                 ; mimic visual
-(setq word-wrap t)                        ; line mode without
-(setq line-move-visual nil)               ; changing next/previous 
-(setq truncate-partial-width-windows nil) ; line behavior
-
-
-;; hide backup files in their own directory
-;; from bedrock emacs
-;; https://git.sr.ht/~ashton314/emacs-bedrock/tree/main/item/init.el
-(defun bedrock--backup-file-name (fpath)
-  "Return a new file path of a given file path.
-If the new path's directories does not exist, create them."
-  (let* ((backupRootDir "~/.emacs.d/emacs-backup/")
-         (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path
-         (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") )))
-    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
-    backupFilePath))
-(setq make-backup-file-name-function 'bedrock--backup-file-name)
-
-;; smooth scrolling
-;; from https://www.emacswiki.org/emacs/SmoothScrolling
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
-(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+(put 'dired-find-alternate-file 'disabled nil) ; enable dired alternate file
 
 ;; store backups in their own directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -77,29 +32,6 @@ If the new path's directories does not exist, create them."
 
 (if (boundp 'highlight-parentheses-mode)
     (global-highlight-parentheses-mode t))
-
-;; dired settings
-(put 'dired-find-alternate-file 'disabled nil) ; enable dired alternate file
-(setq dired-dwim-target t) ; enable split-window copying
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (dired-hide-details-mode t)
-            (auto-revert-mode 1)
-            ))
-(add-hook 'wdired-mode-hook
-          (lambda ()
-            (dired-hide-details-mode t)
-            (auto-revert-mode 1)
-            ))
-
-;; os-specific settings
-(add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
-(if (equal system-type 'windows-nt)
-    (load "windows-settings"))
-(if (memq window-system '(mac ns))
-    (load "mac-settings"))
-(if (equal system-type 'gnu/linux)
-    (load "linux-settings"))
 
 ;;; package setup
 (setq package--init-file-ensured t) ; disables package init.el silliness
@@ -230,9 +162,6 @@ If the new path's directories does not exist, create them."
 (use-package markdown-mode
   :ensure t)
 
-;;; load local .el files
-(load (expand-file-name "custom_commands.el" user-emacs-directory))
-
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
@@ -249,7 +178,7 @@ If the new path's directories does not exist, create them."
 (global-set-key (kbd "M-Z") 'zap-to-char)
 (global-set-key (kbd "M-o") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
-(global-set-key (kbd "M-D") 'my/duplicate-line)
+(global-set-key (kbd "M-D") 'duplicate-dwim)
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "C-x j") 'dired-jump)
 (global-set-key (kbd "C-<delete>") 'kill-buffer-and-window)
@@ -258,8 +187,21 @@ If the new path's directories does not exist, create them."
 (global-set-key [remap repeat] 'my/repeat)
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-<right>") 'forward-same-syntax)
+(define-key Buffer-menu-mode-map (kbd "g") nil)
 
-;; eww-mode keybindings
+;; dired hook
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (dired-hide-details-mode t)
+            (auto-revert-mode 1)
+            ))
+(add-hook 'wdired-mode-hook
+          (lambda ()
+            (dired-hide-details-mode t)
+            (auto-revert-mode 1)
+            ))
+
+;; eww-mode hook
 (add-hook
  'eww-mode-hook
  #'(lambda ()
@@ -268,14 +210,14 @@ If the new path's directories does not exist, create them."
     (define-key eww-mode-map (kbd "{") 'scroll-other-window-down)
     (define-key eww-mode-map (kbd "}") 'scroll-other-window)))
 
-;; org-mode settings
+;; org-mode hook
 (add-hook
  'org-mode-hook
  #'(lambda ()
     (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
     (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
 
-;; python-mode keybindings
+;; python-mode hook
 (add-hook 'python-mode-hook
 	  #'(lambda ()
 	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
@@ -284,24 +226,27 @@ If the new path's directories does not exist, create them."
 	     (define-key anaconda-mode-map (kbd "M-=") nil)
 	     (define-key python-mode-map (kbd "C-c RET") 'recompile)))
 
+;; repeat-mode hook
+(add-hook 'pre-command-hook
+		  'my/save-last-repeatable-command)
 
-;; enable browse-url on wsl
-;; from https://hungyi.net/posts/browse-emacs-urls-wsl/
+;; wsl settings
 (when (and (eq system-type 'gnu/linux)
            (string-match
             "Linux.*Microsoft.*Linux"
             (shell-command-to-string "uname -a")))
+  ;; enable browse-url on wsl
+  ;; from https://hungyi.net/posts/browse-emacs-urls-wsl/
   (setq
    browse-url-generic-program  "/mnt/c/Windows/System32/cmd.exe"
    browse-url-generic-args     '("/c" "start")
-   browse-url-browser-function #'browse-url-generic))
-
-;; repeat-mode settings
-(add-hook 'pre-command-hook 'my/save-last-repeatable-command)
+   browse-url-browser-function #'browse-url-generic)
+  (global-set-key (kbd "C-c w w") 'my/copy-region-to-windows-clipboard)
+  )
 
 ; repeat maps
 ; based on template from
-; https://tildegit.org/acdw/define-repeat-map.el 
+; https://tildegit.org/acdw/define-repeat-map.el
 (defvar my-other-window-repeat-map
   (let ((map (make-sparse-keymap)))
     (define-key map "o" #'other-window)

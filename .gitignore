@@ -19,7 +19,6 @@ smex-items
 eww-bookmarks
 .emacs.desktop
 .emacs.desktop.lock
-custom.el
 transient/*
 .mc-lists.el
 org-persist/*
