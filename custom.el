@@ -20,6 +20,9 @@
  '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
  '(org-fold-catch-invisible-edits 'smart)
+ '(org-outline-path-complete-in-steps nil)
+ '(org-refile-use-outline-path 'file)
+ '(org-startup-truncated nil)
  '(package-selected-packages
    '(markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
  '(repeat-mode t)
@@ -31,6 +34,7 @@
  '(show-trailing-whitespace t)
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(view-read-only t)
  '(window-combination-resize t)
