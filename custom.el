@@ -22,7 +22,7 @@
  '(org-agenda-sticky t)
  '(org-fold-catch-invisible-edits 'smart)
  '(org-outline-path-complete-in-steps nil)
- '(org-refile-use-outline-path 'file)
+ '(org-refile-use-outline-path t)
  '(org-startup-truncated nil)
  '(package-selected-packages
    '(markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
