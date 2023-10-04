@@ -11,12 +11,13 @@
  '(duplicate-line-final-position -1)
  '(electric-pair-mode t)
  '(help-window-select t)
+ '(hippie-expand-try-functions-list
+   '(try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-dabbrev try-expand-line try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol))
  '(inhibit-startup-screen t)
  '(isearch-wrap-pause 'no-ding)
  '(line-move-visual nil)
  '(mc/always-run-for-all t)
  '(menu-bar-mode nil)
- '(next-line-add-newlines t)
  '(orderless-matching-styles '(orderless-regexp orderless-literal orderless-prefixes))
  '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
@@ -24,8 +25,9 @@
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path t)
  '(org-startup-truncated nil)
+ '(org-use-speed-commands t)
  '(package-selected-packages
-   '(markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
+   '(drag-stuff markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
@@ -40,7 +42,8 @@
  '(view-read-only t)
  '(window-combination-resize t)
  '(winner-mode t)
- '(word-wrap t))
+ '(word-wrap t)
+ '(yas-indent-line 'fixed))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
