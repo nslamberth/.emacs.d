@@ -162,6 +162,13 @@
 (use-package markdown-mode
   :ensure t)
 
+(use-package drag-stuff
+  :ensure t
+  :init
+  (drag-stuff-global-mode 1)
+  (drag-stuff-define-keys)
+)
+
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
