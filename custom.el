@@ -18,12 +18,16 @@
  '(menu-bar-mode nil)
  '(next-line-add-newlines t)
  '(orderless-matching-styles '(orderless-regexp orderless-literal orderless-prefixes))
- '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
+ '(org-capture-templates
+   '(("j" "default capture" entry
+	  (file "~/Sync/org/Capture.org")
+	  "")))
  '(org-fold-catch-invisible-edits 'smart)
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path t)
  '(org-startup-truncated nil)
+ '(org-use-speed-commands t)
  '(package-selected-packages
    '(markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
  '(repeat-mode t)

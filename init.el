@@ -252,7 +252,8 @@
   (setq
    org-refile-targets '(("/home/nicklamberth/Sync/org/Notes.org" :maxlevel . 1)
 						("/home/nicklamberth/Sync/org/Cooking.org" :maxlevel . 1)
-						("/home/nicklamberth/Sync/org/Watch.org" :maxlevel . 1))))
+						("/home/nicklamberth/Sync/org/Watch.org" :maxlevel . 1))
+   ))
 
 ; repeat maps
 ; based on template from
@@ -266,6 +267,7 @@
     (define-key map "2" #'split-window-below)
     (define-key map "3" #'split-window-right)
     (define-key map "b" #'switch-to-buffer)
+	(define-key map "f" #'find-file)
     map)
   "A map to repeat all window commands")
 
@@ -276,7 +278,8 @@
 		   delete-other-windows
 		   split-window-below
 		   split-window-right
-		   switch-to-buffer))
+		   switch-to-buffer
+		   find-file))
   (put command 'repeat-map 'my-other-window-repeat-map))
 
 
