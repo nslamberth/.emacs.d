@@ -19,8 +19,11 @@
  '(mc/always-run-for-all t)
  '(menu-bar-mode nil)
  '(orderless-matching-styles '(orderless-regexp orderless-literal orderless-prefixes))
- '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
+ '(org-capture-templates
+   '(("j" "default capture" entry
+	  (file "~/Sync/org/Capture.org")
+	  "")))
  '(org-fold-catch-invisible-edits 'smart)
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path t)
