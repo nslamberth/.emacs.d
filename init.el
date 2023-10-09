@@ -14,6 +14,8 @@
 (fset 'yes-or-no-p 'y-or-n-p) ;; Always use y/n instead of yes/no
 (put 'narrow-to-region 'disabled nil) ; enable narrowing
 (put 'dired-find-alternate-file 'disabled nil) ; enable dired alternate file
+(put 'downcase-region 'disabled nil) ; enable downcase from region
+
 
 ;; store backups in their own directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
