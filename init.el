@@ -168,8 +168,15 @@
   :ensure t
   :init
   (drag-stuff-global-mode 1)
-  (drag-stuff-define-keys)
-)
+  (drag-stuff-define-keys))
+
+(use-package org-jira
+  :ensure t
+  :init
+  (let ((org-jira-dir "~/.org-jira"))
+	  (if (not (file-exists-p org-jira-dir))
+		  (makd-directory org-jira-dir)))
+  (setq jiralib-url "https://wbdstreaming.atlassian.net/"))
 
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)

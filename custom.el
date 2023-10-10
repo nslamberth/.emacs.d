@@ -30,7 +30,7 @@
  '(org-startup-truncated nil)
  '(org-use-speed-commands t)
  '(package-selected-packages
-   '(drag-stuff markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
+   '(org-jira drag-stuff markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
