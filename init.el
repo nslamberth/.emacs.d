@@ -231,7 +231,8 @@
  'org-mode-hook
  #'(lambda ()
     (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
-    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
+    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)
+	(drag-stuff-mode -1)))
 
 ;; python-mode hook
 (add-hook 'python-mode-hook
