@@ -178,6 +178,12 @@
 		  (makd-directory org-jira-dir)))
   (setq jiralib-url "https://wbdstreaming.atlassian.net/"))
 
+(use-package goto-chg
+  :ensure t
+  :bind
+  ("C-x ;" . goto-last-change)
+  ("C-x ," . goto-last-change-reverse))
+
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
