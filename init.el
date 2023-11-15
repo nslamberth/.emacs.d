@@ -261,8 +261,10 @@
   (setq
    org-refile-targets '(("/home/nicklamberth/Sync/org/Notes.org" :maxlevel . 1)
 						("/home/nicklamberth/Sync/org/Cooking.org" :maxlevel . 1)
-						("/home/nicklamberth/Sync/org/Watch.org" :maxlevel . 1))
-   ))
+						("/home/nicklamberth/Sync/org/Watch.org" :maxlevel . 1)
+						("/home/nicklamberth/Sync/org/Thoughts.org" :maxlevel . 1)
+						("/home/nicklamberth/Sync/org/Kids.org" :maxlevel . 1))))
+
 
 ; repeat maps
 ; based on template from
