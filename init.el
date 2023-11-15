@@ -306,14 +306,3 @@
 		   switch-to-buffer
 		   find-file))
   (put command 'repeat-map 'my-other-window-repeat-map))
-
-
-(defvar line-navigation-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map "n" #'next-line)
-    (define-key map "p" #'previous-line)
-    map)
-  "A map to repeat all line navigation commands")
-
-(dolist (command '(next-line previous-line))
-  (put command 'repeat-map 'line-navigation-map))
