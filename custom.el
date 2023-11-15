@@ -14,10 +14,12 @@
  '(inhibit-startup-screen t)
  '(isearch-wrap-pause 'no-ding)
  '(line-move-visual nil)
+ '(magit-branch-read-upstream-first 'fallback)
  '(mc/always-run-for-all t)
  '(menu-bar-mode nil)
  '(next-line-add-newlines t)
  '(orderless-matching-styles '(orderless-regexp orderless-literal orderless-prefixes))
+ '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
  '(org-capture-templates
    '(("j" "default capture" entry
@@ -29,13 +31,14 @@
  '(org-startup-truncated nil)
  '(org-use-speed-commands t)
  '(package-selected-packages
-   '(plz request markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
+   '(plz request goto-chg org-jira drag-stuff markdown-mode sqlformat yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
  '(set-mark-command-repeat-pop t)
  '(show-paren-delay 0)
  '(show-paren-mode t)
+ '(show-trailing-whitespace nil)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(truncate-lines nil)

@@ -158,8 +158,8 @@
   :ensure t
   :init
   (setq sqlformat-command 'pgformatter)
-  (setq sqlformat-args '("-s2" "-g"))
-  (add-hook 'sql-mode-hook 'sqlformat-on-save-mode))
+  (setq sqlformat-args '("-s2" "-g")))
+
 
 (use-package markdown-mode
   :ensure t)
@@ -168,8 +168,21 @@
   :ensure t
   :init
   (drag-stuff-global-mode 1)
-  (drag-stuff-define-keys)
-)
+  (drag-stuff-define-keys))
+
+(use-package org-jira
+  :ensure t
+  :init
+  (let ((org-jira-dir "~/.org-jira"))
+	  (if (not (file-exists-p org-jira-dir))
+		  (makd-directory org-jira-dir)))
+  (setq jiralib-url "https://wbdstreaming.atlassian.net/"))
+
+(use-package goto-chg
+  :ensure t
+  :bind
+  ("C-x ;" . goto-last-change)
+  ("C-x ," . goto-last-change-reverse))
 
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
@@ -224,7 +237,8 @@
  'org-mode-hook
  #'(lambda ()
     (define-key org-mode-map (kbd "C-c n") 'org-next-visible-heading)
-    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)))
+    (define-key org-mode-map (kbd "C-c p") 'org-previous-visible-heading)
+	(drag-stuff-mode -1)))
 
 ;; python-mode hook
 (add-hook 'python-mode-hook
