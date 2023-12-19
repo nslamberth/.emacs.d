@@ -11,6 +11,7 @@
  '(duplicate-line-final-position -1)
  '(electric-pair-mode t)
  '(help-window-select t)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(isearch-wrap-pause 'no-ding)
  '(line-move-visual nil)
@@ -23,8 +24,8 @@
  '(org-agenda-sticky t)
  '(org-capture-templates
    '(("j" "default capture" entry
-	  (file "~/Sync/org/Capture.org")
-	  "")))
+      (file "~/Sync/org/Capture.org")
+      "")))
  '(org-fold-catch-invisible-edits 'smart)
  '(org-outline-path-complete-in-steps nil)
  '(org-refile-use-outline-path t)
@@ -39,6 +40,7 @@
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
+ '(tab-first-completion 'eol)
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(truncate-lines nil)
