@@ -147,19 +147,14 @@
   :ensure t
   :bind
   ("C-S-<right>" . puni-slurp-forward)
-  ("C-S-<left>" . puni-barf-forward))
+  ("C-c s" . puni-slurp-forward)
+  ("C-S-<left>" . puni-barf-forward)
+  ("C-c b" . puni-barf-forward))
 
 (use-package jump-char
   :ensure t
   :bind
   ("M-F" . jump-char-forward))
-
-(use-package sqlformat
-  :ensure t
-  :init
-  (setq sqlformat-command 'pgformatter)
-  (setq sqlformat-args '("-s2" "-g")))
-
 
 (use-package markdown-mode
   :ensure t)
