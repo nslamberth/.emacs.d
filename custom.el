@@ -18,6 +18,7 @@
  '(magit-branch-read-upstream-first 'fallback)
  '(mc/always-run-for-all t)
  '(menu-bar-mode nil)
+ '(next-line-add-newlines nil)
  '(orderless-matching-styles '(orderless-regexp orderless-literal orderless-prefixes))
  '(org-agenda-files '("/home/nick/org/notes.org"))
  '(org-agenda-sticky t)
