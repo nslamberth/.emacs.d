@@ -45,7 +45,8 @@
  '(view-read-only t)
  '(window-combination-resize t)
  '(winner-mode t)
- '(word-wrap t))
+ '(word-wrap t)
+ '(yas-indent-line 'fixed))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
