@@ -118,8 +118,7 @@
 (use-package yasnippet-snippets
  :ensure t
  :init)
-
-
+\
 (use-package magit
   :ensure t)
 
@@ -128,15 +127,10 @@
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
-
 (use-package multiple-cursors
   :ensure t
   :bind
   ("M-m" . 'mc/mark-next-like-this))
-
-(use-package anaconda-mode
-  :ensure t
-  :defer t)
 
 (use-package expand-region
   :ensure t
