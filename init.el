@@ -118,7 +118,7 @@
 (use-package yasnippet-snippets
  :ensure t
  :init)
-\
+
 (use-package magit
   :ensure t)
 
