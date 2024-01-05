@@ -119,7 +119,6 @@
  :ensure t
  :init)
 
-
 (use-package magit
   :ensure t)
 
@@ -127,7 +126,6 @@
   :ensure t
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
 
 (use-package multiple-cursors
   :ensure t
@@ -166,7 +164,7 @@
   :init
   (let ((org-jira-dir "~/.org-jira"))
 	  (if (not (file-exists-p org-jira-dir))
-		  (makd-directory org-jira-dir)))
+		  (make-directory org-jira-dir)))
   (setq jiralib-url "https://wbdstreaming.atlassian.net/"))
 
 (use-package goto-chg

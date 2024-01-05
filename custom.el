@@ -1,3 +1,4 @@
+ 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,7 +34,7 @@
  '(org-startup-truncated nil)
  '(org-use-speed-commands t)
  '(package-selected-packages
-   '(sql-indent sqlformat plz request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico anaconda-mode multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit ivy-rich dumb-jump counsel))
+   '(sql-indent request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit dumb-jump))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
