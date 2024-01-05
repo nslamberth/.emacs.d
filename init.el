@@ -134,10 +134,6 @@
   :bind
   ("M-m" . 'mc/mark-next-like-this))
 
-(use-package anaconda-mode
-  :ensure t
-  :defer t)
-
 (use-package expand-region
   :ensure t
   :bind ("M-=" . er/expand-region))
@@ -239,9 +235,7 @@
 (add-hook 'python-mode-hook
 	  #'(lambda ()
 	     (define-key python-mode-map (kbd "M-e") 'python-nav-forward-block)
-	     (anaconda-mode 1)
 	     (define-key python-mode-map (kbd "C-c r") 'python-shell-send-region)
-	     (define-key anaconda-mode-map (kbd "M-=") nil)
 	     (define-key python-mode-map (kbd "C-c RET") 'recompile)))
 
 ;; repeat-mode hook
