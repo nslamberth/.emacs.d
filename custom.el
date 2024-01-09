@@ -13,6 +13,8 @@
  '(duplicate-line-final-position -1)
  '(electric-pair-mode t)
  '(help-window-select t)
+ '(hippie-expand-try-functions-list
+   '(try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol try-expand-line))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(isearch-wrap-pause 'no-ding)
