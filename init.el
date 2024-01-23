@@ -283,8 +283,8 @@
     map)
   "A map to repeat all window commands")
 
-(dolist (command '(
-		   other-window
+(dolist (command
+         '(other-window
 		   previous-window
 		   delete-window
 		   delete-other-windows
@@ -293,3 +293,38 @@
 		   switch-to-buffer
 		   find-file))
   (put command 'repeat-map 'my-other-window-repeat-map))
+
+(defvar list-navigation-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "u" #'backward-up-list)
+    (define-key map "d" #'down-list)
+    (define-key map "f" #'forward-sexp)
+    (define-key map "b" #'backward-sexp)
+    (define-key map "x" #'eval-defun)
+    (define-key map "e" #'eval-last-sexp)
+    (define-key map "m" #'mark-sexp)
+    (define-key map "k" #'kill-sexp)
+    (define-key map "r" #'raise-sexp)
+    (define-key map "a" #'beginning-of-defun)
+    (define-key map "e" #'end-of-defun)
+    (define-key map "t" #'transpose-sexp)
+    (define-key map "q" #'indent-pp-sexp)
+    map)
+  "repeat map for navigating sexps")
+
+(dolist (command
+         '(backward-up-list
+           down-list
+           forward-sexp
+           backward-sexp
+           eval-defun
+           eval-last-sexp
+           mark-sexp
+           kill-sexp
+           raise-sexp
+           beginning-of-defun
+           end-of-defun
+           end-of-defun
+           transpose-sexp
+           indent-pp-sexp))
+  (put command 'repeat-map 'list-navigation-repeat-map))
