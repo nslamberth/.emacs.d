@@ -306,7 +306,6 @@
     (define-key map "k" #'kill-sexp)
     (define-key map "r" #'raise-sexp)
     (define-key map "a" #'beginning-of-defun)
-    (define-key map "e" #'end-of-defun)
     (define-key map "t" #'transpose-sexp)
     (define-key map "q" #'indent-pp-sexp)
     map)
