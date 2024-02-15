@@ -59,6 +59,7 @@
  :init
  (global-undo-tree-mode)
  (setq undo-tree-auto-save-history nil)
+ :bind
  )
 
 (use-package which-key
@@ -200,6 +201,7 @@
 (global-set-key (kbd "C-<right>") 'forward-same-syntax)
 (define-key Buffer-menu-mode-map (kbd "g") nil)
 
+
 ;; dired hook
 (add-hook 'dired-mode-hook
           (lambda ()
@@ -301,11 +303,11 @@
     (define-key map "f" #'forward-sexp)
     (define-key map "b" #'backward-sexp)
     (define-key map "x" #'eval-defun)
-    (define-key map "e" #'eval-last-sexp)
-    (define-key map "m" #'mark-sexp)
+    (define-key map (kbd "C-x C-e") #'eval-last-sexp)
+    (define-key map (kbd "@") #'mark-sexp)
     (define-key map "k" #'kill-sexp)
     (define-key map "r" #'raise-sexp)
-    (define-key map "a" #'beginning-of-defun)
+    (define-key map "a" #'backward-sentence)
     (define-key map "t" #'transpose-sexp)
     (define-key map "q" #'indent-pp-sexp)
     map)
@@ -322,7 +324,6 @@
            kill-sexp
            raise-sexp
            beginning-of-defun
-           end-of-defun
            end-of-defun
            transpose-sexp
            indent-pp-sexp))
