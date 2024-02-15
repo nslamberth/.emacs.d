@@ -68,8 +68,12 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
 (defun my/copy-region-to-windows-clipboard (beg end)
   "copy region to windows clipboard in WSL"
   (interactive "r")
-  (shell-command-on-region beg end "clip.exe" nil nil nil t)
-  )
+  (let* ((region-contents (buffer-substring beg end))
+         (region-contents (string-replace "{env}" "prod" region-contents))
+         (region-contents (string-replace "{run_dt}" "2024-01-15" region-contents))
+         (region-contents (string-replace "{batch_dt}" "2024-01-15" region-contents)))
+    (shell-command (format "echo %s | clip.exe" (shell-quote-argument region-contents)))))
+
 
 (defvar my/last-repeatable-command nil
   "Copy of last-repeatable-command that ignores my/repeat-commands-to-ignore")
@@ -92,3 +96,8 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
 (defun my/save-last-repeatable-command ()
   (if (not (member last-repeatable-command my/repeat-commands-to-ignore))
       (setq my/last-repeatable-command last-repeatable-command)))
+
+(defun my/send-buffer-file-to-databricks ()
+  "send the current region to databricks cli and return result in temp buffer"
+  (interactive)
+  (shell-command (format "dbsqlcli -e %s" (buffer-file-name))))
