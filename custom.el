@@ -36,7 +36,7 @@
  '(org-startup-truncated nil)
  '(org-use-speed-commands t)
  '(package-selected-packages
-   '(sql-indent request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit dumb-jump))
+   '(embark-consult embark sql-indent request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit dumb-jump))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
@@ -44,6 +44,7 @@
  '(show-paren-delay 0)
  '(show-paren-mode t)
  '(show-trailing-whitespace nil)
+ '(tab-always-indent 'complete)
  '(tab-first-completion 'eol)
  '(tab-width 4)
  '(tool-bar-mode nil)

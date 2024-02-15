@@ -174,6 +174,40 @@
   ("C-x ;" . goto-last-change)
   ("C-x ," . goto-last-change-reverse))
 
+(use-package slime
+  :ensure t
+  :init
+  (setq inferior-lisp-program "sbcl"))
+
+(use-package marginalia :ensure t)
+
+(use-package embark
+  :ensure t
+
+  :bind
+  (("M-o" . embark-act)         ;; pick some comfortable binding
+   ("M-." . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  ;; try this later
+  ;; (add-hook 'eldoc-documentation-functions #'embark-eldoc-first-target)
+  ;; (setq eldoc-documentation-strategy #'eldoc-documentation-compose-eagerly)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+(use-package embark-consult
+:ensure t)
+
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
@@ -188,7 +222,7 @@
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
-(global-set-key (kbd "M-o") 'my/new-line)
+(global-set-key (kbd "C-o") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
 (global-set-key (kbd "M-D") 'duplicate-dwim)
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
