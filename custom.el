@@ -14,7 +14,7 @@
  '(electric-pair-mode t)
  '(help-window-select t)
  '(hippie-expand-try-functions-list
-   '(try-complete-file-name-partially try-complete-file-name try-expand-all-abbrevs try-expand-list try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol try-expand-line))
+   '(try-expand-dabbrev try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill try-complete-lisp-symbol-partially try-complete-lisp-symbol try-expand-line))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(isearch-wrap-pause 'no-ding)
@@ -36,7 +36,7 @@
  '(org-startup-truncated nil)
  '(org-use-speed-commands t)
  '(package-selected-packages
-   '(embark-consult embark sql-indent request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit dumb-jump))
+   '(marginalia slime embark-consult embark sql-indent request goto-chg org-jira drag-stuff markdown-mode yaml-mode jump-char puni expand-region consult ace-window avy try orderless vertico multiple-cursors yasnippet-snippets which-key use-package undo-tree olivetti magit dumb-jump))
  '(repeat-mode t)
  '(ring-bell-function 'ignore)
  '(scroll-bar-mode nil)
