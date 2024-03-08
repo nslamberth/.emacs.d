@@ -208,12 +208,16 @@
 (use-package embark-consult
 :ensure t)
 
+(use-package iedit
+  :ensure t
+  :bind
+  (("C-\\" . iedit-mode)))
+
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
 (global-set-key (kbd "C-e") 'end-of-line)
 (global-set-key (kbd "C-a") 'beginning-of-line)
 (global-set-key (kbd "C-x O") 'my/previous-window)
-(global-set-key (kbd "C-\\") 'other-window)
 (global-set-key (kbd "C-x f") 'find-file)
 (global-set-key (kbd "C-k") 'my/kill-region-or-line)
 (global-set-key (kbd "M-w") 'my/copy-region-or-line)
@@ -222,7 +226,7 @@
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
-(global-set-key (kbd "C-o") 'my/new-line)
+(global-set-key (kbd "M-RET") 'my/new-line)
 (global-set-key (kbd "M-l") 'my/mark-line)
 (global-set-key (kbd "M-D") 'duplicate-dwim)
 (global-set-key (kbd "C-x )") 'kmacro-end-or-call-macro)
