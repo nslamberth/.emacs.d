@@ -292,6 +292,7 @@
    browse-url-generic-args     '("/c" "start")
    browse-url-browser-function #'browse-url-generic)
   (global-set-key (kbd "C-c w w") 'my/copy-region-to-windows-clipboard)
+  (global-set-key (kbd "C-c d r") 'send-region-to-databricks)
   )
 
 ;; rpi settings
