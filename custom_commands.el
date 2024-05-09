@@ -100,3 +100,12 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
   "send the current region to databricks cli and return result in temp buffer"
   (interactive)
   (shell-command (format "dbsqlcli -e %s" (buffer-file-name))))
+
+(defun send-region-to-databricks (start end &optional limit)
+  "Send text in region to databricks sql cli"
+  (interactive "r")
+  (unless limit (setq limit 10))
+  (let* ((region-contents (buffer-substring-no-properties start end))
+         (region-contents (concat region-contents (format " LIMIT %s;" limit)))
+         (command (format "dbsqlcli -e %s | column -t -s \",\"" (shell-quote-argument region-contents))))
+    (async-shell-command command)))
