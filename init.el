@@ -206,7 +206,17 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package embark-consult
-:ensure t)
+  :ensure t)
+
+(use-package ledger-mode
+  :ensure t
+  :init
+  (add-hook 'ledger-mode-hook
+               (lambda ()
+                 (setq-local tab-always-indent 'complete)
+                 (setq-local completion-cycle-threshold t)
+                 (setq-local ledger-complete-in-steps t)))
+  )
 
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
