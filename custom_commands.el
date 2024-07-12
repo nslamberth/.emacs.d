@@ -109,3 +109,11 @@ https://emacs.stackexchange.com/questions/15033/how-to-mark-current-line-and-mov
          (region-contents (concat region-contents (format " LIMIT %s;" limit)))
          (command (format "dbsqlcli -e %s | column -t -s \",\"" (shell-quote-argument region-contents))))
     (async-shell-command command)))
+
+(defun surround-sexp-with-quotes ()
+  "Surround the next sexp with double quotes."
+  (interactive)
+  (save-excursion
+    (insert ?\")
+    (forward-sexp)
+    (insert ?\")))
