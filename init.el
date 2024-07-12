@@ -109,7 +109,8 @@
 (use-package consult
   :ensure t
   :bind
-  ("M-S" . consult-line))
+  ("M-S" . consult-line)
+  ("M-s s" . consult-imenu))
 
 (use-package yasnippet
  :ensure t
@@ -209,19 +210,27 @@
   :ensure t)
 
 (use-package ledger-mode
-  :ensure t
-  :init
-  (add-hook 'ledger-mode-hook
-               (lambda ()
-                 (setq-local tab-always-indent 'complete)
-                 (setq-local completion-cycle-threshold t)
-                 (setq-local ledger-complete-in-steps t)))
-  )
+  :ensure t)
 
 (use-package iedit
   :ensure t
   :bind
   (("C-\\" . iedit-mode)))
+
+(use-package quelpa
+  :ensure t)
+
+(use-package corfu
+:ensure t)
+
+;; Non-Melpa packages
+
+(quelpa '(corfu-terminal
+          :fetcher git
+          :url "https://codeberg.org/akib/emacs-corfu-terminal.git"))
+
+(unless (display-graphic-p)
+  (corfu-terminal-mode +1))
 
 ;;; Keybindings
 (global-set-key (kbd "<select>") 'end-of-line)
@@ -232,7 +241,6 @@
 (global-set-key (kbd "C-k") 'my/kill-region-or-line)
 (global-set-key (kbd "M-w") 'my/copy-region-or-line)
 (global-set-key (kbd "C-w") 'my/kill-region-or-whole-line)
-(global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "M-j") 'avy-goto-char-timer)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
@@ -248,7 +256,7 @@
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-<right>") 'forward-same-syntax)
 (define-key Buffer-menu-mode-map (kbd "g") nil)
-
+(global-set-key (kbd "M-\"") 'surround-sexp-with-quotes)
 
 ;; dired hook
 (add-hook 'dired-mode-hook
@@ -344,6 +352,12 @@
 		   switch-to-buffer
 		   find-file))
   (put command 'repeat-map 'my-other-window-repeat-map))
+
+(defvar sentence-navigation-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "e" #'forward-sentence)
+    (define-key map "a" #'backward-sentence)
+    map))
 
 (defvar list-navigation-repeat-map
   (let ((map (make-sparse-keymap)))
