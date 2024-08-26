@@ -368,7 +368,6 @@
     (define-key map "f" #'forward-sexp)
     (define-key map "b" #'backward-sexp)
     (define-key map "x" #'eval-defun)
-    (define-key map (kbd "C-x C-e") #'eval-last-sexp)
     (define-key map (kbd "@") #'mark-sexp)
     (define-key map "k" #'kill-sexp)
     (define-key map "r" #'raise-sexp)
@@ -383,8 +382,6 @@
            down-list
            forward-sexp
            backward-sexp
-           eval-defun
-           eval-last-sexp
            mark-sexp
            kill-sexp
            raise-sexp
