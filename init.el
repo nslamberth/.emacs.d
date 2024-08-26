@@ -108,6 +108,8 @@
 
 (use-package consult
   :ensure t
+  :init
+  (setf completion-in-region-function 'consult-completion-in-region)
   :bind
   ("M-S" . consult-line)
   ("M-s s" . consult-imenu))
